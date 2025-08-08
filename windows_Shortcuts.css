@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortcut Sensei</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .logo a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .main-nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .main-nav ul li {
+            position: relative;
+        }
+
+        .main-nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .main-nav ul li a:hover {
+            background-color: #444;
+            border-radius: 4px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 25px;
+            padding: 5px 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container input[type="text"] {
+            padding: 8px;
+            border: none;
+            border-radius: 20px;
+            margin-right: 10px;
+            width: 300px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background-color: purple;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background-color: #6a1b9a;
+        }
+
+        .search-container button i {
+            color: #fff;
+        }
+
+         /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                display: none;
+            }
+
+            .main-nav ul.show {
+                display: flex;
+            }
+
+            .search-container, .menu-toggle {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-container input[type="text"] {
+                width: 100%;
+            }
+
+            .features .feature, .latest-news article {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        /* Search table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            background-color: #fff;
+            overflow: hidden; /* Ensures that curved corners are applied */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #2cba19;
+            color: #333;
+        }
+
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        .indented-paragraph {
+        margin-left: 11.5%; /* Adjust the value 165px as needed */
+        margin-right: 4.4%;  /*440 px */
+    }
+    .my-custom-class {
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Vertically center items */
+        }
+       .image{
+        width: 1000px;
+        height: 500px;
+        margin-left: 165px;
+
+       }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+        }
+
+        .footer-links li a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons li {
+            display: inline;
+        }
+
+        .social-icons li a {
+            color: #fff;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .social-icons li a:hover {
+            color: #6a1b9a;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .subscribe-form input[type="email"] {
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            font-size: 1em;
+        }
+
+        .subscribe-form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: purple;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe-form button:hover {
+            background-color: #6a1b9a;
+        }
+
+        footer p {
+            margin: 20px 0 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .main-nav ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            .main-nav ul.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .features .feature,
+            .latest-news article {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .search-container input[type="text"] {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="Homepage.html">Shortcut Sensei</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="Homepage.html">Home</a></li>
+                    <li><a href="About.html">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="https://www.instagram.com/rafi_s_b_m/">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button type="button" onclick="searchShortcuts()"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+    <br>
+    <h1 style="text-align: left; margin-left: 10.5%;font-size: 40px;">Essential Windows 11 Shortcuts</h1>
+    <p class="indented-paragraph"> Master Windows 11 with these essential keyboard shortcuts. From navigation to file management, these shortcuts will boost your productivity and streamline your workflow on Windows 11.
+
+    </p>
+
+    <div class="my-custom-class">
+        <img src="win11.jpg" alt="Windows 11" class="image">
+    </div>    
+
+    <br>
+
+<p class="indented-paragraph" style="line-height: 26px;"> <b>Discover Windows 11 Productivity</b><br>
+
+    Unleash your productivity and explore the powerful features of Windows 11. Whether you're a professional, student, or casual user, these shortcuts provide the tools you need to navigate efficiently and accomplish tasks faster.
+    </p>
+      <br>
+  
+
+  <p class="indented-paragraph"></p>
+
+  <h2 style="text-align: left; margin-left: 10.5%;">System Navigation Shortcuts</h2>
+
+  <p class="indented-paragraph">
+
+    These fundamental Windows shortcuts help you navigate through the operating system efficiently. They provide quick access to essential system functions, window management, and desktop navigation.
+
+</p>
+
+    
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th style="color: #fff;">Key Combination</th>
+                <th style="color: #fff;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Win + D</td>
+              <td>Show/Hide Desktop</td>
+            </tr>
+            <tr>
+              <td>Win + L</td>
+              <td>Lock Screen</td>
+            </tr>
+            <tr>
+              <td>Win + I</td>
+              <td>Open Settings</td>
+            </tr>
+            <tr>
+              <td>Win + X</td>
+              <td>Open Quick Link Menu</td>
+            </tr>
+            <tr>
+              <td>Win + R</td>
+              <td>Open Run Dialog</td>
+            </tr>
+            <tr>
+              <td>Win + Tab</td>
+              <td>Task View</td>
+            </tr>
+            <tr>
+              <td>Alt + Tab</td>
+              <td>Switch Between Apps</td>
+            </tr>
+            <tr>
+              <td>Win + Shift + S</td>
+              <td>Screenshot Tool</td>
+            </tr>
+            <tr>
+              <td>Win + V</td>
+              <td>Clipboard History</td>
+            </tr>             
+        </tbody>
+    </table>
+  <br>
+
+  <!-- 2nd part -->
+
+  <h2 style="text-align: left; margin-left: 10.5%;">File Management Shortcuts</h2>
+
+  <p class="indented-paragraph">
+    Windows file management shortcuts help you efficiently organize, navigate, and manipulate files and folders. These shortcuts streamline common tasks like copying, cutting, pasting, and selecting files.
+
+</p>
+
+
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th style="color: #fff;">Key Combination</th>
+                <th style="color: #fff;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Ctrl + X</td>
+              <td>Cut</td>
+            </tr>
+            <tr>
+              <td>Ctrl + C</td>
+              <td>Copy</td>
+            </tr>
+            <tr>
+              <td>Ctrl + V</td>
+              <td>Paste</td>
+            </tr>
+            <tr>
+              <td>Delete</td>
+              <td>Delete</td>
+            </tr>
+            <tr>
+              <td>Ctrl + Z</td>
+              <td>Undo</td>
+            </tr>
+            <tr>
+              <td>Ctrl + Y</td>
+              <td>Redo</td>
+            </tr>
+            <tr>
+              <td>Ctrl + A</td>
+              <td>Select All</td>
+            </tr>
+            <tr>
+              <td>F2</td>
+              <td>Rename File</td>
+            </tr>
+            <tr>
+              <td>Ctrl + Shift + N</td>
+              <td>New Folder</td>
+            </tr>
+            <tr>
+              <td>Shift + F10</td>
+              <td>Context Menu</td>
+            </tr>
+            <tr>
+              <td>Ctrl + Shift + Delete</td>
+              <td>Permanent Delete</td>
+            </tr>
+            <tr>
+              <td>Shift + Left Arrow</td>
+              <td>Extend Selection Left</td>
+            </tr>
+            <tr>
+              <td>Shift + Right Arrow</td>
+              <td>Extend Selection Right</td>
+            </tr>
+            <tr>
+              <td>Ctrl + Shift + Left Arrow</td>
+              <td>Select Word Left</td>
+            </tr>
+            <tr>
+              <td>Ctrl + Shift + Right Arrow</td>
+              <td>Select Word Right</td>
+            </tr>                                  
+        </tbody>
+    </table>
+     <br>
+
+  <h2 style="text-align: left; margin-left: 10.5%;">Window Management Shortcuts</h2>
+
+  <p class="indented-paragraph">
+
+    Windows 11 provides powerful window management features that help you organize multiple applications efficiently. These shortcuts enable you to snap, resize, and navigate between windows quickly.
+
+
+</p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th style="color: #fff;">Key Combination</th>
+                <th style="color: #fff;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Win + Left Arrow</td>
+              <td>Snap Window Left</td>
+            </tr>
+            <tr>
+              <td>Win + Right Arrow</td>
+              <td>Snap Window Right</td>
+            </tr>
+            <tr>
+              <td>Win + Up Arrow</td>
+              <td>Maximize Window</td>
+            </tr>
+            <tr>
+              <td>Win + Down Arrow</td>
+              <td>Minimize/Restore Window</td>
+            </tr>
+            <tr>
+              <td>Win + M</td>
+              <td>Minimize All Windows</td>
+            </tr>
+            <tr>
+              <td>Win + Shift + M</td>
+              <td>Restore Minimized Windows</td>
+            </tr>
+            <tr>
+              <td>Alt + F4</td>
+              <td>Close Active Window</td>
+            </tr>
+            <tr>
+              <td>Win + Home</td>
+              <td>Minimize All Except Active</td>
+            </tr>
+            <tr>
+              <td>Win + 1-9</td>
+              <td>Open/Switch to Taskbar App</td>
+            </tr>                                                   
+        </tbody>
+    </table>
+    <br>
+
+
+<h2 style="text-align: left; margin-left: 10.5%;">Productivity & Search Shortcuts</h2>
+
+<p class="indented-paragraph">
+
+  These Windows shortcuts boost productivity by providing quick access to search, virtual desktops, and common applications. They help streamline your workflow and save valuable time.
+
+</p>
+
+  <table>
+   
+    <table border="1">
+        <thead>
+            <tr>
+                <th style="color: #fff;">Key Combination</th>
+                <th style="color: #fff;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Win + S</td>
+              <td>Open Search</td>
+            </tr>
+            <tr>
+              <td>Win + Q</td>
+              <td>Quick Search</td>
+            </tr>
+            <tr>
+              <td>Win + Ctrl + D</td>
+              <td>Add Virtual Desktop</td>
+            </tr>
+            <tr>
+              <td>Win + Ctrl + F4</td>
+              <td>Close Virtual Desktop</td>
+            </tr>
+            <tr>
+              <td>Win + Ctrl + Left/Right</td>
+              <td>Switch Virtual Desktop</td>
+            </tr>
+            <tr>
+              <td>Win + E</td>
+              <td>Open File Explorer</td>
+            </tr>
+            <tr>
+              <td>Win + A</td>
+              <td>Open Action Center</td>
+            </tr>
+            <tr>
+              <td>Win + N</td>
+              <td>Open Notification Center</td>
+            </tr>
+            <tr>
+              <td>Win + G</td>
+              <td>Open Game Bar</td>
+            </tr>
+            <tr>
+              <td>Win + U</td>
+              <td>Open Ease of Access</td>
+            </tr>
+            <tr>
+              <td>Win + K</td>
+              <td>Connect to Devices</td>
+            </tr>
+            <tr>
+              <td>Win + P</td>
+              <td>Display Settings</td>
+            </tr>          
+        </tbody>
+    </table>
+     <br>
+
+
+     <h2 style="text-align: left; margin-left: 10.5%;">Track Control Shortcuts</h2>
+
+     <p class="indented-paragraph">
+
+      After Effects shortcuts accelerate motion graphics and visual effects creation by providing shortcuts for keyframe animation, layer management, and composition settings. They streamline processes like pre-composing, duplicating layers, and adjusting timing.
+</p>
+   
+      
+       <table border="1">
+           <thead>
+               <tr>
+                   <th style="color: #fff;">Key Combination</th>
+                   <th style="color: #fff;">Description</th>
+               </tr>
+           </thead>
+           <tbody>
+              <tr>
+                <td>M</td>
+                <td>Toggle Mute</td>
+              </tr>
+              <tr>
+                <td>S</td>
+                <td>Toggle Solo</td>
+              </tr>
+              <tr>
+                <td>H</td>
+                <td>Toggle Track Height</td>
+              </tr>
+              <tr>
+                <td>T</td>
+                <td>Minimize/Maximize Track Height</td>
+              </tr>
+              <tr>
+                <td>Shift + L</td>
+                <td>Toggle Sync-Lock Tracks</td>
+              </tr>
+              <tr>
+                <td>Ctrl + P</td>
+                <td>Toggle Track Panel</td>
+              </tr>             
+           </tbody>
+       </table>
+        <br>       
+
+
+
+
+     <h2 style="text-align: left; margin-left: 10.5%;">Time Shift Tool Shortcuts</h2>
+
+     <p class="indented-paragraph">
+
+      Acrobat shortcuts enhance document management and viewing efficiency by offering quick access to features for creating, editing, and navigating PDF files. They enable actions like zooming, rotating, and exporting documents.
+
+        </p>
+     
+
+         <table border="1">
+             <thead>
+                 <tr>
+                     <th style="color: #fff;">Key Combination</th>
+                     <th style="color: #fff;">Description</th>
+                 </tr>
+             </thead>
+             <tbody>
+                <tr>
+                  <td>Ctrl + Shift + Left Arrow</td>
+                  <td>Move Clip Left</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + Shift + Right Arrow</td>
+                  <td>Move Clip Right</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + Left Arrow</td>
+                  <td>Nudge Clip Left</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + Right Arrow</td>
+                  <td>Nudge Clip Right</td>
+                </tr>                                       
+             </tbody>
+         </table>
+          <br>
+
+
+          <h2 style="text-align: left; margin-left: 10.5%;">Envelope Tool Shortcuts</h2>
+
+          <p class="indented-paragraph">
+
+            Dreamweaver shortcuts expedite web development workflows by providing quick access to HTML, CSS, and JavaScript editing tools. They aid in tasks such as saving changes, duplicating code, and searching within files.</p>
+        
+           
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th style="color: #fff;">Key Combination</th>
+                        <th style="color: #fff;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>Ctrl + Click</td>
+                      <td>Create Envelope Point</td>
+                    </tr>
+                    <tr>
+                      <td>Ctrl + Shift + Click</td>
+                      <td>Delete Envelope Point</td>
+                    </tr>
+                    <tr>
+                      <td>Alt + Up Arrow</td>
+                      <td>Adjust Envelope Up</td>
+                    </tr>
+                    <tr>
+                      <td>Alt + Down Arrow</td>
+                      <td>Adjust Envelope Down</td>
+                    </tr>
+                    <tr>
+                      <td>Alt + Left Arrow</td>
+                      <td>Adjust Envelope Left</td>
+                    </tr>
+                    <tr>
+                      <td>Alt + Right Arrow</td>
+                      <td>Adjust Envelope Right</td>
+                    </tr>
+                    <tr>
+                      <td>Ctrl + Alt + Click</td>
+                      <td>Reset Envelope Point</td>
+                    </tr>                                               
+                </tbody>
+            </table>
+             <br>        
+
+
+
+     <h2 style="text-align: left; margin-left: 10.5%;">Other Useful Shortcuts</h2>
+
+     <p class="indented-paragraph">
+
+      Acrobat shortcuts enhance document management and viewing efficiency by offering quick access to features for creating, editing, and navigating PDF files. They enable actions like zooming, rotating, and exporting documents.
+
+        </p>
+     
+
+         <table border="1">
+             <thead>
+                 <tr>
+                     <th style="color: #fff;">Key Combination</th>
+                     <th style="color: #fff;">Description</th>
+                 </tr>
+             </thead>
+             <tbody>
+                <tr>
+                  <td>F12</td>
+                  <td>Toggle Toolbar</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + P</td>
+                  <td>Preferences</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + Shift + E</td>
+                  <td>Export Audio</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + Shift + I</td>
+                  <td>Import Audio</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + S</td>
+                  <td>Save Project</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + Shift + O</td>
+                  <td>Open Recent Project</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + N</td>
+                  <td>New Project</td>
+                </tr>
+                <tr>
+                  <td>Ctrl + W</td>
+                  <td>Close Current Project</td>
+                </tr>
+                <tr>
+                  <td>Alt + F4</td>
+                  <td>Exit Audacity</td>
+                </tr>                                                  
+             </tbody>
+         </table>
+          <br>
+
+
+
+     <h2 style="text-align: left; margin-left: 10.5%;">Custom Shortcut</h2>
+
+     <p class="indented-paragraph">
+
+      Acrobat shortcuts enhance document management and viewing efficiency by offering quick access to features for creating, editing, and navigating PDF files. They enable actions like zooming, rotating, and exporting documents.
+
+        </p>
+     
+
+         <table border="1">
+             <thead>
+                 <tr>
+                     <th style="color: #fff;">Key Combination</th>
+                     <th style="color: #fff;">Description</th>
+                 </tr>
+             </thead>
+             <tbody>
+                  <td>Ctrl + Alt + Shift + X</td>
+                  <td>Custom Shortcut (Replace X with desired key)</td>
+                </tr>                           
+             </tbody>
+         </table>
+          <br>
+
+
+
+     <h2 style="text-align: left; margin-left: 10.5%;">Sync Shortcuts </h2>
+
+     <p class="indented-paragraph">
+
+      Acrobat shortcuts enhance document management and viewing efficiency by offering quick access to features for creating, editing, and navigating PDF files. They enable actions like zooming, rotating, and exporting documents.
+
+        </p>
+     
+
+         <table border="1">
+             <thead>
+                 <tr>
+                     <th style="color: #fff;">Key Combination</th>
+                     <th style="color: #fff;">Description</th>
+                 </tr>
+             </thead>
+             <tbody>
+                <tr>
+                  <td>Ctrl + Shift + D</td>
+                  <td>Pause syncing.</td>
+                </tr>                          
+             </tbody>
+         </table>
+          <br>
+
+
+
+
+ <hr> <br>
+      <p class="indented-paragraph">After mastering these shortcuts, you'll navigate Microsoft Edge like a pro, boosting your productivity and efficiency. Remember to practice regularly to integrate them seamlessly into your workflow. Additionally, consider customizing shortcuts to suit your preferences and workflow better. Happy browsing!</p>
+    <br>
+    </body>        
+
+
+
+<footer>
+    <div class="footer-content">
+        <ul class="footer-links">
+            <li><a href="Homepage.html">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#news">Latest News</a></li>
+        </ul>
+        <ul class="social-icons">
+            <li><a href="https://www.facebook.com/profile.php?id=100015198880002"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://twitter.com/RAFI09925204"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/rafi-s-b-m-a3492a265/"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="https://www.instagram.com/rafi_s_b_m/"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        <div class="subscribe-form">
+            <input type="email" placeholder="Subscribe to our newsletter">
+            <button type="button">Subscribe</button>
+        </div>
+        <p>&copy; 2024 Shortcut Sensei. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        document.querySelector('.main-nav ul').classList.toggle('show');
+    });
+</script>
+
+</body>
+</html>
