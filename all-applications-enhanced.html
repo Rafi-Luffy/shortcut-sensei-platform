@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Applications - Shortcut Sensei</title>
+    <meta name="description" content="Master keyboard shortcuts for 30+ popular applications. From VS Code to Photoshop, accelerate your workflow across all your favorite tools.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="enhanced-styles.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="professional-animations.css">
+    <link rel="stylesheet" href="premium-animations.css">
+    <link rel="stylesheet" href="premium-ui.css">
+    <style>
+        /* Page-specific styles */
+        .applications-hero {
+            padding: calc(var(--nav-height) + var(--space-16)) 0 var(--space-16);
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+        
+        .applications-hero h1 {
+            margin-bottom: var(--space-4);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            display: block;
+        }
+        
+        .hero-stat .label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .search-section {
+            padding: var(--space-12) 0;
+            background: var(--bg-primary);
+        }
+        
+        .search-container-page {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input-page {
+            width: 100%;
+            padding: var(--space-4) var(--space-6) var(--space-4) var(--space-12);
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-full);
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            outline: none;
+            transition: all var(--transition);
+        }
+        
+        .search-input-page:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        .search-icon-page {
+            position: absolute;
+            left: var(--space-4);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-tertiary);
+        }
+        
+        .applications-main {
+            padding: var(--space-16) 0;
+        }
+        
+        .filters-section {
+            margin-bottom: var(--space-12);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2);
+            margin-bottom: var(--space-8);
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-6);
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .apps-grid-page {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+        
+        .app-card-page {
+            padding: var(--space-6);
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            color: inherit;
+            transition: all var(--transition);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-card-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .app-card-page:hover::before {
+            left: 100%;
+        }
+        
+        .app-card-page:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+        
+        .app-icon-page {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.75rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-info h3 {
+            margin-bottom: var(--space-1);
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-category {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .app-description {
+            margin: var(--space-4) 0;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .app-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: var(--space-6);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .shortcut-count-page {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .difficulty-badge {
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .difficulty-easy {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .difficulty-medium {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        
+        .difficulty-hard {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        
+        .load-more {
+            text-align: center;
+        }
+        
+        .stats-section {
+            padding: var(--space-16) 0;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+        
+        .stat-card {
+            padding: var(--space-6);
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-gradient);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto var(--space-4);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: var(--space-16) var(--space-4);
+        }
+        
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            color: var(--text-tertiary);
+            font-size: 2rem;
+        }
+        
+        .empty-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-2);
+            color: var(--text-primary);
+        }
+        
+        .empty-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: var(--space-4);
+            }
+            
+            .filter-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: var(--space-2);
+            }
+            
+            .filter-tab {
+                flex-shrink: 0;
+            }
+            
+            .apps-grid-page {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-modern" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index-enhanced.html" class="logo-container">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#764ba2"/>
+                                </linearGradient>
+                                <filter id="logoGlow">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge> 
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#logoGradient)" filter="url(#logoGlow)"/>
+                            <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
+                            <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Shortcut Sensei</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index-enhanced.html" class="nav-link">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="all-applications-enhanced.html" class="nav-link active">
+                    <i data-lucide="grid-3x3"></i>
+                    <span>Applications</span>
+                </a>
+                <a href="quiz-enhanced.html" class="nav-link">
+                    <i data-lucide="brain"></i>
+                    <span>Quiz</span>
+                </a>
+                <a href="#community" class="nav-link">
+                    <i data-lucide="users"></i>
+                    <span>Community</span>
+                </a>
+                <a href="About-enhanced.html" class="nav-link">
+                    <i data-lucide="info"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="search-toggle" id="search-toggle" aria-label="Search">
+                    <i data-lucide="search"></i>
+                </button>
+                
+                <div class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="theme-icon"></i>
+                </div>
+                
+                <button class="auth-btn" id="auth-btn">
+                    <i data-lucide="user"></i>
+                    <span>Sign In</span>
+                </button>
+                
+                <!-- Notification Bell -->
+                <button class="notification-bell" id="notificationBell">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <!-- User Profile Button (when logged in) -->
+                <button class="user-profile-btn" id="userProfileBtn" style="display: none;">
+                    <img src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="Profile" class="user-avatar-small">
+                    <span class="user-name-small">User</span>
+                </button>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="applications-hero">
+        <div class="container">
+            <h1 class="scroll-animate">Master Shortcuts for <span class="gradient-text">Every Application</span></h1>
+            <p class="scroll-animate animate-delay-1">Accelerate your workflow across 30+ popular applications with our comprehensive shortcut database</p>
+            
+            <div class="hero-stats scroll-animate animate-delay-2">
+                <div class="hero-stat">
+                    <span class="number" data-count="30">0</span>
+                    <span class="label">Applications</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="number" data-count="15000">0</span>
+                    <span class="label">Shortcuts</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="number" data-count="500000">0</span>
+                    <span class="label">Users Learning</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container-page scroll-animate">
+                <i data-lucide="search" class="search-icon-page"></i>
+                <input type="text" placeholder="Search applications, categories, or shortcuts..." class="search-input-page" id="app-search">
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Applications Section -->
+    <section class="applications-main">
+        <div class="container">
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-tabs scroll-animate">
+                    <button class="filter-tab active" data-category="all">
+                        <i data-lucide="grid-3x3"></i>
+                        <span>All Apps</span>
+                    </button>
+                    <button class="filter-tab" data-category="development">
+                        <i data-lucide="code"></i>
+                        <span>Development</span>
+                    </button>
+                    <button class="filter-tab" data-category="design">
+                        <i data-lucide="palette"></i>
+                        <span>Design</span>
+                    </button>
+                    <button class="filter-tab" data-category="productivity">
+                        <i data-lucide="briefcase"></i>
+                        <span>Productivity</span>
+                    </button>
+                    <button class="filter-tab" data-category="browser">
+                        <i data-lucide="globe"></i>
+                        <span>Browsers</span>
+                    </button>
+                    <button class="filter-tab" data-category="media">
+                        <i data-lucide="music"></i>
+                        <span>Media</span>
+                    </button>
+                    <button class="filter-tab" data-category="communication">
+                        <i data-lucide="message-circle"></i>
+                        <span>Communication</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Applications Grid -->
+            <div class="apps-grid-page" id="apps-grid-page">
+                <!-- Applications will be populated by JavaScript -->
+            </div>
+
+            <!-- Load More -->
+            <div class="load-more" id="load-more-section" style="display: none;">
+                <button class="btn-outline magnetic-btn" id="load-more-btn">
+                    <span>Load More Applications</span>
+                    <i data-lucide="chevron-down"></i>
+                </button>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state" style="display: none;">
+                <div class="empty-icon">
+                    <i data-lucide="search-x"></i>
+                </div>
+                <h3 class="empty-title">No applications found</h3>
+                <p class="empty-description">Try adjusting your search or filter criteria</p>
+                <button class="btn-primary" onclick="document.getElementById('app-search').value = ''; window.location.reload();">
+                    <i data-lucide="refresh-cw"></i>
+                    Clear Filters
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="scroll-animate">Why Choose Shortcut Sensei?</h2>
+            <p class="scroll-animate animate-delay-1">Join millions of professionals who've transformed their workflow</p>
+            
+            <div class="stats-grid scroll-animate animate-delay-2">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">% Faster Workflow</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="clock"></i>
+                    </div>
+                    <div class="stat-number" data-count="2">0</div>
+                    <div class="stat-label">Hours Saved Daily</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">% User Satisfaction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <div class="stat-number" data-count="1000000">0</div>
+                    <div class="stat-label">Shortcuts Mastered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-container">
+                        <div class="logo-icon">
+                            <i data-lucide="keyboard"></i>
+                        </div>
+                        <span class="logo-text">Shortcut Sensei</span>
+                    </div>
+                    <p>The world's most comprehensive keyboard shortcuts learning platform.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="#" aria-label="GitHub">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="#" aria-label="Discord">
+                            <i data-lucide="message-circle"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>Product</h4>
+                        <a href="all-applications-enhanced.html">Applications</a>
+                        <a href="quiz.html">Quiz</a>
+                        <a href="index-enhanced.html#features">Features</a>
+                        <a href="#pricing">Pricing</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Resources</h4>
+                        <a href="blogs.html">Blog</a>
+                        <a href="#help">Help Center</a>
+                        <a href="#guides">Guides</a>
+                        <a href="#api">API</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Company</h4>
+                        <a href="About.htm">About</a>
+                        <a href="#careers">Careers</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#press">Press</a>
+                    </div>
+                    <div class="link-column">
+                        <h4>Legal</h4>
+                        <a href="#privacy">Privacy</a>
+                        <a href="#terms">Terms</a>
+                        <a href="#cookies">Cookies</a>
+                        <a href="#security">Security</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shortcut Sensei. All rights reserved.</p>
+                <div class="footer-actions">
+                    <div class="theme-toggle-footer">
+                        <i data-lucide="sun"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="enhanced-main.js"></script>
+    <script src="professional-app.js"></script>
+    <script src="premium-user-system.js"></script>
+    <script src="enhanced-quiz-system.js"></script>
+    <script src="master-integration.js"></script>
+    <script src="footer-functionality.js"></script>
+    <script>
+        // Applications data
+        const applicationsData = [
+            // Development Tools
+            { name: 'VS Code', category: 'development', icon: 'code', url: 'Visual Studio.html', shortcutCount: 150, difficulty: 'medium', description: 'Powerful code editor with extensive shortcut support for developers' },
+            { name: 'Sublime Text', category: 'development', icon: 'edit', url: '#', shortcutCount: 120, difficulty: 'easy', description: 'Fast and lightweight text editor with powerful shortcuts' },
+            { name: 'Atom', category: 'development', icon: 'atom', url: '#', shortcutCount: 100, difficulty: 'easy', description: 'Hackable text editor for the 21st century' },
+            { name: 'IntelliJ IDEA', category: 'development', icon: 'brain', url: '#', shortcutCount: 200, difficulty: 'hard', description: 'Integrated development environment with advanced shortcuts' },
+            { name: 'WebStorm', category: 'development', icon: 'globe', url: '#', shortcutCount: 180, difficulty: 'medium', description: 'JavaScript IDE with intelligent shortcuts' },
+            
+            // Design Tools
+            { name: 'Photoshop', category: 'design', icon: 'image', url: 'Adobe PhotoShop.html', shortcutCount: 200, difficulty: 'hard', description: 'Professional image editing with creative shortcuts' },
+            { name: 'Illustrator', category: 'design', icon: 'pen-tool', url: '#', shortcutCount: 180, difficulty: 'hard', description: 'Vector graphics editor with precision shortcuts' },
+            { name: 'Figma', category: 'design', icon: 'figma', url: '#', shortcutCount: 80, difficulty: 'easy', description: 'Collaborative design tool with intuitive shortcuts' },
+            { name: 'Sketch', category: 'design', icon: 'square', url: '#', shortcutCount: 90, difficulty: 'medium', description: 'Digital design toolkit for Mac with efficient shortcuts' },
+            { name: 'Adobe XD', category: 'design', icon: 'layout', url: '#', shortcutCount: 70, difficulty: 'easy', description: 'UX/UI design and prototyping with streamlined shortcuts' },
+            
+            // Productivity Tools
+            { name: 'Microsoft Word', category: 'productivity', icon: 'file-text', url: 'Microsoft Word.htm', shortcutCount: 120, difficulty: 'medium', description: 'Document creation and editing made faster' },
+            { name: 'Excel', category: 'productivity', icon: 'grid-3x3', url: 'Microsoft Excell.htm', shortcutCount: 150, difficulty: 'hard', description: 'Spreadsheet mastery with essential shortcuts' },
+            { name: 'PowerPoint', category: 'productivity', icon: 'presentation', url: 'Microsoft PowerPoint.htm', shortcutCount: 80, difficulty: 'easy', description: 'Create compelling presentations efficiently' },
+            { name: 'Notion', category: 'productivity', icon: 'book-open', url: '#', shortcutCount: 60, difficulty: 'easy', description: 'All-in-one workspace with powerful shortcuts' },
+            { name: 'Trello', category: 'productivity', icon: 'trello', url: 'Trello.html', shortcutCount: 40, difficulty: 'easy', description: 'Project management with quick navigation shortcuts' },
+            
+            // Browsers
+            { name: 'Chrome', category: 'browser', icon: 'chrome', url: 'Google Chrome.html', shortcutCount: 80, difficulty: 'easy', description: 'Browse efficiently with powerful keyboard shortcuts' },
+            { name: 'Firefox', category: 'browser', icon: 'firefox', url: '#', shortcutCount: 75, difficulty: 'easy', description: 'Fast browsing with customizable shortcuts' },
+            { name: 'Safari', category: 'browser', icon: 'compass', url: '#', shortcutCount: 60, difficulty: 'easy', description: 'Mac browser with seamless shortcuts' },
+            { name: 'Edge', category: 'browser', icon: 'globe', url: 'Microsoft Edge.html', shortcutCount: 70, difficulty: 'easy', description: 'Microsoft browser with modern shortcuts' },
+            
+            // Media Tools
+            { name: 'VLC Media Player', category: 'media', icon: 'play', url: 'VLC Media Player.html', shortcutCount: 50, difficulty: 'easy', description: 'Media player with convenient playback shortcuts' },
+            { name: 'Spotify', category: 'media', icon: 'music', url: 'Spotify.html', shortcutCount: 30, difficulty: 'easy', description: 'Music streaming with quick control shortcuts' },
+            { name: 'Audacity', category: 'media', icon: 'mic', url: 'Audacity.html', shortcutCount: 60, difficulty: 'medium', description: 'Audio editing with professional shortcuts' },
+            
+            // Communication Tools
+            { name: 'Slack', category: 'communication', icon: 'message-square', url: 'Slack.htm', shortcutCount: 50, difficulty: 'easy', description: 'Team communication shortcuts for productivity' },
+            { name: 'Discord', category: 'communication', icon: 'message-circle', url: 'Discord.html', shortcutCount: 40, difficulty: 'easy', description: 'Voice and text chat with gaming-focused shortcuts' },
+            { name: 'Microsoft Teams', category: 'communication', icon: 'users', url: 'Microsoft Teams.html', shortcutCount: 60, difficulty: 'medium', description: 'Business communication with meeting shortcuts' },
+            { name: 'Zoom', category: 'communication', icon: 'video', url: 'Zoom.html', shortcutCount: 35, difficulty: 'easy', description: 'Video conferencing with essential meeting shortcuts' },
+            { name: 'Skype', category: 'communication', icon: 'phone', url: 'Skype.html', shortcutCount: 30, difficulty: 'easy', description: 'Video calls with simple navigation shortcuts' },
+            { name: 'WhatsApp', category: 'communication', icon: 'message-circle', url: 'Whatsapp.html', shortcutCount: 25, difficulty: 'easy', description: 'Messaging app with quick action shortcuts' },
+            { name: 'Telegram', category: 'communication', icon: 'send', url: 'Telegram.html', shortcutCount: 35, difficulty: 'easy', description: 'Secure messaging with power user shortcuts' }
+        ];
+
+        // Initialize page
+        class ApplicationsPage {
+            constructor() {
+                this.applications = applicationsData;
+                this.filteredApps = [...this.applications];
+                this.currentFilter = 'all';
+                this.itemsPerPage = 12;
+                this.currentPage = 1;
+                this.init();
+            }
+
+            init() {
+                this.renderApplications();
+                this.setupFilters();
+                this.setupSearch();
+                this.setupCounters();
+                this.setupScrollAnimations();
+                
+                // Initialize Lucide icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
+
+            renderApplications() {
+                const grid = document.getElementById('apps-grid-page');
+                const start = 0;
+                const end = this.currentPage * this.itemsPerPage;
+                const appsToShow = this.filteredApps.slice(start, end);
+
+                if (appsToShow.length === 0) {
+                    this.showEmptyState();
+                    return;
+                }
+
+                this.hideEmptyState();
+
+                grid.innerHTML = appsToShow.map(app => `
+                    <a href="${app.url}" class="app-card-page premium-card scroll-animate floating-element">
+                        <div class="app-header">
+                            <div class="app-icon-page">
+                                <i data-lucide="${app.icon}"></i>
+                            </div>
+                            <div class="app-info">
+                                <h3>${app.name}</h3>
+                                <span class="app-category">${app.category}</span>
+                            </div>
+                        </div>
+                        <p class="app-description">${app.description}</p>
+                        <div class="app-footer">
+                            <div class="shortcut-count-page">
+                                <i data-lucide="keyboard"></i>
+                                <span>${app.shortcutCount}+ shortcuts</span>
+                            </div>
+                            <span class="difficulty-badge difficulty-${app.difficulty}">${app.difficulty}</span>
+                        </div>
+                    </a>
+                `).join('');
+
+                // Show/hide load more button
+                const loadMoreSection = document.getElementById('load-more-section');
+                if (end < this.filteredApps.length) {
+                    loadMoreSection.style.display = 'block';
+                } else {
+                    loadMoreSection.style.display = 'none';
+                }
+
+                // Reinitialize icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            }
+
+            setupFilters() {
+                const filterTabs = document.querySelectorAll('.filter-tab');
+                
+                filterTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const category = tab.dataset.category;
+                        this.filterApplications(category);
+                        
+                        // Update active tab
+                        filterTabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                    });
+                });
+
+                // Load more button
+                const loadMoreBtn = document.getElementById('load-more-btn');
+                loadMoreBtn?.addEventListener('click', () => {
+                    this.loadMore();
+                });
+            }
+
+            setupSearch() {
+                const searchInput = document.getElementById('app-search');
+                
+                searchInput?.addEventListener('input', (e) => {
+                    this.debounce(() => {
+                        this.searchApplications(e.target.value);
+                    }, 300)();
+                });
+            }
+
+            filterApplications(category) {
+                this.currentFilter = category;
+                this.currentPage = 1;
+                
+                if (category === 'all') {
+                    this.filteredApps = [...this.applications];
+                } else {
+                    this.filteredApps = this.applications.filter(app => app.category === category);
+                }
+                
+                this.renderApplications();
+            }
+
+            searchApplications(query) {
+                const searchTerm = query.toLowerCase().trim();
+                
+                if (!searchTerm) {
+                    this.filterApplications(this.currentFilter);
+                    return;
+                }
+                
+                this.filteredApps = this.applications.filter(app => {
+                    return app.name.toLowerCase().includes(searchTerm) ||
+                           app.description.toLowerCase().includes(searchTerm) ||
+                           app.category.toLowerCase().includes(searchTerm);
+                });
+                
+                this.currentPage = 1;
+                this.renderApplications();
+            }
+
+            loadMore() {
+                this.currentPage++;
+                this.renderApplications();
+            }
+
+            showEmptyState() {
+                const grid = document.getElementById('apps-grid-page');
+                const emptyState = document.getElementById('empty-state');
+                const loadMoreSection = document.getElementById('load-more-section');
+                
+                grid.innerHTML = '';
+                emptyState.style.display = 'block';
+                loadMoreSection.style.display = 'none';
+            }
+
+            hideEmptyState() {
+                const emptyState = document.getElementById('empty-state');
+                emptyState.style.display = 'none';
+            }
+
+            setupCounters() {
+                const counters = document.querySelectorAll('[data-count]');
+                
+                counters.forEach(counter => {
+                    const target = parseInt(counter.dataset.count);
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.floor(current).toLocaleString();
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target.toLocaleString();
+                        }
+                    };
+                    
+                    // Start counter when element is in view
+                    this.observeElement(counter, () => {
+                        updateCounter();
+                    }, { once: true });
+                });
+            }
+
+            setupScrollAnimations() {
+                const animatedElements = document.querySelectorAll('.scroll-animate');
+                
+                animatedElements.forEach(element => {
+                    this.observeElement(element, () => {
+                        element.classList.add('in-view');
+                    });
+                });
+            }
+
+            observeElement(element, callback, options = {}) {
+                const defaultOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px',
+                    once: false,
+                    ...options
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            callback(entry);
+                            if (defaultOptions.once) {
+                                observer.unobserve(element);
+                            }
+                        }
+                    });
+                }, defaultOptions);
+                
+                observer.observe(element);
+            }
+
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            new ApplicationsPage();
+            
+            // Initialize enhanced main functionality
+            if (window.shortcutSensei) {
+                // Page is already initialized
+            } else {
+                new ShortcutSensei();
+            }
+        });
+    </script>
+</body>
+</html>

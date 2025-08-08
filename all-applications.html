@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Applications - Shortcut Sensei</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main-styles.css">
+    <style>
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .app-card {
+            background: var(--light-card);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--light-text);
+            box-shadow: var(--shadow-light);
+            transition: all var(--transition-speed);
+            border: 2px solid transparent;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-dark);
+            border-color: var(--primary-color);
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .app-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .app-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .shortcut-count {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+        }
+        
+        .category-section {
+            margin-bottom: 3rem;
+        }
+        
+        .category-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .search-bar {
+            max-width: 500px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: var(--shadow-light);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .dark-mode .app-card {
+            background: var(--dark-card);
+            color: var(--dark-text);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-keyboard"></i>
+                    Shortcut Sensei
+                </a>
+            </div>
+            
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="all-applications.html" class="active">All Applications</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="quizs/index.html">Quiz</a></li>
+                    <li><a href="About.htm">About</a></li>
+                    <li><a href="user_com.htm">Community</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Search applications...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-menu">
+                    <button class="login-btn" id="login-btn">
+                        <i class="fas fa-user"></i>
+                        Login
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown" style="display: none;">
+                        <a href="user_profile.htm"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1><i class="fas fa-th-large"></i> All Applications</h1>
+            <p>Master keyboard shortcuts for every application you use</p>
+            
+            <div class="search-bar">
+                <input type="text" id="app-search" placeholder="Search for applications...">
+                <button onclick="searchApps()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Browsers Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-globe"></i> Browsers
+                </h2>
+                <div class="app-grid">
+                    <a href="Google Chrome.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-chrome"></i>
+                        </div>
+                        <h3>Google Chrome</h3>
+                        <p>Master Chrome's powerful keyboard shortcuts for faster web browsing</p>
+                        <span class="shortcut-count">45+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Microsoft Edge.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-edge"></i>
+                        </div>
+                        <h3>Microsoft Edge</h3>
+                        <p>Essential Edge shortcuts for efficient web navigation</p>
+                        <span class="shortcut-count">40+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Microsoft Office Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fab fa-microsoft"></i> Microsoft Office
+                </h2>
+                <div class="app-grid">
+                    <a href="Microsoft Word.htm" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <h3>Microsoft Word</h3>
+                        <p>Boost your document editing efficiency with Word shortcuts</p>
+                        <span class="shortcut-count">60+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Microsoft Excell.htm" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <h3>Microsoft Excel</h3>
+                        <p>Master spreadsheet navigation and data manipulation</p>
+                        <span class="shortcut-count">80+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Microsoft PowerPoint.htm" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-file-powerpoint"></i>
+                        </div>
+                        <h3>Microsoft PowerPoint</h3>
+                        <p>Create presentations faster with PowerPoint shortcuts</p>
+                        <span class="shortcut-count">50+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Microsoft Outlook.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Microsoft Outlook</h3>
+                        <p>Manage emails and calendar efficiently</p>
+                        <span class="shortcut-count">55+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Microsoft Teams.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-microsoft"></i>
+                        </div>
+                        <h3>Microsoft Teams</h3>
+                        <p>Navigate Teams meetings and chats like a pro</p>
+                        <span class="shortcut-count">35+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Microsoft OneDrive.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Microsoft OneDrive</h3>
+                        <p>Cloud storage management shortcuts</p>
+                        <span class="shortcut-count">25+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Microsoft OneNote.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-sticky-note"></i>
+                        </div>
+                        <h3>Microsoft OneNote</h3>
+                        <p>Note-taking and organization shortcuts</p>
+                        <span class="shortcut-count">40+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Development Tools Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-code"></i> Development Tools
+                </h2>
+                <div class="app-grid">
+                    <a href="Visual Studio.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Visual Studio Code</h3>
+                        <p>Code faster with VS Code's extensive shortcut library</p>
+                        <span class="shortcut-count">70+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Communication Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-comments"></i> Communication
+                </h2>
+                <div class="app-grid">
+                    <a href="Discord.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <h3>Discord</h3>
+                        <p>Gaming and community communication shortcuts</p>
+                        <span class="shortcut-count">30+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Slack.htm" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-slack"></i>
+                        </div>
+                        <h3>Slack</h3>
+                        <p>Professional team communication shortcuts</p>
+                        <span class="shortcut-count">35+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Zoom.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Zoom</h3>
+                        <p>Video conferencing and meeting shortcuts</p>
+                        <span class="shortcut-count">25+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Skype.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-skype"></i>
+                        </div>
+                        <h3>Skype</h3>
+                        <p>Video calls and messaging shortcuts</p>
+                        <span class="shortcut-count">20+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Telegram.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <h3>Telegram</h3>
+                        <p>Secure messaging application shortcuts</p>
+                        <span class="shortcut-count">30+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Whatsapp.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h3>WhatsApp</h3>
+                        <p>Popular messaging app shortcuts</p>
+                        <span class="shortcut-count">25+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Media & Entertainment Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-play"></i> Media & Entertainment
+                </h2>
+                <div class="app-grid">
+                    <a href="Spotify.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-spotify"></i>
+                        </div>
+                        <h3>Spotify</h3>
+                        <p>Music streaming and playlist management shortcuts</p>
+                        <span class="shortcut-count">30+ shortcuts</span>
+                    </a>
+                    
+                    <a href="VLC Media Player.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h3>VLC Media Player</h3>
+                        <p>Video and audio playback control shortcuts</p>
+                        <span class="shortcut-count">40+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Adobe Creative Suite Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-paint-brush"></i> Adobe Creative Suite
+                </h2>
+                <div class="app-grid">
+                    <a href="Adobe PhotoShop.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Adobe Photoshop</h3>
+                        <p>Professional photo editing shortcuts</p>
+                        <span class="shortcut-count">100+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Adobe Creative Cloud.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-creative-commons"></i>
+                        </div>
+                        <h3>Adobe Creative Cloud</h3>
+                        <p>Creative suite management shortcuts</p>
+                        <span class="shortcut-count">20+ shortcuts</span>
+                    </a>
+                    
+                    <a href="Acrobat Adobe Reader.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h3>Adobe Acrobat Reader</h3>
+                        <p>PDF viewing and annotation shortcuts</p>
+                        <span class="shortcut-count">35+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Productivity Tools Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-tasks"></i> Productivity Tools
+                </h2>
+                <div class="app-grid">
+                    <a href="Trello.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-trello"></i>
+                        </div>
+                        <h3>Trello</h3>
+                        <p>Project management and organization shortcuts</p>
+                        <span class="shortcut-count">25+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- System & Utilities Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-cog"></i> System & Utilities
+                </h2>
+                <div class="app-grid">
+                    <a href="Windows_11.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3>Windows 11</h3>
+                        <p>Master your Windows 11 operating system</p>
+                        <span class="shortcut-count">80+ shortcuts</span>
+                    </a>
+                    
+                    <a href="File Explorer.htm" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-folder"></i>
+                        </div>
+                        <h3>File Explorer</h3>
+                        <p>Navigate and manage files efficiently</p>
+                        <span class="shortcut-count">50+ shortcuts</span>
+                    </a>
+                    
+                    <a href="WinRAR.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-file-archive"></i>
+                        </div>
+                        <h3>WinRAR</h3>
+                        <p>Archive and compression tool shortcuts</p>
+                        <span class="shortcut-count">20+ shortcuts</span>
+                    </a>
+                    
+                    <a href="7-zip.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-file-archive"></i>
+                        </div>
+                        <h3>7-Zip</h3>
+                        <p>Free file archiver utility shortcuts</p>
+                        <span class="shortcut-count">15+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Audio & Video Editing Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-music"></i> Audio & Video Editing
+                </h2>
+                <div class="app-grid">
+                    <a href="Audacity.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Audacity</h3>
+                        <p>Free audio editing software shortcuts</p>
+                        <span class="shortcut-count">45+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Email Clients Category -->
+            <div class="category-section">
+                <h2 class="category-title">
+                    <i class="fas fa-envelope"></i> Email Clients
+                </h2>
+                <div class="app-grid">
+                    <a href="Mozilla Thunderbird.html" class="app-card">
+                        <div class="app-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Mozilla Thunderbird</h3>
+                        <p>Free email client shortcuts</p>
+                        <span class="shortcut-count">40+ shortcuts</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Shortcut Sensei</h3>
+                    <p>Master keyboard shortcuts for all your favorite applications and boost your productivity to the next level.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=100015198880002"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/RAFI09925204"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/rafi-s-b-m-a3492a265/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/rafi_s_b_m/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="all-applications.html">All Applications</a></li>
+                        <li><a href="blogs.html">Blogs</a></li>
+                        <li><a href="About.htm">About</a></li>
+                        <li><a href="user_com.htm">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Popular Shortcuts</h3>
+                    <ul>
+                        <li><a href="Google Chrome.html">Chrome Shortcuts</a></li>
+                        <li><a href="Visual Studio.html">VS Code Shortcuts</a></li>
+                        <li><a href="File Explorer.htm">Windows Explorer</a></li>
+                        <li><a href="Microsoft Word.htm">Word Shortcuts</a></li>
+                        <li><a href="Microsoft Excell.htm">Excel Shortcuts</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="https://www.linkedin.com/in/rafi-s-b-m-a3492a265/">Contact Us</a></li>
+                        <li><a href="https://shortcut-sensei.hashnode.dev/">Blog</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Shortcut Sensei. All rights reserved. Made with ❤️ for productivity enthusiasts.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function searchApps() {
+            const searchTerm = document.getElementById('app-search').value.toLowerCase();
+            const appCards = document.querySelectorAll('.app-card');
+            
+            appCards.forEach(card => {
+                const appName = card.querySelector('h3').textContent.toLowerCase();
+                const appDesc = card.querySelector('p').textContent.toLowerCase();
+                
+                if (appName.includes(searchTerm) || appDesc.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Search on Enter key
+        document.getElementById('app-search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchApps();
+            }
+        });
+        
+        // Real-time search
+        document.getElementById('app-search').addEventListener('input', searchApps);
+    </script>
+    
+    <script src="main-nav.js"></script>
+</body>
+</html>
