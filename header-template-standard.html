@@ -1,0 +1,70 @@
+<!-- Standardized Header Template for Shortcut Sensei -->
+<header class="main-header" id="main-header">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html">
+                <i class="fas fa-keyboard"></i>
+                Shortcut Sensei
+            </a>
+        </div>
+        
+        <nav class="main-nav" id="main-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="all-applications.html">Applications <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Google Chrome.html">Google Chrome</a></li>
+                        <li><a href="Visual Studio.html">Visual Studio Code</a></li>
+                        <li><a href="File Explorer.htm">File Explorer</a></li>
+                        <li><a href="Microsoft Excell.htm">Microsoft Excel</a></li>
+                        <li><a href="Microsoft Word.htm">Microsoft Word</a></li>
+                        <li><a href="Microsoft PowerPoint.htm">PowerPoint</a></li>
+                        <li><a href="Microsoft Outlook.html">Outlook</a></li>
+                        <li><a href="Microsoft Teams.html">Teams</a></li>
+                        <li><a href="Adobe PhotoShop.html">Photoshop</a></li>
+                        <li><a href="Discord.html">Discord</a></li>
+                        <li><a href="Slack.htm">Slack</a></li>
+                        <li><a href="Spotify.html">Spotify</a></li>
+                        <li><a href="Zoom.html">Zoom</a></li>
+                        <li><a href="Windows_11.html">Windows 11</a></li>
+                        <li><a href="all-applications.html">View All Apps</a></li>
+                    </ul>
+                </li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="quizs/index.html">Quiz</a></li>
+                <li><a href="About.htm">About</a></li>
+                <li><a href="user_com.htm">Community</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-container">
+                <input type="text" id="main-search" placeholder="Search shortcuts..." data-tooltip="Press Ctrl+K to focus">
+                <button class="search-btn" data-tooltip="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results-dropdown" id="search-results"></div>
+            </div>
+            <button class="theme-toggle" id="theme-toggle" data-tooltip="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-menu">
+                <button class="login-btn" id="login-btn" data-tooltip="Login or view profile">
+                    <i class="fas fa-user"></i>
+                    Login
+                </button>
+                <div class="user-dropdown" id="user-dropdown" style="display: none;">
+                    <a href="user_profile.htm"><i class="fas fa-user-circle"></i> Profile</a>
+                    <a href="#" onclick="shortcutSensei.showSettings()"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="user_com.htm"><i class="fas fa-users"></i> Community</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+            <button class="menu-toggle" id="menu-toggle" data-tooltip="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
