@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications - Shortcut Sensei</title>
+    <meta name="description" content="Master keyboard shortcuts for all your favorite applications. Browse our comprehensive library of productivity tools.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="shared-styles.css">
+    
+    <!-- Fallback styles -->
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+            line-height: 1.6; color: #0f172a; background: #ffffff; padding-top: 72px;
+        }
+        .nav-modern {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e2e8f0; height: 72px;
+        }
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between; height: 100%;
+        }
+        .logo-text {
+            font-size: 24px; font-weight: 800; text-decoration: none;
+            background: linear-gradient(135deg, #6366f1, #f59e0b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-link {
+            display: flex; align-items: center; gap: 4px; padding: 8px 16px;
+            border-radius: 12px; color: #475569; text-decoration: none; font-weight: 500;
+        }
+        .nav-link:hover { color: #6366f1; background: rgba(99, 102, 241, 0.08); }
+        .nav-link.active { color: #6366f1; background: rgba(99, 102, 241, 0.1); }
+        .auth-btn {
+            display: flex; align-items: center; gap: 4px; padding: 8px 24px;
+            background: linear-gradient(135deg, #6366f1, #4f46e5); color: white;
+            border: none; border-radius: 12px; font-weight: 500; cursor: pointer;
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 64px 0; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-title { font-size: 2.25rem; font-weight: 800; margin-bottom: 16px; }
+        .section-subtitle { font-size: 18px; color: #475569; max-width: 600px; margin: 0 auto; }
+        .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .app-card {
+            background: white; border-radius: 16px; padding: 24px; text-align: center;
+            border: 1px solid #e2e8f0; transition: all 0.3s ease; cursor: pointer;
+        }
+        .app-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .app-icon { font-size: 3rem; margin-bottom: 16px; }
+        .app-name { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; }
+        .app-shortcuts { color: #475569; }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <!-- Modern Navigation -->
+    <nav class="nav-modern" id="mainNav">
+        <div class="nav-container">
+                        <div class="nav-brand">
+                <a href="/index.html" class="logo-text">
+                    ⌨️ Shortcut Sensei
+                </a>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="/index.html" class="nav-link">
+                    🏠 <span>Home</span>
+                </a>
+                <a href="/applications.html" class="nav-link active">
+                    📱 <span>Applications</span>
+                </a>
+                <a href="/quiz.html" class="nav-link">
+                    🧠 <span>Quiz</span>
+                </a>
+                <a href="/community-ultimate.html" class="nav-link">
+                    👥 <span>Community</span>
+                </a>
+                <a href="/about.html" class="nav-link">
+                    ℹ️ <span>About</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="auth-btn" id="authBtn">
+                    👤 <span>Sign In</span>
+                
+                <button class="nav-toggle" id="navToggle">
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Applications Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Master Every Application</h1>
+                <p class="section-subtitle">Comprehensive keyboard shortcuts for all your favorite tools and applications</p>
+            </div>
+            
+            <div class="app-grid">
+                <div class="app-card" onclick="alert('🌐 Chrome shortcuts: Ctrl+T (new tab), Ctrl+W (close tab), Ctrl+R (refresh)')">
+                    <div class="app-icon">🌐</div>
+                    <h3 class="app-name">Google Chrome</h3>
+                    <p class="app-shortcuts">50+ shortcuts</p>
+                </div>
+                
+                <div class="app-card" onclick="alert('💻 VS Code shortcuts: Ctrl+Shift+P (command palette), Ctrl+` (terminal), Ctrl+D (duplicate line)')">
+                    <div class="app-icon">💻</div>
+                    <h3 class="app-name">VS Code</h3>
+                    <p class="app-shortcuts">100+ shortcuts</p>
+                </div>
+                
+                <div class="app-card" onclick="alert('🎨 Figma shortcuts: V (move tool), A (frame tool), T (text tool)')">
+                    <div class="app-icon">🎨</div>
+                    <h3 class="app-name">Figma</h3>
+                    <p class="app-shortcuts">75+ shortcuts</p>
+                </div>
+                
+                <div class="app-card" onclick="alert('📄 Word shortcuts: Ctrl+B (bold), Ctrl+I (italic), Ctrl+S (save)')">
+                    <div class="app-icon">📄</div>
+                    <h3 class="app-name">Microsoft Word</h3>
+                    <p class="app-shortcuts">60+ shortcuts</p>
+                </div>
+                
+                <div class="app-card" onclick="alert('📊 Excel shortcuts: Ctrl+C (copy), Ctrl+V (paste), F2 (edit cell)')">
+                    <div class="app-icon">📊</div>
+                    <h3 class="app-name">Excel</h3>
+                    <p class="app-shortcuts">80+ shortcuts</p>
+                </div>
+                
+                <div class="app-card" onclick="alert('📧 Outlook shortcuts: Ctrl+N (new email), Ctrl+R (reply), Ctrl+Shift+M (new message)')">
+                    <div class="app-icon">📧</div>
+                    <h3 class="app-name">Outlook</h3>
+                    <p class="app-shortcuts">45+ shortcuts</p>
+                </div>
+                
+                <div class="app-card" onclick="alert('🖼️ Photoshop shortcuts: V (move tool), B (brush tool), E (eraser tool)')">
+                    <div class="app-icon">🖼️</div>
+                    <h3 class="app-name">Photoshop</h3>
+                    <p class="app-shortcuts">120+ shortcuts</p>
+                </div>
+                
+                <div class="app-card" onclick="alert('🎵 Spotify shortcuts: Space (play/pause), Ctrl+Right (next track), Ctrl+Left (previous track)')">
+                    <div class="app-icon">🎵</div>
+                    <h3 class="app-name">Spotify</h3>
+                    <p class="app-shortcuts">20+ shortcuts</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 48px;">
+                <p style="color: #475569; margin-bottom: 24px;">
+                    ✨ Click on any application to see sample shortcuts!
+                </p>
+                <button class="btn btn-primary" onclick="alert('🚀 More applications coming soon! This would show the full application library.')">
+                    📱 View All Applications
+                </button>
+            </div>
+        </div>
+    </section>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="28">0</div>
+                        <div class="stat-label">Applications</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="3500">0</div>
+                        <div class="stat-label">Shortcuts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="50000">0</div>
+                        <div class="stat-label">Users Learning</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Categories -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-header">
+                <h2>Browse by Category</h2>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <i data-lucide="grid-3x3"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i data-lucide="list"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="category-filters">
+                <button class="category-filter active" data-filter="all">
+                    <i data-lucide="grid-3x3"></i>
+                    All Applications
+                </button>
+                <button class="category-filter" data-filter="browsers">
+                    <i data-lucide="globe"></i>
+                    Browsers
+                </button>
+                <button class="category-filter" data-filter="editors">
+                    <i data-lucide="code"></i>
+                    Code Editors
+                </button>
+                <button class="category-filter" data-filter="design">
+                    <i data-lucide="palette"></i>
+                    Design Tools
+                </button>
+                <button class="category-filter" data-filter="productivity">
+                    <i data-lucide="briefcase"></i>
+                    Productivity
+                </button>
+                <button class="category-filter" data-filter="communication">
+                    <i data-lucide="message-circle"></i>
+                    Communication
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Grid -->
+    <section class="applications-main">
+        <div class="container">
+            <div class="apps-layout">
+                <!-- Sidebar -->
+                <aside class="apps-sidebar">
+                    <div class="sidebar-section">
+                        <h3>Quick Filters</h3>
+                        <div class="quick-filters">
+                            <button class="quick-filter" data-quick-filter="bookmarked">
+                                <i data-lucide="bookmark"></i>
+                                Bookmarked
+                            </button>
+                            <button class="quick-filter" data-quick-filter="popular">
+                                <i data-lucide="trending-up"></i>
+                                Most Popular
+                            </button>
+                            <button class="quick-filter" data-quick-filter="recent">
+                                <i data-lucide="clock"></i>
+                                Recently Added
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Learning Progress</h3>
+                        <div class="progress-overview">
+                            <div class="progress-item">
+                                <span>Chrome</span>
+                                <div class="mini-progress">
+                                    <div class="mini-progress-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="progress-percent">85%</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>VS Code</span>
+                                <div class="mini-progress">
+                                    <div class="mini-progress-fill" style="width: 60%"></div>
+                                </div>
+                                <span class="progress-percent">60%</span>
+                            </div>
+                            <div class="progress-item">
+                                <span>Photoshop</span>
+                                <div class="mini-progress">
+                                    <div class="mini-progress-fill" style="width: 40%"></div>
+                                </div>
+                                <span class="progress-percent">40%</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="apps-main">
+                    <div class="apps-header">
+                        <div class="results-info">
+                            <span class="results-count">Showing <strong>8</strong> applications</span>
+                        </div>
+                        <div class="sort-options">
+                            <select class="sort-select" data-sort="apps">
+                                <option value="popular">Most Popular</option>
+                                <option value="name">Name A-Z</option>
+                                <option value="shortcuts">Most Shortcuts</option>
+                                <option value="recent">Recently Added</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="apps-grid" data-element="apps-grid">
+                        <!-- Applications will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="load-more-section">
+                        <button class="btn-secondary" data-action="load-more">
+                            <i data-lucide="plus"></i>
+                            Load More Applications
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Application Spotlight -->
+    <section class="app-spotlight">
+        <div class="container">
+            <div class="spotlight-content">
+                <div class="spotlight-info">
+                    <div class="spotlight-badge">Featured Application</div>
+                    <h2>Visual Studio Code</h2>
+                    <p>The most popular code editor with 200+ powerful shortcuts to boost your development workflow. Master everything from basic navigation to advanced debugging techniques.</p>
+                    
+                    <div class="spotlight-stats">
+                        <div class="spotlight-stat">
+                            <i data-lucide="keyboard"></i>
+                            <span>200+ Shortcuts</span>
+                        </div>
+                        <div class="spotlight-stat">
+                            <i data-lucide="users"></i>
+                            <span>1.2M+ Learners</span>
+                        </div>
+                        <div class="spotlight-stat">
+                            <i data-lucide="star"></i>
+                            <span>4.9/5 Rating</span>
+                        </div>
+                    </div>
+                    
+                    <div class="spotlight-actions">
+                        <button class="btn-primary" data-action="learn-vscode">
+                            <i data-lucide="play"></i>
+                            Start Learning
+                        </button>
+                        <button class="btn-secondary" data-action="preview-vscode">
+                            <i data-lucide="eye"></i>
+                            Preview Shortcuts
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="spotlight-visual">
+                    <div class="code-editor-mockup">
+                        <div class="editor-header">
+                            <div class="editor-tabs">
+                                <div class="editor-tab active">main.js</div>
+                                <div class="editor-tab">style.css</div>
+                                <div class="editor-tab">index.html</div>
+                            </div>
+                        </div>
+                        <div class="editor-content">
+                            <div class="code-line">
+                                <span class="line-number">1</span>
+                                <span class="code-text"><span class="keyword">const</span> <span class="variable">shortcut</span> = <span class="string">'Ctrl+Shift+P'</span>;</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">2</span>
+                                <span class="code-text"><span class="comment">// Opens Command Palette</span></span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">3</span>
+                                <span class="code-text"><span class="keyword">function</span> <span class="function">openCommandPalette</span>() {</span>
+                            </div>
+                            <div class="code-line highlight">
+                                <span class="line-number">4</span>
+                                <span class="code-text">  <span class="comment">// Your productivity just increased! 🚀</span></span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">5</span>
+                                <span class="code-text">}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="apps-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Master Your Tools?</h2>
+                <p>Start with any application and watch your productivity soar</p>
+                <button class="btn-primary btn-xl" data-action="start-quiz">
+                    <i data-lucide="zap"></i>
+                    Take the Master Quiz
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" data-element="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="shared-app.js"></script>
+    <script src="main.js"></script>
+    <script src="applications.js"></script>
+    
+    <!-- Initialize App -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Initialize Shortcut Sensei App
+            window.shortcutApp = new ShortcutSenseiApp();
+            
+            // Initialize applications page specific functionality
+            if (typeof initializeApplications === 'function') {
+                initializeApplications();
+            }
+        });
+    </script>
+</body>
+</html>

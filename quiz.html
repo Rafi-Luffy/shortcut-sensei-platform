@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz - Shortcut Sensei</title>
+    <meta name="description" content="Test your keyboard shortcut knowledge with our interactive quiz system. Compete with friends and track your progress.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="shared-styles.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <!-- Modern Navigation -->
+    <nav class="nav-modern" id="mainNav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/" class="logo-text">
+                    <i data-lucide="keyboard" style="display: inline; width: 24px; height: 24px; margin-right: 8px; vertical-align: -4px;"></i>
+                    Shortcut Sensei
+                </a>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="/index.html" class="nav-link">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/applications.html" class="nav-link">
+                    <i data-lucide="grid-3x3"></i>
+                    <span>Applications</span>
+                </a>
+                <a href="/quiz.html" class="nav-link active">
+                    <i data-lucide="brain"></i>
+                    <span>Quiz</span>
+                </a>
+                <a href="/community-ultimate.html" class="nav-link">
+                    <i data-lucide="users"></i>
+                    <span>Community</span>
+                </a>
+                <a href="/about.html" class="nav-link">
+                    <i data-lucide="info"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="auth-btn" id="authBtn">
+                    <i data-lucide="user"></i>
+                    <span>Sign In</span>
+                </button>
+                
+                <button class="nav-toggle" id="navToggle">
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+                        <img src="https://ui-avatars.com/api/?name=User&background=667eea&color=fff" alt="User Avatar" class="avatar">
+                        <svg class="xp-ring" viewBox="0 0 36 36">
+                            <path class="xp-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                            <path class="xp-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke-dasharray: 75, 100"></path>
+                        </svg>
+                    </div>
+                    <span class="user-level">Lvl 15</span>
+                </div>
+                
+                <button class="mobile-menu-toggle" data-action="toggle-mobile-menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+        <!-- Quiz Start Screen -->
+        <div class="quiz-screen active" data-screen="start">
+            <div class="container">
+                <div class="quiz-start">
+                    <div class="start-header">
+                        <h1>Test Your Knowledge</h1>
+                        <p>Challenge yourself with our interactive quiz system</p>
+                    </div>
+                    
+                    <div class="quiz-options">
+                        <div class="option-group">
+                            <h3>Choose Difficulty</h3>
+                            <div class="difficulty-options">
+                                <button class="difficulty-btn active" data-difficulty="easy">
+                                    <i data-lucide="circle"></i>
+                                    <div>
+                                        <strong>Easy</strong>
+                                        <span>Basic shortcuts</span>
+                                    </div>
+                                </button>
+                                <button class="difficulty-btn" data-difficulty="medium">
+                                    <i data-lucide="triangle"></i>
+                                    <div>
+                                        <strong>Medium</strong>
+                                        <span>Intermediate level</span>
+                                    </div>
+                                </button>
+                                <button class="difficulty-btn" data-difficulty="hard">
+                                    <i data-lucide="square"></i>
+                                    <div>
+                                        <strong>Hard</strong>
+                                        <span>Expert shortcuts</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <h3>Select Category</h3>
+                            <div class="category-options">
+                                <button class="category-btn active" data-category="all">
+                                    <i data-lucide="grid-3x3"></i>
+                                    All Applications
+                                </button>
+                                <button class="category-btn" data-category="browsers">
+                                    <i data-lucide="globe"></i>
+                                    Browsers
+                                </button>
+                                <button class="category-btn" data-category="editors">
+                                    <i data-lucide="code"></i>
+                                    Code Editors
+                                </button>
+                                <button class="category-btn" data-category="design">
+                                    <i data-lucide="palette"></i>
+                                    Design Tools
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-modes">
+                        <div class="mode-card">
+                            <div class="mode-icon">
+                                <i data-lucide="user"></i>
+                            </div>
+                            <h3>Solo Practice</h3>
+                            <p>Practice at your own pace with instant feedback</p>
+                            <button class="btn-primary" data-action="start-solo-quiz">
+                                <i data-lucide="play"></i>
+                                Start Quiz
+                            </button>
+                        </div>
+                        
+                        <div class="mode-card featured">
+                            <div class="mode-badge">Popular</div>
+                            <div class="mode-icon">
+                                <i data-lucide="swords"></i>
+                            </div>
+                            <h3>1v1 Battle</h3>
+                            <p>Challenge another player in real-time competition</p>
+                            <button class="btn-primary" data-action="start-battle">
+                                <i data-lucide="zap"></i>
+                                Find Opponent
+                            </button>
+                        </div>
+                        
+                        <div class="mode-card">
+                            <div class="mode-icon">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <h3>Team Battle</h3>
+                            <p>Form a team and compete in 4v4 matches</p>
+                            <button class="btn-secondary" data-action="start-team-battle">
+                                <i data-lucide="shield"></i>
+                                Join Team
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Game Screen -->
+        <div class="quiz-screen" data-screen="game">
+            <div class="quiz-header">
+                <div class="container">
+                    <div class="quiz-progress-bar">
+                        <div class="progress-fill" data-element="quiz-progress"></div>
+                    </div>
+                    <div class="quiz-info">
+                        <span class="question-counter" data-element="question-counter">Question 1 of 10</span>
+                        <div class="quiz-timer" data-element="quiz-timer">
+                            <i data-lucide="clock"></i>
+                            <span class="timer-text">30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-content">
+                <div class="container">
+                    <div class="question-card">
+                        <div class="question-header">
+                            <div class="app-context" data-element="app-context">
+                                <img src="" alt="" class="context-icon">
+                                <span class="context-name">Visual Studio Code</span>
+                            </div>
+                            <div class="difficulty-indicator" data-element="difficulty-indicator">
+                                <i data-lucide="circle"></i>
+                                <span>Easy</span>
+                            </div>
+                        </div>
+                        
+                        <div class="question-content">
+                            <h2 class="question-text" data-element="question-text">
+                                What does Ctrl + Shift + P do in VS Code?
+                            </h2>
+                        </div>
+                        
+                        <div class="answer-options" data-element="answer-options">
+                            <button class="answer-btn" data-answer="0">
+                                <span class="answer-letter">A</span>
+                                <span class="answer-text">Open Command Palette</span>
+                            </button>
+                            <button class="answer-btn" data-answer="1">
+                                <span class="answer-letter">B</span>
+                                <span class="answer-text">Open File Explorer</span>
+                            </button>
+                            <button class="answer-btn" data-answer="2">
+                                <span class="answer-letter">C</span>
+                                <span class="answer-text">Create New File</span>
+                            </button>
+                            <button class="answer-btn" data-answer="3">
+                                <span class="answer-letter">D</span>
+                                <span class="answer-text">Toggle Terminal</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Screen -->
+        <div class="quiz-screen" data-screen="battle">
+            <div class="battle-header">
+                <div class="container">
+                    <div class="battle-players">
+                        <div class="player player-1">
+                            <img src="https://ui-avatars.com/api/?name=You&background=667eea&color=fff" alt="You" class="player-avatar">
+                            <div class="player-info">
+                                <h4>You</h4>
+                                <div class="player-health">
+                                    <div class="health-bar">
+                                        <div class="health-fill" style="width: 100%" data-element="player-1-health"></div>
+                                    </div>
+                                    <span class="health-text">5/5</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="battle-vs">
+                            <div class="vs-text">VS</div>
+                            <div class="battle-timer" data-element="battle-timer">15</div>
+                        </div>
+                        
+                        <div class="player player-2">
+                            <img src="https://ui-avatars.com/api/?name=Alex&background=e74c3c&color=fff" alt="Opponent" class="player-avatar">
+                            <div class="player-info">
+                                <h4>Alex_Dev</h4>
+                                <div class="player-health">
+                                    <div class="health-bar">
+                                        <div class="health-fill" style="width: 80%" data-element="player-2-health"></div>
+                                    </div>
+                                    <span class="health-text">4/5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="battle-content">
+                <div class="container">
+                    <div class="battle-question">
+                        <h2 data-element="battle-question-text">Quick! What's the shortcut for "Save As"?</h2>
+                        <div class="battle-options" data-element="battle-options">
+                            <button class="battle-answer" data-answer="0">Ctrl + S</button>
+                            <button class="battle-answer" data-answer="1">Ctrl + Shift + S</button>
+                            <button class="battle-answer" data-answer="2">Ctrl + Alt + S</button>
+                            <button class="battle-answer" data-answer="3">F12</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="quiz-screen" data-screen="results">
+            <div class="container">
+                <div class="results-content">
+                    <div class="results-header">
+                        <div class="results-icon">
+                            <i data-lucide="trophy" data-element="results-icon"></i>
+                        </div>
+                        <h1 data-element="results-title">Excellent Work!</h1>
+                        <p data-element="results-subtitle">You scored 8 out of 10 questions correctly</p>
+                    </div>
+                    
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <div class="stat-value" data-element="score-percentage">80%</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-value" data-element="time-taken">2:45</div>
+                            <div class="stat-label">Time Taken</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-value" data-element="xp-gained">+150</div>
+                            <div class="stat-label">XP Gained</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-value" data-element="streak-bonus">+25</div>
+                            <div class="stat-label">Streak Bonus</div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-breakdown">
+                        <h3>Question Breakdown</h3>
+                        <div class="breakdown-list" data-element="breakdown-list">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="btn-primary" data-action="try-again">
+                            <i data-lucide="refresh-cw"></i>
+                            Try Again
+                        </button>
+                        <button class="btn-secondary" data-action="challenge-friend">
+                            <i data-lucide="user-plus"></i>
+                            Challenge a Friend
+                        </button>
+                        <button class="btn-secondary" data-action="view-leaderboard">
+                            <i data-lucide="trophy"></i>
+                            View Leaderboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matchmaking Screen -->
+        <div class="quiz-screen" data-screen="matchmaking">
+            <div class="container">
+                <div class="matchmaking-content">
+                    <div class="matchmaking-animation">
+                        <div class="radar-container">
+                            <div class="radar-sweep"></div>
+                            <div class="radar-dot"></div>
+                            <div class="radar-dot"></div>
+                            <div class="radar-dot"></div>
+                        </div>
+                    </div>
+                    
+                    <h2>Finding an opponent...</h2>
+                    <p>Searching for players at your skill level</p>
+                    
+                    <div class="matchmaking-stats">
+                        <div class="stat">
+                            <span class="stat-label">Players online</span>
+                            <span class="stat-value">1,247</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Average wait time</span>
+                            <span class="stat-value">15s</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-secondary" data-action="cancel-matchmaking">
+                        <i data-lucide="x"></i>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div class="modal-overlay" data-modal="leaderboard">
+        <div class="modal leaderboard-modal">
+            <div class="modal-header">
+                <h3>Global Leaderboard</h3>
+                <button class="modal-close" data-action="close-modal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="leaderboard-tabs">
+                    <button class="leaderboard-tab active" data-tab="global">Global</button>
+                    <button class="leaderboard-tab" data-tab="friends">Friends</button>
+                    <button class="leaderboard-tab" data-tab="weekly">This Week</button>
+                </div>
+                
+                <div class="leaderboard-list" data-element="leaderboard-list">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" data-element="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="shared-app.js"></script>
+    <script src="main.js"></script>
+    <script src="quiz-logic.js"></script>
+    
+    <!-- Initialize App -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            // Initialize Shortcut Sensei App
+            window.shortcutApp = new ShortcutSenseiApp();
+            
+            // Initialize quiz page specific functionality
+            if (typeof initializeQuiz === 'function') {
+                initializeQuiz();
+            }
+        });
+    </script>
+</body>
+</html>
