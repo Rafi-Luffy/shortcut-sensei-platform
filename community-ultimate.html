@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Community - Shortcut Sensei</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="shared-styles.css">
+    <style>
+        /* Premium Human-Centered Design System */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #a5b4fc;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #22c55e;
+            --info: #3b82f6;
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --text-inverse: #ffffff;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-dark: #0f172a;
+            --bg-card: #ffffff;
+            --bg-overlay: rgba(0, 0, 0, 0.6);
+            
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --border-dark: #cbd5e1;
+            
+            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            --radius-xs: 4px;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+            --radius-full: 9999px;
+            
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            --spacing-3xl: 64px;
+            
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Premium Navigation */
+        .nav-modern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition-normal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-lg);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.08);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .auth-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 120px 0 var(--spacing-3xl);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(245, 158, 11, 0.05));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1), transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(245, 158, 11, 0.1), transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-2xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-3xl);
+            padding: 0 var(--spacing-lg);
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto var(--spacing-md);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            border: 1px solid var(--border);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: var(--spacing-md);
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-status {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feature-status.available {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .feature-status.beta {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+        }
+
+        .feature-status.coming-soon {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        /* ELO System */
+        .elo-section {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-primary);
+        }
+
+        .elo-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .elo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.02), rgba(245, 158, 11, 0.02));
+        }
+
+        .elo-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .rank-progression {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: var(--spacing-xl) 0;
+            gap: var(--spacing-md);
+            overflow-x: auto;
+            padding: var(--spacing-md) 0;
+        }
+
+        .rank-tier {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+            position: relative;
+        }
+
+        .rank-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            transition: var(--transition-normal);
+            border: 3px solid transparent;
+        }
+
+        .rank-tier.bronze .rank-icon {
+            background: linear-gradient(135deg, #cd7f32, #b8860b);
+            color: white;
+        }
+
+        .rank-tier.silver .rank-icon {
+            background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+            color: white;
+        }
+
+        .rank-tier.gold .rank-icon {
+            background: linear-gradient(135deg, #ffd700, #ffb300);
+            color: white;
+        }
+
+        .rank-tier.platinum .rank-icon {
+            background: linear-gradient(135deg, #e5e4e2, #d1d0ce);
+            color: var(--text-primary);
+        }
+
+        .rank-tier.diamond .rank-icon {
+            background: linear-gradient(135deg, #b9f2ff, #00bfff);
+            color: white;
+        }
+
+        .rank-tier.master .rank-icon {
+            background: linear-gradient(135deg, #9400d3, #8a2be2);
+            color: white;
+        }
+
+        .rank-tier.current .rank-icon {
+            transform: scale(1.15);
+            border-color: var(--primary);
+            box-shadow: 0 0 24px rgba(99, 102, 241, 0.4);
+        }
+
+        .rank-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .rank-tier.current .rank-name {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Achievement System */
+        .achievements-section {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-secondary);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .achievement-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            text-align: center;
+            transition: var(--transition-normal);
+            border: 2px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card.unlocked {
+            border-color: var(--success);
+            background: rgba(34, 197, 94, 0.02);
+        }
+
+        .achievement-card.locked {
+            opacity: 0.6;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .achievement-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto var(--spacing-md);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .achievement-card.locked .achievement-icon {
+            background: var(--text-muted);
+        }
+
+        .achievement-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .achievement-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .achievement-progress {
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-full);
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .achievement-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: var(--radius-full);
+            transition: var(--transition-normal);
+        }
+
+        .achievement-progress-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-lg {
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rank-progression {
+                gap: var(--spacing-xs);
+            }
+
+            .rank-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 16px;
+            }
+        }
+
+        /* Premium Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-modern" id="mainNav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="/index.html" class="logo-text">
+                    <i data-lucide="keyboard" style="display: inline; width: 24px; height: 24px; margin-right: 8px; vertical-align: -4px;"></i>
+                    Shortcut Sensei
+                </a>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="/index.html" class="nav-link">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="/applications.html" class="nav-link">
+                    <i data-lucide="grid-3x3"></i>
+                    <span>Applications</span>
+                </a>
+                <a href="/quiz.html" class="nav-link">
+                    <i data-lucide="brain"></i>
+                    <span>Quiz</span>
+                </a>
+                <a href="/community-ultimate.html" class="nav-link active">
+                    <i data-lucide="users"></i>
+                    <span>Community</span>
+                </a>
+                <a href="/about.html" class="nav-link">
+                    <i data-lucide="info"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="auth-btn" id="authBtn">
+                    <i data-lucide="user"></i>
+                    <span>Sign In</span>
+                </button>
+                
+                <button class="nav-toggle" id="navToggle">
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                    <div style="width: 20px; height: 2px; background: currentColor; transition: 0.3s;"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in-up">Ultimate Shortcut Gaming</h1>
+            <p class="hero-subtitle animate-fade-in-up">Join the world's most advanced keyboard shortcut community. Compete, learn, and master shortcuts with cutting-edge features.</p>
+        </div>
+    </section>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card animate-fade-in-up">
+            <div class="stat-icon">
+                <i data-lucide="users"></i>
+            </div>
+            <div class="stat-number" data-count="157824">0</div>
+            <div class="stat-label">Active Players</div>
+        </div>
+        <div class="stat-card animate-fade-in-up">
+            <div class="stat-icon">
+                <i data-lucide="trophy"></i>
+            </div>
+            <div class="stat-number" data-count="89456">0</div>
+            <div class="stat-label">Battles Won</div>
+        </div>
+        <div class="stat-card animate-fade-in-up">
+            <div class="stat-icon">
+                <i data-lucide="zap"></i>
+            </div>
+            <div class="stat-number" data-count="2456789">0</div>
+            <div class="stat-label">Shortcuts Mastered</div>
+        </div>
+        <div class="stat-card animate-fade-in-up">
+            <div class="stat-icon">
+                <i data-lucide="award"></i>
+            </div>
+            <div class="stat-number" data-count="12456">0</div>
+            <div class="stat-label">Achievements Unlocked</div>
+        </div>
+    </div>
+
+    <!-- Core Gaming Features -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🎮 Core Gaming Features</h2>
+                <p class="section-subtitle">Experience the most advanced keyboard shortcut gaming platform with cutting-edge features</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">Advanced Quiz Modes</h3>
+                    <p class="feature-description">Custom difficulty curves, adaptive learning algorithms, and subject-specific quizzes that evolve with your skill level.</p>
+                    <span class="feature-status available">✓ Available</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">🔥</div>
+                    <h3 class="feature-title">Real-time Multiplayer</h3>
+                    <p class="feature-description">Live voice chat during battles, spectator mode for tournaments, and dynamic tournament brackets with real-time updates.</p>
+                    <span class="feature-status beta">β Beta</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">ELO Rating System</h3>
+                    <p class="feature-description">Skill-based matchmaking with rank divisions from Bronze to Master, ensuring fair and competitive gameplay.</p>
+                    <span class="feature-status available">✓ Available</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Achievement System</h3>
+                    <p class="feature-description">Unlock badges, titles, and rewards for milestones. Track your progress with detailed achievement analytics.</p>
+                    <span class="feature-status available">✓ Available</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">👥</div>
+                    <h3 class="feature-title">Guild System</h3>
+                    <p class="feature-description">Create teams, participate in guild tournaments, and track shared progress with your squad.</p>
+                    <span class="feature-status beta">β Beta</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">🎓</div>
+                    <h3 class="feature-title">Mentorship Program</h3>
+                    <p class="feature-description">Experienced players can mentor newcomers, creating a supportive learning environment.</p>
+                    <span class="feature-status coming-soon">🚀 Coming Soon</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">📝</div>
+                    <h3 class="feature-title">Content Creation</h3>
+                    <p class="feature-description">User-generated quiz questions with community voting on the best content and contributions.</p>
+                    <span class="feature-status beta">β Beta</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">📺</div>
+                    <h3 class="feature-title">Live Streaming</h3>
+                    <p class="feature-description">Stream your battles, follow favorite players, and watch epic shortcut showdowns live.</p>
+                    <span class="feature-status coming-soon">🚀 Coming Soon</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Advanced Analytics</h3>
+                    <p class="feature-description">Detailed performance insights, weakness identification, and AI-powered improvement suggestions.</p>
+                    <span class="feature-status available">✓ Available</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Customizable Profiles</h3>
+                    <p class="feature-description">Personal themes, banners, showcase achievements, and express your unique gaming personality.</p>
+                    <span class="feature-status available">✓ Available</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">🛤️</div>
+                    <h3 class="feature-title">Learning Paths</h3>
+                    <p class="feature-description">Structured progression from beginner to expert with personalized learning recommendations.</p>
+                    <span class="feature-status beta">β Beta</span>
+                </div>
+                
+                <div class="feature-card animate-fade-in-up">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">Personal AI Coach</h3>
+                    <p class="feature-description">AI-powered recommendations based on your performance patterns and learning style.</p>
+                    <span class="feature-status coming-soon">🚀 Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ELO Rating System -->
+    <section class="elo-section">
+        <div class="container">
+            <div class="elo-container">
+                <div class="elo-content">
+                    <div class="section-header">
+                        <h2 class="section-title">🏅 ELO Ranking System</h2>
+                        <p class="section-subtitle">Climb the ranks and prove your shortcut mastery</p>
+                    </div>
+                    
+                    <div class="rank-progression">
+                        <div class="rank-tier bronze">
+                            <div class="rank-icon">🥉</div>
+                            <div class="rank-name">Bronze</div>
+                        </div>
+                        <div class="rank-tier silver">
+                            <div class="rank-icon">🥈</div>
+                            <div class="rank-name">Silver</div>
+                        </div>
+                        <div class="rank-tier gold current">
+                            <div class="rank-icon">🥇</div>
+                            <div class="rank-name">Gold</div>
+                        </div>
+                        <div class="rank-tier platinum">
+                            <div class="rank-icon">💎</div>
+                            <div class="rank-name">Platinum</div>
+                        </div>
+                        <div class="rank-tier diamond">
+                            <div class="rank-icon">💠</div>
+                            <div class="rank-name">Diamond</div>
+                        </div>
+                        <div class="rank-tier master">
+                            <div class="rank-icon">👑</div>
+                            <div class="rank-name">Master</div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                            Current Rank: <strong style="color: var(--primary);">Gold III</strong> • 
+                            ELO: <strong>1847</strong> • 
+                            Next Rank: <strong>89 ELO</strong>
+                        </p>
+                        <button class="btn btn-primary btn-lg">
+                            <i data-lucide="play"></i>
+                            Start Ranked Match
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement System -->
+    <section class="achievements-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">🏆 Achievement System</h2>
+                <p class="section-subtitle">Unlock badges, earn titles, and showcase your accomplishments</p>
+            </div>
+            
+            <div class="achievements-grid">
+                <div class="achievement-card unlocked">
+                    <div class="achievement-icon">🔥</div>
+                    <h3 class="achievement-title">Speed Demon</h3>
+                    <p class="achievement-description">Answer 10 questions correctly in under 30 seconds</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-fill" style="width: 100%"></div>
+                    </div>
+                    <div class="achievement-progress-text">Completed!</div>
+                </div>
+                
+                <div class="achievement-card unlocked">
+                    <div class="achievement-icon">🎯</div>
+                    <h3 class="achievement-title">Perfect Streak</h3>
+                    <p class="achievement-description">Get 20 questions right in a row</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-fill" style="width: 100%"></div>
+                    </div>
+                    <div class="achievement-progress-text">Completed!</div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">⚔️</div>
+                    <h3 class="achievement-title">Battle Master</h3>
+                    <p class="achievement-description">Win 50 1v1 battles</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-fill" style="width: 68%"></div>
+                    </div>
+                    <div class="achievement-progress-text">34/50 Battles Won</div>
+                </div>
+                
+                <div class="achievement-card locked">
+                    <div class="achievement-icon">👑</div>
+                    <h3 class="achievement-title">Shortcut King</h3>
+                    <p class="achievement-description">Reach Master rank</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-fill" style="width: 45%"></div>
+                    </div>
+                    <div class="achievement-progress-text">Gold III / Master</div>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">🎓</div>
+                    <h3 class="achievement-title">Knowledge Seeker</h3>
+                    <p class="achievement-description">Complete 100 quiz challenges</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-fill" style="width: 82%"></div>
+                    </div>
+                    <div class="achievement-progress-text">82/100 Challenges</div>
+                </div>
+                
+                <div class="achievement-card locked">
+                    <div class="achievement-icon">🌟</div>
+                    <h3 class="achievement-title">Legend</h3>
+                    <p class="achievement-description">Win a seasonal tournament</p>
+                    <div class="achievement-progress">
+                        <div class="achievement-progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="achievement-progress-text">Participate in tournament</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="padding: var(--spacing-3xl) 0; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 36px; font-weight: 800; margin-bottom: var(--spacing-md);">Ready to Become a Shortcut Master?</h2>
+            <p style="font-size: 18px; margin-bottom: var(--spacing-xl); opacity: 0.9;">Join thousands of players in the ultimate keyboard shortcut gaming experience</p>
+            <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-lg" style="background: white; color: var(--primary);">
+                    <i data-lucide="play"></i>
+                    Start Playing Now
+                </button>
+                <button class="btn btn-lg btn-secondary" style="background: transparent; border-color: white; color: white;">
+                    <i data-lucide="users"></i>
+                    Join Community
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Animated counters for stats
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const startTime = performance.now();
+            
+            function updateCounter(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(start + (target - start) * easeOutQuart(progress));
+                element.textContent = current.toLocaleString();
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            
+            requestAnimationFrame(updateCounter);
+        }
+
+        function easeOutQuart(t) {
+            return 1 - Math.pow(1 - t, 4);
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    
+                    // Animate counters
+                    if (element.classList.contains('stat-number')) {
+                        const target = parseInt(element.dataset.count);
+                        animateCounter(element, target);
+                    }
+                    
+                    // Add animation classes
+                    if (element.classList.contains('animate-fade-in-up')) {
+                        element.style.animation = 'fadeInUp 0.6s ease-out';
+                    }
+                    
+                    observer.unobserve(element);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        // Observe all animated elements
+        document.querySelectorAll('.stat-number, .animate-fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add some interactivity to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-6px) scale(1)';
+            });
+        });
+
+        // Achievement card interactions
+        document.querySelectorAll('.achievement-card').forEach(card => {
+            card.addEventListener('click', function() {
+                if (!this.classList.contains('locked')) {
+                    this.style.animation = 'pulse 0.6s ease-in-out';
+                    setTimeout(() => {
+                        this.style.animation = '';
+                    }, 600);
+                }
+            });
+        });
+
+        // Rank tier interactions
+        document.querySelectorAll('.rank-tier').forEach(tier => {
+            tier.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('current')) {
+                    this.querySelector('.rank-icon').style.transform = 'scale(1.1)';
+                }
+            });
+            
+            tier.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('current')) {
+                    this.querySelector('.rank-icon').style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // Auth button interaction
+        document.getElementById('authBtn').addEventListener('click', function() {
+            alert('Sign in functionality would be implemented here!');
+        });
+
+        // Add some dynamic background effects
+        function createFloatingShapes() {
+            const hero = document.querySelector('.hero-section');
+            for (let i = 0; i < 3; i++) {
+                const shape = document.createElement('div');
+                shape.style.cssText = `
+                    position: absolute;
+                    width: ${Math.random() * 100 + 50}px;
+                    height: ${Math.random() * 100 + 50}px;
+                    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(245, 158, 11, 0.1));
+                    border-radius: 50%;
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    animation: float ${Math.random() * 10 + 10}s infinite ease-in-out;
+                    z-index: 0;
+                `;
+                hero.appendChild(shape);
+            }
+        }
+
+        // Add floating animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                33% { transform: translateY(-20px) rotate(120deg); }
+                66% { transform: translateY(20px) rotate(240deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize floating shapes
+        createFloatingShapes();
+    </script>
+    
+    <!-- Shared App Framework -->
+    <script src="shared-app.js"></script>
+    
+    <!-- Initialize App -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Shortcut Sensei App
+            window.shortcutApp = new ShortcutSenseiApp();
+            
+            // Initialize community page specific functionality
+            if (typeof initializeCommunity === 'function') {
+                initializeCommunity();
+            }
+        });
+    </script>
+</body>
+</html>
