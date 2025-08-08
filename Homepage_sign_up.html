@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Shortcut Sensei</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main-styles.css">
+    <style>
+        .signup-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--light-card);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-light);
+            border: 2px solid var(--primary-color);
+        }
+        .dark-mode .signup-container {
+            background: var(--dark-card);
+            box-shadow: var(--shadow-dark);
+        }
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background: var(--light-background);
+            color: var(--text-color);
+            transition: border-color var(--transition-speed);
+        }
+        .dark-mode .form-group input {
+            background: var(--dark-background);
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .signup-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color var(--transition-speed);
+        }
+        .signup-btn:hover {
+            background: var(--primary-hover);
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-keyboard"></i>
+                    Shortcut Sensei
+                </a>
+            </div>
+            
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="all-applications.html">Applications</a></li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="About.htm">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" id="theme-toggle" data-tooltip="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" id="menu-toggle" data-tooltip="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="signup-container">
+        <h1><i class="fas fa-user-plus"></i> Join Shortcut Sensei</h1>
+        <p>Create your account and start mastering keyboard shortcuts!</p>
+        
+        <form class="signup-form" id="signup-form">
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" name="fullName" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirmPassword" required>
+            </div>
+            
+            <button type="submit" class="signup-btn">
+                <i class="fas fa-user-plus"></i> Create Account
+            </button>
+        </form>
+        
+        <div class="login-link">
+            <p>Already have an account? <a href="login-test.html">Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="main-footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-sections">
+                    <!-- Brand Section -->
+                    <div class="footer-section brand-section">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <i class="fas fa-keyboard"></i>
+                                <span>Shortcut Sensei</span>
+                            </a>
+                        </div>
+                        <p class="footer-description">
+                            Master every keyboard shortcut and boost your productivity.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="all-applications.html"><i class="fas fa-th-large"></i> Applications</a></li>
+                            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs</a></li>
+                            <li><a href="About.htm"><i class="fas fa-info-circle"></i> About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 Shortcut Sensei. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupForm = document.getElementById('signup-form');
+            
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(this);
+                const userData = {
+                    fullName: formData.get('fullName'),
+                    email: formData.get('email'),
+                    password: formData.get('password'),
+                    confirmPassword: formData.get('confirmPassword')
+                };
+                
+                // Validate passwords match
+                if (userData.password !== userData.confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                // Simulate account creation
+                if (typeof shortcutSensei !== 'undefined') {
+                    shortcutSensei.registerUser(userData);
+                } else {
+                    // Fallback registration
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        name: userData.fullName,
+                        email: userData.email,
+                        id: Date.now()
+                    }));
+                    alert('Account created successfully!');
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+    <script src="main-nav.js"></script>
+</body>
+</html>
