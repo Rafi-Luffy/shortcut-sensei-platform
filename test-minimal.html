@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Test - Applications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Minimal CSS for testing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .main-header {
+            background: #000;
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            background: #06a3be;
+        }
+
+        .app-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #06a3be;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #048ea6;
+            transform: translateY(-2px);
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="main-styles.css">
+</head>
+<body>
+    <!-- Header -->
+        <!-- Header -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-keyboard"></i>
+                    Shortcut Sensei
+                </a>
+            </div>
+            
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="all-applications.html">Applications <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Google Chrome.html">Google Chrome</a></li>
+                            <li><a href="Visual Studio.html">Visual Studio Code</a></li>
+                            <li><a href="File Explorer.htm">File Explorer</a></li>
+                            <li><a href="Microsoft Excell.htm">Microsoft Excel</a></li>
+                            <li><a href="Microsoft Word.htm">Microsoft Word</a></li>
+                            <li><a href="Microsoft PowerPoint.htm">PowerPoint</a></li>
+                            <li><a href="Microsoft Outlook.html">Outlook</a></li>
+                            <li><a href="Microsoft Teams.html">Teams</a></li>
+                            <li><a href="Adobe PhotoShop.html">Photoshop</a></li>
+                            <li><a href="Discord.html">Discord</a></li>
+                            <li><a href="Slack.htm">Slack</a></li>
+                            <li><a href="Spotify.html">Spotify</a></li>
+                            <li><a href="Zoom.html">Zoom</a></li>
+                            <li><a href="Windows_11.html">Windows 11</a></li>
+                            <li><a href="all-applications.html">View All Apps</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="quizs/index.html">Quiz</a></li>
+                    <li><a href="About.htm">About</a></li>
+                    <li><a href="user_com.htm">Community</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" id="main-search" placeholder="Search shortcuts..." data-tooltip="Press Ctrl+K to focus">
+                    <button class="search-btn" data-tooltip="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-results-dropdown" id="search-results"></div>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" data-tooltip="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-menu">
+                    <button class="login-btn" id="login-btn" data-tooltip="Login or view profile">
+                        <i class="fas fa-user"></i>
+                        Login
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown" style="display: none;">
+                        <a href="user_profile.htm"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="#" onclick="shortcutSensei.showSettings()"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="user_com.htm"><i class="fas fa-users"></i> Community</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" data-tooltip="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1><i class="fas fa-th-large"></i> Application Shortcuts</h1>
+            <p>Master keyboard shortcuts for all your favorite applications</p>
+        </div>
+    </section>
+
+    <!-- Applications Grid -->
+    <main>
+        <div class="container">
+            <div class="apps-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <img src="Google_Chrome.jpg" alt="Google Chrome">
+                    </div>
+                    <h3>Google Chrome</h3>
+                    <p>Essential browser shortcuts for faster web browsing</p>
+                    <a href="Google Chrome.html" class="btn">Learn Shortcuts</a>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <img src="MS_Edge.jpg" alt="Microsoft Edge">
+                    </div>
+                    <h3>Microsoft Edge</h3>
+                    <p>Modern browser shortcuts for productivity</p>
+                    <a href="Microsoft Edge.html" class="btn">Learn Shortcuts</a>
+                </div>
+
+                <div class="app-card">
+                    <div class="app-icon">
+                        <img src="vscode.png" alt="VS Code">
+                    </div>
+                    <h3>Visual Studio Code</h3>
+                    <p>Boost your coding speed with essential editor shortcuts</p>
+                    <a href="Visual Studio.html" class="btn">Learn Shortcuts</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        console.log('Minimal test page loaded successfully');
+        console.log('Testing basic functionality...');
+        
+        // Test if images load
+        const images = document.querySelectorAll('img');
+        images.forEach((img, index) => {
+            img.onload = () => console.log(`Image ${index + 1} loaded: ${img.src}`);
+            img.onerror = () => console.error(`Image ${index + 1} failed to load: ${img.src}`);
+        });
+    </script>
+    <!-- Footer -->
+    <footer class="main-footer" id="main-footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-sections">
+                    <!-- Brand Section -->
+                    <div class="footer-section brand-section">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <i class="fas fa-keyboard"></i>
+                                <span>Shortcut Sensei</span>
+                            </a>
+                        </div>
+                        <p class="footer-description">
+                            Master every keyboard shortcut and boost your productivity. 
+                            Your journey to becoming a true keyboard sensei starts here.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" data-tooltip="Follow us on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Like us on Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Subscribe on YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Follow us on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Star us on GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="all-applications.html"><i class="fas fa-th-large"></i> All Applications</a></li>
+                            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs & Tips</a></li>
+                            <li><a href="quizs/index.html"><i class="fas fa-question-circle"></i> Practice Quiz</a></li>
+                            <li><a href="About.htm"><i class="fas fa-info-circle"></i> About Us</a></li>
+                            <li><a href="user_com.htm"><i class="fas fa-users"></i> Community</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Popular Applications -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-star"></i> Popular Apps</h4>
+                        <ul class="footer-links">
+                            <li><a href="Google Chrome.html"><i class="fab fa-chrome"></i> Google Chrome</a></li>
+                            <li><a href="Visual Studio.html"><i class="fas fa-code"></i> VS Code</a></li>
+                            <li><a href="Microsoft Excell.htm"><i class="fas fa-file-excel"></i> Microsoft Excel</a></li>
+                            <li><a href="Microsoft Word.htm"><i class="fas fa-file-word"></i> Microsoft Word</a></li>
+                            <li><a href="Adobe PhotoShop.html"><i class="fas fa-paint-brush"></i> Photoshop</a></li>
+                            <li><a href="Discord.html"><i class="fab fa-discord"></i> Discord</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Resources -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-download"></i> Cheat Sheets</a></li>
+                            <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
+                            <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i> Newsletter</a></li>
+                            <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                            <li><a href="#"><i class="fas fa-bug"></i> Report Bug</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact & Support -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-envelope"></i> Contact</h4>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:hello@shortcutsensei.com">hello@shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://shortcutsensei.com">shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Global Community</span>
+                            </li>
+                        </ul>
+                        
+                        <!-- Newsletter Signup -->
+                        <div class="newsletter-signup">
+                            <h5><i class="fas fa-bell"></i> Stay Updated</h5>
+                            <form class="newsletter-form" id="newsletter-form">
+                                <div class="newsletter-input-group">
+                                    <input type="email" placeholder="Enter your email" required>
+                                    <button type="submit">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 Shortcut Sensei. All rights reserved. Made with <i class="fas fa-heart"></i> for productivity enthusiasts.</p>
+                    </div>
+                    <div class="footer-bottom-links">
+                        <a href="#" onclick="shortcutSensei.showPrivacyPolicy()">Privacy Policy</a>
+                        <a href="#" onclick="shortcutSensei.showTermsOfService()">Terms of Service</a>
+                        <a href="#" onclick="shortcutSensei.showCookiePolicy()">Cookie Policy</a>
+                        <a href="#" id="back-to-top" onclick="scrollToTop()">
+                            <i class="fas fa-arrow-up"></i> Back to Top
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Footer JavaScript
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Newsletter form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (typeof shortcutSensei !== 'undefined') {
+                        shortcutSensei.showNotification(`Thanks for subscribing with ${email}!`, 'success');
+                        this.reset();
+                    } else {
+                        alert('Thanks for subscribing!');
+                        this.reset();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main-nav.js"></script>
+</body>
+</html>

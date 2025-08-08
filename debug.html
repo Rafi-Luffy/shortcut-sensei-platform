@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Page - Error Checking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        #error-log {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 400px;
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border: 2px solid #dc3545;
+            border-radius: 8px;
+            padding: 1rem;
+            z-index: 10000;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .error-item {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+        }
+        .error-type {
+            font-weight: bold;
+            color: #dc3545;
+        }
+        .resource-check {
+            margin: 1rem;
+            padding: 1rem;
+            background: #e3f2fd;
+            border-radius: 8px;
+        }
+    </style>
+    <link rel="stylesheet" href="main-styles.css">
+</head>
+<body>
+    <div id="error-log">
+        <h4>Error Log:</h4>
+        <div id="errors"></div>
+    </div>
+
+    <div class="resource-check">
+        <h2>Resource Check</h2>
+        <div id="resource-status"></div>
+    </div>
+
+    <script>
+        // Error logging
+        const errorLog = document.getElementById('errors');
+        const resourceStatus = document.getElementById('resource-status');
+        
+        window.addEventListener('error', function(e) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-item';
+            errorDiv.innerHTML = `
+                <div class="error-type">JavaScript Error:</div>
+                <div>Message: ${e.message}</div>
+                <div>File: ${e.filename}:${e.lineno}:${e.colno}</div>
+            `;
+            errorLog.appendChild(errorDiv);
+        });
+
+        window.addEventListener('unhandledrejection', function(e) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-item';
+            errorDiv.innerHTML = `
+                <div class="error-type">Promise Rejection:</div>
+                <div>Reason: ${e.reason}</div>
+            `;
+            errorLog.appendChild(errorDiv);
+        });
+
+        // Check resources
+        function checkResources() {
+            const resources = [
+                'assets/css/main.css',
+                'assets/js/main.js',
+                'assets/js/search.js',
+                'assets/js/chatbot.js',
+                'assets/js/auth.js'
+            ];
+
+            resources.forEach(resource => {
+                fetch(resource)
+                    .then(response => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `✅ ${resource} - Status: ${response.status}`;
+                        resourceStatus.appendChild(div);
+                    })
+                    .catch(error => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `❌ ${resource} - Error: ${error.message}`;
+                        div.style.color = 'red';
+                        resourceStatus.appendChild(div);
+                    });
+            });
+        }
+
+        checkResources();
+    </script>
+
+    <!-- Load the same scripts as Applications.htm -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/chatbot.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <!-- Footer -->
+    <footer class="main-footer" id="main-footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-sections">
+                    <!-- Brand Section -->
+                    <div class="footer-section brand-section">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <i class="fas fa-keyboard"></i>
+                                <span>Shortcut Sensei</span>
+                            </a>
+                        </div>
+                        <p class="footer-description">
+                            Master every keyboard shortcut and boost your productivity. 
+                            Your journey to becoming a true keyboard sensei starts here.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" data-tooltip="Follow us on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Like us on Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Subscribe on YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Follow us on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Star us on GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="all-applications.html"><i class="fas fa-th-large"></i> All Applications</a></li>
+                            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs & Tips</a></li>
+                            <li><a href="quizs/index.html"><i class="fas fa-question-circle"></i> Practice Quiz</a></li>
+                            <li><a href="About.htm"><i class="fas fa-info-circle"></i> About Us</a></li>
+                            <li><a href="user_com.htm"><i class="fas fa-users"></i> Community</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Popular Applications -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-star"></i> Popular Apps</h4>
+                        <ul class="footer-links">
+                            <li><a href="Google Chrome.html"><i class="fab fa-chrome"></i> Google Chrome</a></li>
+                            <li><a href="Visual Studio.html"><i class="fas fa-code"></i> VS Code</a></li>
+                            <li><a href="Microsoft Excell.htm"><i class="fas fa-file-excel"></i> Microsoft Excel</a></li>
+                            <li><a href="Microsoft Word.htm"><i class="fas fa-file-word"></i> Microsoft Word</a></li>
+                            <li><a href="Adobe PhotoShop.html"><i class="fas fa-paint-brush"></i> Photoshop</a></li>
+                            <li><a href="Discord.html"><i class="fab fa-discord"></i> Discord</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Resources -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-download"></i> Cheat Sheets</a></li>
+                            <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
+                            <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i> Newsletter</a></li>
+                            <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                            <li><a href="#"><i class="fas fa-bug"></i> Report Bug</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact & Support -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-envelope"></i> Contact</h4>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:hello@shortcutsensei.com">hello@shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://shortcutsensei.com">shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Global Community</span>
+                            </li>
+                        </ul>
+                        
+                        <!-- Newsletter Signup -->
+                        <div class="newsletter-signup">
+                            <h5><i class="fas fa-bell"></i> Stay Updated</h5>
+                            <form class="newsletter-form" id="newsletter-form">
+                                <div class="newsletter-input-group">
+                                    <input type="email" placeholder="Enter your email" required>
+                                    <button type="submit">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 Shortcut Sensei. All rights reserved. Made with <i class="fas fa-heart"></i> for productivity enthusiasts.</p>
+                    </div>
+                    <div class="footer-bottom-links">
+                        <a href="#" onclick="shortcutSensei.showPrivacyPolicy()">Privacy Policy</a>
+                        <a href="#" onclick="shortcutSensei.showTermsOfService()">Terms of Service</a>
+                        <a href="#" onclick="shortcutSensei.showCookiePolicy()">Cookie Policy</a>
+                        <a href="#" id="back-to-top" onclick="scrollToTop()">
+                            <i class="fas fa-arrow-up"></i> Back to Top
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Footer JavaScript
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Newsletter form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (typeof shortcutSensei !== 'undefined') {
+                        shortcutSensei.showNotification(`Thanks for subscribing with ${email}!`, 'success');
+                        this.reset();
+                    } else {
+                        alert('Thanks for subscribing!');
+                        this.reset();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main-nav.js"></script>
+</body>
+</html>

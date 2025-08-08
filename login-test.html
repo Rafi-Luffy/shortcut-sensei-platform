@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Test - Shortcut Sensei</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main-styles.css">
+    <style>
+        body {
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .test-button {
+            background: #06a3be;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-size: 1rem;
+        }
+        .test-button:hover {
+            background: #048ea6;
+        }
+        .status {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+        <!-- Header -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-keyboard"></i>
+                    Shortcut Sensei
+                </a>
+            </div>
+            
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="all-applications.html">Applications <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Google Chrome.html">Google Chrome</a></li>
+                            <li><a href="Visual Studio.html">Visual Studio Code</a></li>
+                            <li><a href="File Explorer.htm">File Explorer</a></li>
+                            <li><a href="Microsoft Excell.htm">Microsoft Excel</a></li>
+                            <li><a href="Microsoft Word.htm">Microsoft Word</a></li>
+                            <li><a href="Microsoft PowerPoint.htm">PowerPoint</a></li>
+                            <li><a href="Microsoft Outlook.html">Outlook</a></li>
+                            <li><a href="Microsoft Teams.html">Teams</a></li>
+                            <li><a href="Adobe PhotoShop.html">Photoshop</a></li>
+                            <li><a href="Discord.html">Discord</a></li>
+                            <li><a href="Slack.htm">Slack</a></li>
+                            <li><a href="Spotify.html">Spotify</a></li>
+                            <li><a href="Zoom.html">Zoom</a></li>
+                            <li><a href="Windows_11.html">Windows 11</a></li>
+                            <li><a href="all-applications.html">View All Apps</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="quizs/index.html">Quiz</a></li>
+                    <li><a href="About.htm">About</a></li>
+                    <li><a href="user_com.htm">Community</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" id="main-search" placeholder="Search shortcuts..." data-tooltip="Press Ctrl+K to focus">
+                    <button class="search-btn" data-tooltip="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-results-dropdown" id="search-results"></div>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" data-tooltip="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-menu">
+                    <button class="login-btn" id="login-btn" data-tooltip="Login or view profile">
+                        <i class="fas fa-user"></i>
+                        Login
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown" style="display: none;">
+                        <a href="user_profile.htm"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="#" onclick="shortcutSensei.showSettings()"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="user_com.htm"><i class="fas fa-users"></i> Community</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" data-tooltip="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="test-container">
+        <h1><i class="fas fa-bug"></i> Shortcut Sensei - Functionality Test</h1>
+        <p>This page tests all the interactive features of your application.</p>
+
+        <div class="test-section">
+            <h2><i class="fas fa-sign-in-alt"></i> Authentication System Test</h2>
+            <p>Test the login and user management functionality:</p>
+            
+            <button class="test-button" onclick="testLogin()">
+                <i class="fas fa-user-plus"></i> Test Login Modal
+            </button>
+            
+            <button class="test-button" onclick="testUserState()">
+                <i class="fas fa-user-check"></i> Check User State
+            </button>
+            
+            <button class="test-button" onclick="simulateLogin()">
+                <i class="fas fa-user-cog"></i> Simulate Login
+            </button>
+            
+            <button class="test-button" onclick="simulateLogout()">
+                <i class="fas fa-sign-out-alt"></i> Simulate Logout
+            </button>
+            
+            <div id="auth-status" class="status info">
+                Authentication system status: <span id="auth-state">Checking...</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2><i class="fas fa-search"></i> Search System Test</h2>
+            <p>Test the search functionality:</p>
+            
+            <button class="test-button" onclick="testSearch()">
+                <i class="fas fa-search"></i> Test Search
+            </button>
+            
+            <button class="test-button" onclick="testSearchResults()">
+                <i class="fas fa-list"></i> Test Search Results
+            </button>
+            
+            <div id="search-status" class="status info">
+                Search system status: <span id="search-state">Ready</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2><i class="fas fa-palette"></i> Theme System Test</h2>
+            <p>Test the dark/light theme functionality:</p>
+            
+            <button class="test-button" onclick="testThemeToggle()">
+                <i class="fas fa-moon"></i> Toggle Theme
+            </button>
+            
+            <button class="test-button" onclick="checkThemeState()">
+                <i class="fas fa-eye"></i> Check Theme State
+            </button>
+            
+            <div id="theme-status" class="status info">
+                Theme system status: <span id="theme-state">Light mode</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2><i class="fas fa-bell"></i> Notification System Test</h2>
+            <p>Test the notification system:</p>
+            
+            <button class="test-button" onclick="testNotifications()">
+                <i class="fas fa-bell"></i> Test Notifications
+            </button>
+            
+            <div id="notification-status" class="status info">
+                Notification system status: <span id="notification-state">Ready</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2><i class="fas fa-mobile-alt"></i> Mobile Menu Test</h2>
+            <p>Test the mobile menu functionality:</p>
+            
+            <button class="test-button" onclick="testMobileMenu()">
+                <i class="fas fa-bars"></i> Toggle Mobile Menu
+            </button>
+            
+            <div id="mobile-status" class="status info">
+                Mobile menu status: <span id="mobile-state">Ready</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2><i class="fas fa-code"></i> JavaScript Console</h2>
+            <p>JavaScript errors and logs will appear here:</p>
+            <div id="console-log" style="background: #f8f9fa; padding: 1rem; border-radius: 4px; font-family: monospace; min-height: 100px; white-space: pre-wrap;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Test functions
+        function testLogin() {
+            updateStatus('auth-state', 'Testing login modal...');
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    shortcutSensei.showLoginModal();
+                    updateStatus('auth-state', '✅ Login modal opened successfully', 'success');
+                } else {
+                    updateStatus('auth-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('auth-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Login test error: ${error.message}`);
+            }
+        }
+
+        function testUserState() {
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    const isLoggedIn = shortcutSensei.isLoggedIn;
+                    const currentUser = shortcutSensei.currentUser;
+                    updateStatus('auth-state', `Login status: ${isLoggedIn ? '✅ Logged in' : '❌ Not logged in'}${currentUser ? ` as ${currentUser.name}` : ''}`, isLoggedIn ? 'success' : 'info');
+                } else {
+                    updateStatus('auth-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('auth-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`User state test error: ${error.message}`);
+            }
+        }
+
+        function simulateLogin() {
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    const testUser = {
+                        name: 'Test User',
+                        email: 'test@example.com',
+                        avatar: 'https://ui-avatars.com/api/?name=Test+User&background=06a3be&color=fff'
+                    };
+                    shortcutSensei.login(testUser);
+                    updateStatus('auth-state', '✅ Simulated login successful', 'success');
+                } else {
+                    updateStatus('auth-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('auth-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Simulate login error: ${error.message}`);
+            }
+        }
+
+        function simulateLogout() {
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    shortcutSensei.logout();
+                    updateStatus('auth-state', '✅ Logout successful', 'success');
+                } else {
+                    updateStatus('auth-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('auth-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Logout error: ${error.message}`);
+            }
+        }
+
+        function testSearch() {
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    shortcutSensei.performSearch('chrome');
+                    updateStatus('search-state', '✅ Search test completed', 'success');
+                } else {
+                    updateStatus('search-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('search-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Search test error: ${error.message}`);
+            }
+        }
+
+        function testSearchResults() {
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    const results = shortcutSensei.searchIndex.length;
+                    updateStatus('search-state', `✅ Search index has ${results} items`, 'success');
+                } else {
+                    updateStatus('search-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('search-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Search results test error: ${error.message}`);
+            }
+        }
+
+        function testThemeToggle() {
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    shortcutSensei.setTheme(newTheme);
+                    updateStatus('theme-state', `✅ Switched to ${newTheme} mode`, 'success');
+                } else {
+                    updateStatus('theme-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('theme-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Theme toggle error: ${error.message}`);
+            }
+        }
+
+        function checkThemeState() {
+            try {
+                const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                updateStatus('theme-state', `Current theme: ${currentTheme} mode`, 'info');
+            } catch (error) {
+                updateStatus('theme-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Theme state check error: ${error.message}`);
+            }
+        }
+
+        function testNotifications() {
+            try {
+                if (typeof shortcutSensei !== 'undefined') {
+                    shortcutSensei.showNotification('Test notification - Success!', 'success');
+                    setTimeout(() => {
+                        shortcutSensei.showNotification('Test notification - Info!', 'info');
+                    }, 1000);
+                    setTimeout(() => {
+                        shortcutSensei.showNotification('Test notification - Warning!', 'warning');
+                    }, 2000);
+                    updateStatus('notification-state', '✅ Notifications sent', 'success');
+                } else {
+                    updateStatus('notification-state', '❌ ShortcutSensei object not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('notification-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Notification test error: ${error.message}`);
+            }
+        }
+
+        function testMobileMenu() {
+            try {
+                const mainNav = document.getElementById('main-nav');
+                if (mainNav) {
+                    mainNav.classList.toggle('active');
+                    const isActive = mainNav.classList.contains('active');
+                    updateStatus('mobile-state', `✅ Mobile menu ${isActive ? 'opened' : 'closed'}`, 'success');
+                } else {
+                    updateStatus('mobile-state', '❌ Main navigation element not found', 'error');
+                }
+            } catch (error) {
+                updateStatus('mobile-state', `❌ Error: ${error.message}`, 'error');
+                logToConsole(`Mobile menu test error: ${error.message}`);
+            }
+        }
+
+        function updateStatus(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                const statusDiv = element.closest('.status');
+                if (statusDiv) {
+                    statusDiv.className = `status ${type}`;
+                }
+            }
+        }
+
+        function logToConsole(message) {
+            const consoleLog = document.getElementById('console-log');
+            if (consoleLog) {
+                const timestamp = new Date().toLocaleTimeString();
+                consoleLog.textContent += `[${timestamp}] ${message}\n`;
+                consoleLog.scrollTop = consoleLog.scrollHeight;
+            }
+        }
+
+        // Capture console errors
+        window.addEventListener('error', function(e) {
+            logToConsole(`ERROR: ${e.message} at ${e.filename}:${e.lineno}`);
+        });
+
+        // Initial system check
+        document.addEventListener('DOMContentLoaded', function() {
+            logToConsole('Page loaded, checking systems...');
+            
+            // Check if main-nav.js loaded
+            setTimeout(() => {
+                if (typeof shortcutSensei !== 'undefined') {
+                    logToConsole('✅ ShortcutSensei object found - main-nav.js loaded successfully');
+                    updateStatus('auth-state', '✅ Authentication system loaded', 'success');
+                    updateStatus('search-state', '✅ Search system loaded', 'success');
+                    updateStatus('theme-state', '✅ Theme system loaded', 'success');
+                    updateStatus('notification-state', '✅ Notification system loaded', 'success');
+                    updateStatus('mobile-state', '✅ Mobile menu loaded', 'success');
+                } else {
+                    logToConsole('❌ ShortcutSensei object not found - main-nav.js may not have loaded');
+                    updateStatus('auth-state', '❌ Authentication system not loaded', 'error');
+                    updateStatus('search-state', '❌ Search system not loaded', 'error');
+                    updateStatus('theme-state', '❌ Theme system not loaded', 'error');
+                    updateStatus('notification-state', '❌ Notification system not loaded', 'error');
+                    updateStatus('mobile-state', '❌ Mobile menu not loaded', 'error');
+                }
+            }, 1000);
+        });
+    </script>
+
+    <script src="main-nav.js"></script>
+    <!-- Footer -->
+    <footer class="main-footer" id="main-footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-sections">
+                    <!-- Brand Section -->
+                    <div class="footer-section brand-section">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <i class="fas fa-keyboard"></i>
+                                <span>Shortcut Sensei</span>
+                            </a>
+                        </div>
+                        <p class="footer-description">
+                            Master every keyboard shortcut and boost your productivity. 
+                            Your journey to becoming a true keyboard sensei starts here.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" data-tooltip="Follow us on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Like us on Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Subscribe on YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Follow us on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Star us on GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="all-applications.html"><i class="fas fa-th-large"></i> All Applications</a></li>
+                            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs & Tips</a></li>
+                            <li><a href="quizs/index.html"><i class="fas fa-question-circle"></i> Practice Quiz</a></li>
+                            <li><a href="About.htm"><i class="fas fa-info-circle"></i> About Us</a></li>
+                            <li><a href="user_com.htm"><i class="fas fa-users"></i> Community</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Popular Applications -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-star"></i> Popular Apps</h4>
+                        <ul class="footer-links">
+                            <li><a href="Google Chrome.html"><i class="fab fa-chrome"></i> Google Chrome</a></li>
+                            <li><a href="Visual Studio.html"><i class="fas fa-code"></i> VS Code</a></li>
+                            <li><a href="Microsoft Excell.htm"><i class="fas fa-file-excel"></i> Microsoft Excel</a></li>
+                            <li><a href="Microsoft Word.htm"><i class="fas fa-file-word"></i> Microsoft Word</a></li>
+                            <li><a href="Adobe PhotoShop.html"><i class="fas fa-paint-brush"></i> Photoshop</a></li>
+                            <li><a href="Discord.html"><i class="fab fa-discord"></i> Discord</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Resources -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-download"></i> Cheat Sheets</a></li>
+                            <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
+                            <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i> Newsletter</a></li>
+                            <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                            <li><a href="#"><i class="fas fa-bug"></i> Report Bug</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact & Support -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-envelope"></i> Contact</h4>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:hello@shortcutsensei.com">hello@shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://shortcutsensei.com">shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Global Community</span>
+                            </li>
+                        </ul>
+                        
+                        <!-- Newsletter Signup -->
+                        <div class="newsletter-signup">
+                            <h5><i class="fas fa-bell"></i> Stay Updated</h5>
+                            <form class="newsletter-form" id="newsletter-form">
+                                <div class="newsletter-input-group">
+                                    <input type="email" placeholder="Enter your email" required>
+                                    <button type="submit">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 Shortcut Sensei. All rights reserved. Made with <i class="fas fa-heart"></i> for productivity enthusiasts.</p>
+                    </div>
+                    <div class="footer-bottom-links">
+                        <a href="#" onclick="shortcutSensei.showPrivacyPolicy()">Privacy Policy</a>
+                        <a href="#" onclick="shortcutSensei.showTermsOfService()">Terms of Service</a>
+                        <a href="#" onclick="shortcutSensei.showCookiePolicy()">Cookie Policy</a>
+                        <a href="#" id="back-to-top" onclick="scrollToTop()">
+                            <i class="fas fa-arrow-up"></i> Back to Top
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Footer JavaScript
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Newsletter form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (typeof shortcutSensei !== 'undefined') {
+                        shortcutSensei.showNotification(`Thanks for subscribing with ${email}!`, 'success');
+                        this.reset();
+                    } else {
+                        alert('Thanks for subscribing!');
+                        this.reset();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main-nav.js"></script>
+</body>
+</html>

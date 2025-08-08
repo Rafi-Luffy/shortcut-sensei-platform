@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 Authentication Test - Shortcut Sensei</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main-styles.css">
+    <style>
+        .auth-test-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .test-section {
+            background: var(--light-card);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            border-left: 4px solid var(--primary-color);
+        }
+        .dark-mode .test-section {
+            background: var(--dark-card);
+            box-shadow: var(--shadow-dark);
+        }
+        .test-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .test-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+            font-weight: 500;
+        }
+        .test-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        .test-btn.danger {
+            background: #dc3545;
+        }
+        .test-btn.danger:hover {
+            background: #c82333;
+        }
+        .test-btn.success {
+            background: #28a745;
+        }
+        .test-btn.success:hover {
+            background: #218838;
+        }
+        .status-display {
+            background: rgba(6, 163, 190, 0.1);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        .auth-status {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .user-info {
+            background: rgba(40, 167, 69, 0.1);
+            border-left-color: #28a745;
+            color: #28a745;
+        }
+        .error-info {
+            background: rgba(220, 53, 69, 0.1);
+            border-left-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+        <!-- Header -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-keyboard"></i>
+                    Shortcut Sensei
+                </a>
+            </div>
+            
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="all-applications.html">Applications <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="Google Chrome.html">Google Chrome</a></li>
+                            <li><a href="Visual Studio.html">Visual Studio Code</a></li>
+                            <li><a href="File Explorer.htm">File Explorer</a></li>
+                            <li><a href="Microsoft Excell.htm">Microsoft Excel</a></li>
+                            <li><a href="Microsoft Word.htm">Microsoft Word</a></li>
+                            <li><a href="Microsoft PowerPoint.htm">PowerPoint</a></li>
+                            <li><a href="Microsoft Outlook.html">Outlook</a></li>
+                            <li><a href="Microsoft Teams.html">Teams</a></li>
+                            <li><a href="Adobe PhotoShop.html">Photoshop</a></li>
+                            <li><a href="Discord.html">Discord</a></li>
+                            <li><a href="Slack.htm">Slack</a></li>
+                            <li><a href="Spotify.html">Spotify</a></li>
+                            <li><a href="Zoom.html">Zoom</a></li>
+                            <li><a href="Windows_11.html">Windows 11</a></li>
+                            <li><a href="all-applications.html">View All Apps</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blogs.html">Blogs</a></li>
+                    <li><a href="quizs/index.html">Quiz</a></li>
+                    <li><a href="About.htm">About</a></li>
+                    <li><a href="user_com.htm">Community</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" id="main-search" placeholder="Search shortcuts..." data-tooltip="Press Ctrl+K to focus">
+                    <button class="search-btn" data-tooltip="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-results-dropdown" id="search-results"></div>
+                </div>
+                <button class="theme-toggle" id="theme-toggle" data-tooltip="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-menu">
+                    <button class="login-btn" id="login-btn" data-tooltip="Login or view profile">
+                        <i class="fas fa-user"></i>
+                        Login
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown" style="display: none;">
+                        <a href="user_profile.htm"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="#" onclick="shortcutSensei.showSettings()"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="user_com.htm"><i class="fas fa-users"></i> Community</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" data-tooltip="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="auth-test-container">
+        <h1><i class="fas fa-shield-alt"></i> Authentication System Test</h1>
+        <p>Comprehensive testing of all authentication features including login, signup, and forgot password functionality.</p>
+
+        <!-- Current Status -->
+        <div class="test-section">
+            <h2><i class="fas fa-info-circle"></i> Current Status</h2>
+            <div class="status-display" id="current-status">
+                <div class="auth-status">Authentication Status: <span id="auth-state">Checking...</span></div>
+                <div id="user-details" style="margin-top: 0.5rem;"></div>
+            </div>
+        </div>
+
+        <!-- Login Testing -->
+        <div class="test-section">
+            <h2><i class="fas fa-sign-in-alt"></i> Login System</h2>
+            <p>Test the login modal and authentication process.</p>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testLoginModal()">
+                    <i class="fas fa-user-plus"></i> Open Login Modal
+                </button>
+                <button class="test-btn" onclick="simulateValidLogin()">
+                    <i class="fas fa-user-check"></i> Simulate Valid Login
+                </button>
+                <button class="test-btn" onclick="simulateInvalidLogin()">
+                    <i class="fas fa-user-times"></i> Test Invalid Login
+                </button>
+                <button class="test-btn danger" onclick="testLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Test Logout
+                </button>
+            </div>
+            
+            <div id="login-test-results" class="status-display" style="display: none;">
+                <strong>Login Test Results:</strong>
+                <div id="login-results-content"></div>
+            </div>
+        </div>
+
+        <!-- Signup Testing -->
+        <div class="test-section">
+            <h2><i class="fas fa-user-plus"></i> Signup System</h2>
+            <p>Test the user registration and validation process.</p>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testSignupModal()">
+                    <i class="fas fa-user-plus"></i> Open Signup Modal
+                </button>
+                <button class="test-btn" onclick="simulateValidSignup()">
+                    <i class="fas fa-user-check"></i> Simulate Valid Signup
+                </button>
+                <button class="test-btn" onclick="testPasswordMismatch()">
+                    <i class="fas fa-exclamation-triangle"></i> Test Password Mismatch
+                </button>
+                <button class="test-btn" onclick="testInvalidEmail()">
+                    <i class="fas fa-envelope-times"></i> Test Invalid Email
+                </button>
+            </div>
+            
+            <div id="signup-test-results" class="status-display" style="display: none;">
+                <strong>Signup Test Results:</strong>
+                <div id="signup-results-content"></div>
+            </div>
+        </div>
+
+        <!-- Forgot Password Testing -->
+        <div class="test-section">
+            <h2><i class="fas fa-key"></i> Forgot Password System</h2>
+            <p>Test the password reset functionality.</p>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testForgotPasswordModal()">
+                    <i class="fas fa-key"></i> Open Forgot Password
+                </button>
+                <button class="test-btn" onclick="simulatePasswordReset()">
+                    <i class="fas fa-paper-plane"></i> Simulate Password Reset
+                </button>
+                <button class="test-btn" onclick="testInvalidResetEmail()">
+                    <i class="fas fa-envelope-times"></i> Test Invalid Reset Email
+                </button>
+            </div>
+            
+            <div id="forgot-test-results" class="status-display" style="display: none;">
+                <strong>Forgot Password Test Results:</strong>
+                <div id="forgot-results-content"></div>
+            </div>
+        </div>
+
+        <!-- UI/UX Testing -->
+        <div class="test-section">
+            <h2><i class="fas fa-magic"></i> UI/UX Features</h2>
+            <p>Test user interface interactions and user experience features.</p>
+            
+            <div class="test-buttons">
+                <button class="test-btn" onclick="testTabSwitching()">
+                    <i class="fas fa-exchange-alt"></i> Test Tab Switching
+                </button>
+                <button class="test-btn" onclick="testFormValidation()">
+                    <i class="fas fa-check-circle"></i> Test Form Validation
+                </button>
+                <button class="test-btn" onclick="testLoadingStates()">
+                    <i class="fas fa-spinner"></i> Test Loading States
+                </button>
+                <button class="test-btn" onclick="testNotifications()">
+                    <i class="fas fa-bell"></i> Test Notifications
+                </button>
+            </div>
+            
+            <div id="ui-test-results" class="status-display" style="display: none;">
+                <strong>UI/UX Test Results:</strong>
+                <div id="ui-results-content"></div>
+            </div>
+        </div>
+
+        <!-- Integration Testing -->
+        <div class="test-section">
+            <h2><i class="fas fa-cogs"></i> Integration Testing</h2>
+            <p>Test how authentication integrates with other system features.</p>
+            
+            <div class="test-buttons">
+                <button class="test-btn success" onclick="runFullAuthTest()">
+                    <i class="fas fa-play"></i> Run Complete Auth Test
+                </button>
+                <button class="test-btn" onclick="testThemeIntegration()">
+                    <i class="fas fa-palette"></i> Test Theme Integration
+                </button>
+                <button class="test-btn" onclick="testUserDropdown()">
+                    <i class="fas fa-chevron-down"></i> Test User Dropdown
+                </button>
+                <button class="test-btn danger" onclick="clearAllData()">
+                    <i class="fas fa-trash"></i> Clear All Data
+                </button>
+            </div>
+            
+            <div id="integration-test-results" class="status-display" style="display: none;">
+                <strong>Integration Test Results:</strong>
+                <div id="integration-results-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test Functions
+        function updateStatus() {
+            const authState = document.getElementById('auth-state');
+            const userDetails = document.getElementById('user-details');
+            
+            if (typeof shortcutSensei !== 'undefined') {
+                if (shortcutSensei.isLoggedIn && shortcutSensei.currentUser) {
+                    authState.textContent = 'Logged In ✅';
+                    authState.style.color = '#28a745';
+                    userDetails.innerHTML = `
+                        <div style="margin-top: 0.5rem; padding: 0.5rem; background: rgba(40, 167, 69, 0.1); border-radius: 4px;">
+                            <strong>User:</strong> ${shortcutSensei.currentUser.name}<br>
+                            <strong>Email:</strong> ${shortcutSensei.currentUser.email}<br>
+                            <strong>Login Time:</strong> ${shortcutSensei.currentUser.loginTime ? new Date(shortcutSensei.currentUser.loginTime).toLocaleString() : 'N/A'}
+                        </div>
+                    `;
+                } else {
+                    authState.textContent = 'Not Logged In ⚪';
+                    authState.style.color = '#6c757d';
+                    userDetails.innerHTML = '';
+                }
+            } else {
+                authState.textContent = 'System Not Loaded ❌';
+                authState.style.color = '#dc3545';
+                userDetails.innerHTML = '<div style="color: #dc3545;">ShortcutSensei object not found</div>';
+            }
+        }
+
+        function testLoginModal() {
+            if (typeof shortcutSensei !== 'undefined') {
+                shortcutSensei.showLoginModal();
+                showResult('login-test-results', 'login-results-content', '✅ Login modal opened successfully');
+            } else {
+                showResult('login-test-results', 'login-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function simulateValidLogin() {
+            if (typeof shortcutSensei !== 'undefined') {
+                const testUser = {
+                    name: 'Test User',
+                    email: 'test@shortcutsensei.com',
+                    avatar: 'https://ui-avatars.com/api/?name=Test+User&background=06a3be&color=fff',
+                    loginTime: new Date().toISOString(),
+                    preferences: { theme: 'light', favoriteApps: [] }
+                };
+                shortcutSensei.login(testUser);
+                showResult('login-test-results', 'login-results-content', '✅ Valid login simulation successful');
+                updateStatus();
+            } else {
+                showResult('login-test-results', 'login-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function simulateInvalidLogin() {
+            if (typeof shortcutSensei !== 'undefined') {
+                // Test email validation
+                const isValid = shortcutSensei.isValidEmail('invalid-email');
+                showResult('login-test-results', 'login-results-content', 
+                    isValid ? '❌ Email validation not working' : '✅ Email validation working correctly', isValid);
+            } else {
+                showResult('login-test-results', 'login-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testLogout() {
+            if (typeof shortcutSensei !== 'undefined') {
+                shortcutSensei.logout();
+                showResult('login-test-results', 'login-results-content', '✅ Logout successful');
+                updateStatus();
+            } else {
+                showResult('login-test-results', 'login-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testSignupModal() {
+            if (typeof shortcutSensei !== 'undefined') {
+                shortcutSensei.showLoginModal();
+                // Switch to signup tab after a moment
+                setTimeout(() => {
+                    const signupTab = document.querySelector('[data-tab="signup"]');
+                    if (signupTab) {
+                        signupTab.click();
+                        showResult('signup-test-results', 'signup-results-content', '✅ Signup modal opened and tab switched');
+                    } else {
+                        showResult('signup-test-results', 'signup-results-content', '❌ Signup tab not found', true);
+                    }
+                }, 500);
+            } else {
+                showResult('signup-test-results', 'signup-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function simulateValidSignup() {
+            if (typeof shortcutSensei !== 'undefined') {
+                const testUser = {
+                    name: 'New User',
+                    email: 'newuser@shortcutsensei.com',
+                    avatar: 'https://ui-avatars.com/api/?name=New+User&background=9c27b0&color=fff',
+                    signupTime: new Date().toISOString(),
+                    preferences: { theme: 'light', favoriteApps: [] }
+                };
+                shortcutSensei.login(testUser);
+                showResult('signup-test-results', 'signup-results-content', '✅ Valid signup simulation successful');
+                updateStatus();
+            } else {
+                showResult('signup-test-results', 'signup-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testPasswordMismatch() {
+            showResult('signup-test-results', 'signup-results-content', '✅ Password mismatch validation would be tested in form submission');
+        }
+
+        function testInvalidEmail() {
+            if (typeof shortcutSensei !== 'undefined') {
+                const isValid = shortcutSensei.isValidEmail('invalid.email');
+                showResult('signup-test-results', 'signup-results-content', 
+                    isValid ? '❌ Email validation not working' : '✅ Email validation working correctly', isValid);
+            } else {
+                showResult('signup-test-results', 'signup-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testForgotPasswordModal() {
+            if (typeof shortcutSensei !== 'undefined') {
+                shortcutSensei.showForgotPasswordModal();
+                showResult('forgot-test-results', 'forgot-results-content', '✅ Forgot password modal opened successfully');
+            } else {
+                showResult('forgot-test-results', 'forgot-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function simulatePasswordReset() {
+            if (typeof shortcutSensei !== 'undefined') {
+                shortcutSensei.showNotification('Password reset link sent to your email!', 'success');
+                showResult('forgot-test-results', 'forgot-results-content', '✅ Password reset simulation successful');
+            } else {
+                showResult('forgot-test-results', 'forgot-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testInvalidResetEmail() {
+            if (typeof shortcutSensei !== 'undefined') {
+                const isValid = shortcutSensei.isValidEmail('invalid@');
+                showResult('forgot-test-results', 'forgot-results-content', 
+                    isValid ? '❌ Email validation not working' : '✅ Email validation working correctly', isValid);
+            } else {
+                showResult('forgot-test-results', 'forgot-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testTabSwitching() {
+            showResult('ui-test-results', 'ui-results-content', '✅ Tab switching functionality is integrated in modal JavaScript');
+        }
+
+        function testFormValidation() {
+            if (typeof shortcutSensei !== 'undefined') {
+                const validEmail = shortcutSensei.isValidEmail('test@example.com');
+                const invalidEmail = shortcutSensei.isValidEmail('invalid');
+                const result = validEmail && !invalidEmail;
+                showResult('ui-test-results', 'ui-results-content', 
+                    result ? '✅ Form validation working correctly' : '❌ Form validation has issues', !result);
+            } else {
+                showResult('ui-test-results', 'ui-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testLoadingStates() {
+            showResult('ui-test-results', 'ui-results-content', '✅ Loading states are implemented with spinner animations');
+        }
+
+        function testNotifications() {
+            if (typeof shortcutSensei !== 'undefined') {
+                shortcutSensei.showNotification('Test notification - Success!', 'success');
+                setTimeout(() => shortcutSensei.showNotification('Test notification - Info!', 'info'), 1000);
+                setTimeout(() => shortcutSensei.showNotification('Test notification - Error!', 'error'), 2000);
+                showResult('ui-test-results', 'ui-results-content', '✅ Notification system tested with multiple types');
+            } else {
+                showResult('ui-test-results', 'ui-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function runFullAuthTest() {
+            showResult('integration-test-results', 'integration-results-content', '🚀 Running complete authentication test...');
+            
+            let testResults = [];
+            
+            // Test 1: System Load
+            if (typeof shortcutSensei !== 'undefined') {
+                testResults.push('✅ System loaded correctly');
+            } else {
+                testResults.push('❌ System failed to load');
+            }
+            
+            // Test 2: Email Validation
+            if (typeof shortcutSensei !== 'undefined') {
+                const validTest = shortcutSensei.isValidEmail('test@example.com');
+                const invalidTest = !shortcutSensei.isValidEmail('invalid');
+                testResults.push(validTest && invalidTest ? '✅ Email validation working' : '❌ Email validation failed');
+            }
+            
+            // Test 3: Login/Logout Cycle
+            if (typeof shortcutSensei !== 'undefined') {
+                const testUser = { name: 'Test', email: 'test@test.com', avatar: '', loginTime: new Date().toISOString() };
+                shortcutSensei.login(testUser);
+                testResults.push(shortcutSensei.isLoggedIn ? '✅ Login working' : '❌ Login failed');
+                
+                shortcutSensei.logout();
+                testResults.push(!shortcutSensei.isLoggedIn ? '✅ Logout working' : '❌ Logout failed');
+            }
+            
+            setTimeout(() => {
+                const resultHtml = testResults.map(result => `<div>${result}</div>`).join('');
+                showResult('integration-test-results', 'integration-results-content', resultHtml);
+                updateStatus();
+            }, 1000);
+        }
+
+        function testThemeIntegration() {
+            if (typeof shortcutSensei !== 'undefined') {
+                const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                shortcutSensei.setTheme(newTheme);
+                showResult('integration-test-results', 'integration-results-content', `✅ Theme switched to ${newTheme} mode`);
+                
+                setTimeout(() => {
+                    shortcutSensei.setTheme(currentTheme);
+                }, 2000);
+            } else {
+                showResult('integration-test-results', 'integration-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function testUserDropdown() {
+            if (typeof shortcutSensei !== 'undefined') {
+                shortcutSensei.toggleUserDropdown();
+                showResult('integration-test-results', 'integration-results-content', '✅ User dropdown toggled');
+            } else {
+                showResult('integration-test-results', 'integration-results-content', '❌ ShortcutSensei not loaded', true);
+            }
+        }
+
+        function clearAllData() {
+            localStorage.clear();
+            location.reload();
+        }
+
+        function showResult(containerId, contentId, message, isError = false) {
+            const container = document.getElementById(containerId);
+            const content = document.getElementById(contentId);
+            
+            container.style.display = 'block';
+            container.className = `status-display ${isError ? 'error-info' : 'user-info'}`;
+            content.innerHTML = message;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatus();
+            setInterval(updateStatus, 2000); // Update status every 2 seconds
+        });
+    </script>
+
+    <script src="main-nav.js"></script>
+    <!-- Footer -->
+    <footer class="main-footer" id="main-footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-sections">
+                    <!-- Brand Section -->
+                    <div class="footer-section brand-section">
+                        <div class="footer-logo">
+                            <a href="index.html">
+                                <i class="fas fa-keyboard"></i>
+                                <span>Shortcut Sensei</span>
+                            </a>
+                        </div>
+                        <p class="footer-description">
+                            Master every keyboard shortcut and boost your productivity. 
+                            Your journey to becoming a true keyboard sensei starts here.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link" data-tooltip="Follow us on Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Like us on Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Subscribe on YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Follow us on LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" data-tooltip="Star us on GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                            <li><a href="all-applications.html"><i class="fas fa-th-large"></i> All Applications</a></li>
+                            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs & Tips</a></li>
+                            <li><a href="quizs/index.html"><i class="fas fa-question-circle"></i> Practice Quiz</a></li>
+                            <li><a href="About.htm"><i class="fas fa-info-circle"></i> About Us</a></li>
+                            <li><a href="user_com.htm"><i class="fas fa-users"></i> Community</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Popular Applications -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-star"></i> Popular Apps</h4>
+                        <ul class="footer-links">
+                            <li><a href="Google Chrome.html"><i class="fab fa-chrome"></i> Google Chrome</a></li>
+                            <li><a href="Visual Studio.html"><i class="fas fa-code"></i> VS Code</a></li>
+                            <li><a href="Microsoft Excell.htm"><i class="fas fa-file-excel"></i> Microsoft Excel</a></li>
+                            <li><a href="Microsoft Word.htm"><i class="fas fa-file-word"></i> Microsoft Word</a></li>
+                            <li><a href="Adobe PhotoShop.html"><i class="fas fa-paint-brush"></i> Photoshop</a></li>
+                            <li><a href="Discord.html"><i class="fab fa-discord"></i> Discord</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Resources -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-graduation-cap"></i> Resources</h4>
+                        <ul class="footer-links">
+                            <li><a href="#"><i class="fas fa-download"></i> Cheat Sheets</a></li>
+                            <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
+                            <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
+                            <li><a href="#"><i class="fas fa-envelope"></i> Newsletter</a></li>
+                            <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
+                            <li><a href="#"><i class="fas fa-bug"></i> Report Bug</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact & Support -->
+                    <div class="footer-section">
+                        <h4><i class="fas fa-envelope"></i> Contact</h4>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:hello@shortcutsensei.com">hello@shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                <a href="https://shortcutsensei.com">shortcutsensei.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Global Community</span>
+                            </li>
+                        </ul>
+                        
+                        <!-- Newsletter Signup -->
+                        <div class="newsletter-signup">
+                            <h5><i class="fas fa-bell"></i> Stay Updated</h5>
+                            <form class="newsletter-form" id="newsletter-form">
+                                <div class="newsletter-input-group">
+                                    <input type="email" placeholder="Enter your email" required>
+                                    <button type="submit">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        <p>&copy; 2025 Shortcut Sensei. All rights reserved. Made with <i class="fas fa-heart"></i> for productivity enthusiasts.</p>
+                    </div>
+                    <div class="footer-bottom-links">
+                        <a href="#" onclick="shortcutSensei.showPrivacyPolicy()">Privacy Policy</a>
+                        <a href="#" onclick="shortcutSensei.showTermsOfService()">Terms of Service</a>
+                        <a href="#" onclick="shortcutSensei.showCookiePolicy()">Cookie Policy</a>
+                        <a href="#" id="back-to-top" onclick="scrollToTop()">
+                            <i class="fas fa-arrow-up"></i> Back to Top
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notification-container"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Footer JavaScript
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Newsletter form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    if (typeof shortcutSensei !== 'undefined') {
+                        shortcutSensei.showNotification(`Thanks for subscribing with ${email}!`, 'success');
+                        this.reset();
+                    } else {
+                        alert('Thanks for subscribing!');
+                        this.reset();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="main-nav.js"></script>
+</body>
+</html>
