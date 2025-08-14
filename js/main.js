@@ -215,7 +215,6 @@ class ShortcutSensei {
     toggleTheme() {
         const newTheme = this.theme === 'dark' ? 'light' : 'dark';
         this.setTheme(newTheme);
-        this.showToast(`Switched to ${newTheme} mode`, 'info');
     }
 
     // Search Functionality

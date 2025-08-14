@@ -425,19 +425,27 @@ function shareToFacebook(url) {
 // Theme Toggle Function
 function toggleTheme() {
     const body = document.body;
+    const header = document.querySelector('.header');
+    const footer = document.querySelector('.footer-modern');
     const isDark = body.classList.contains('dark-theme');
-    
+
     if (isDark) {
         body.classList.remove('dark-theme');
+        document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
+        if (header) header.classList.add('light-mode');
+        if (footer) footer.classList.add('light-mode');
     } else {
         body.classList.add('dark-theme');
+        document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
+        if (header) header.classList.remove('light-mode');
+        if (footer) footer.classList.remove('light-mode');
     }
-    
+
     // Update theme toggle button
     updateThemeToggle();
-    
+
     // Track theme change
     if (typeof gtag !== 'undefined') {
         gtag('event', 'theme_change', {
