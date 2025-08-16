@@ -4,1295 +4,467 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Microsoft Word Shortcuts - Shortcut Sensei</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* Base styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-/* Header styles */
-/* Header styles */
-/* Header styles */
-
-header {
-    background-color: #000000;
-    color: #fff;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    z-index: 1000; /* Adjust z-index as needed */
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    margin: 0 auto;
-    padding-top: 10px; /* Adjusted padding-top */
-}
-
-.logo a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.main-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-}
-
-.main-nav ul li {
-    position: relative;
-}
-
-.main-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-}
-
-.main-nav ul li a:hover {
-    background-color: #444;
-    border-radius: 4px;
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #fff;
-}
-
-.search-container {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 8px 15px; /* Adjusted padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative; /* Position the container relatively */
-}
-
-.search-container input[type="text"] {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    border-radius: 20px;
-    margin-right: 10px;
-    font-size: 16px;
-    outline: none;
-}
-
-.search-container button {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 20px;
-    background-color: purple;
-    color: #fff;
-    cursor: pointer;
-    font-size: 16px;
-    outline: none;
-    transition: background-color 0.3s;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.search-container button:hover {
-    background-color: #6a1b9a;
-}
-
-.search-container button i {
-    color: #fff;
-}
-
-
-        /* Hero Section */
-        .hero {
-            background: url('hero-image.jpg') no-repeat center center/cover;
-            background-color: #4b4949;
-            color: #fff;
-            text-align: center;
-            padding: 100px 20px;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
-        }
-
-        .hero .content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            margin: 0 0 20px;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            margin: 0 0 30px;
-        }
-
-        .hero .cta {
-            display: inline-block;
-            padding: 10px 25px;
-            background-color: purple;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: background-color 0.3s;
-        }
-
-        .hero .cta:hover {
-            background-color: #6a1b9a;
-        }
-
-         /* Responsive styles */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .main-nav ul {
-                flex-direction: column;
-                gap: 10px;
-                width: 100%;
-                display: none;
-            }
-
-            .main-nav ul.show {
-                display: flex;
-            }
-
-            .search-container, .menu-toggle {
-                margin-top: 10px;
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .search-container input[type="text"] {
-                width: 100%;
-            }
-
-            .features .feature, .latest-news article {
-                width: 100%;
-                margin: 10px 0;
-            }
-        }
-
-        /* Search table styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px auto;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            background-color: #fff;
-            overflow: hidden; /* Ensures that curved corners are applied */
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #dddddd;
-        }
-
-        th {
-            background-color: #2cba19;
-            color: #333;
-        }
-
-        tbody tr:hover {
-            background-color: #f9f9f9;
-        }
-        .indented-paragraph {
-        margin-left: 11.5%; /* Adjust the value 165px as needed */
-        margin-right: 4.4%;  /*440 px */
-    }
-    .my-custom-class {
-            display: flex; /* Use flexbox for layout */
-            align-items: center; /* Vertically center items */
-        }
-       .image{
-        width: 1000px;
-        height: 500px;
-        margin-left: 165px;
-
-       }
- /* Footer styles */
- footer {
-            background-color: #000000; /* Changed to black */
-            color: #fff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .footer-links {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-links li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1em;
-        }
-
-        .footer-links li a:hover {
-            text-decoration: underline;
-        }
-
-        .social-icons {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        .social-icons li {
-            display: inline;
-        }
-
-        .social-icons li a {
-            color: #fff;
-            font-size: 1.5em;
-            transition: color 0.3s;
-        }
-
-        .social-icons li a:hover {
-            color: #6a1b9a;
-        }
-
-        .subscribe-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .subscribe-form input[type="email"] {
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            outline: none;
-            font-size: 1em;
-        }
-
-        .subscribe-form button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            background-color: purple;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s;
-        }
-
-        .subscribe-form button:hover {
-            background-color: #6a1b9a;
-        }
-
-        footer p {
-            margin: 20px 0 0;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .main-nav ul {
-                flex-direction: column;
-                display: none;
-            }
-
-            .main-nav ul.show {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .features .feature,
-            .latest-news article {
-                width: 100%;
-                margin: 10px 0;
-            }
-
-            .search-container input[type="text"] {
-                width: 200px;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="main-styles.css">
+    <meta name="description" content="Learn keyboard shortcuts for maximum productivity.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/premium-ui.css">
 </head>
 <body>
-<body>
-    <!-- Standardized Header for Shortcut Sensei Applications -->
-    <!-- Header -->
-    <header class="main-header" id="main-header">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <i class="fas fa-keyboard"></i>
-                    Shortcut Sensei
+<!-- Standard Header Template for Shortcut Sensei -->
+<!-- Navigation -->
+<nav class="nav-modern" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#764ba2"/>
+                                </linearGradient>
+                                <filter id="logoGlow">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge> 
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <!-- Magical crystal/gem shape representing mastery -->
+                            <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#logoGradient)" filter="url(#logoGlow)"/>
+                            <!-- Inner sparkle -->
+                            <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
+                            <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <!-- Keyboard keys effect -->
+                            <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Shortcut Sensei</span>
                 </a>
             </div>
             
-            <nav class="main-nav" id="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li class="dropdown">
-                        <a href="all-applications.html">Applications <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="Google Chrome.html">Google Chrome</a></li>
-                            <li><a href="Visual Studio.html">Visual Studio Code</a></li>
-                            <li><a href="File Explorer.htm">File Explorer</a></li>
-                            <li><a href="Microsoft Excell.htm">Microsoft Excel</a></li>
-                            <li><a href="Microsoft Word.htm">Microsoft Word</a></li>
-                            <li><a href="Microsoft PowerPoint.htm">PowerPoint</a></li>
-                            <li><a href="Microsoft Outlook.html">Outlook</a></li>
-                            <li><a href="Microsoft Teams.html">Teams</a></li>
-                            <li><a href="Adobe PhotoShop.html">Photoshop</a></li>
-                            <li><a href="Discord.html">Discord</a></li>
-                            <li><a href="Slack.htm">Slack</a></li>
-                            <li><a href="Spotify.html">Spotify</a></li>
-                            <li><a href="Zoom.html">Zoom</a></li>
-                            <li><a href="Windows_11.html">Windows 11</a></li>
-                            <li><a href="all-applications.html">View All Apps</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="blogs.html">Blogs</a></li>
-                    <li><a href="quizs/index.html">Quiz</a></li>
-                    <li><a href="About.htm">About</a></li>
-                    <li><a href="user_com.htm">Community</a></li>
-                </ul>
-            </nav>
-
-            <div class="header-actions">
-                <div class="search-container">
-                    <input type="text" id="main-search" placeholder="Search shortcuts..." data-tooltip="Press Ctrl+K to focus">
-                    <button class="search-btn" data-tooltip="Search">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <div class="search-results-dropdown" id="search-results"></div>
-                </div>
-                <button class="theme-toggle" id="theme-toggle" data-tooltip="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-nav="home">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="applications.html" class="nav-link active" data-nav="applications">
+                    <i data-lucide="grid-3x3"></i>
+                    <span>Applications</span>
+                </a>
+                <a href="quiz-integrated.html" class="nav-link" data-nav="quiz">
+                    <i data-lucide="brain"></i>
+                    <span>Quiz</span>
+                </a>
+                <a href="community-ultimate.html" class="nav-link" data-nav="community">
+                    <i data-lucide="users"></i>
+                    <span>Community</span>
+                </a>
+                <a href="about.html" class="nav-link" data-nav="about">
+                    <i data-lucide="info"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="search-toggle" id="search-toggle" aria-label="Search">
+                    <i data-lucide="search"></i>
                 </button>
-                <div class="user-menu">
-                    <button class="login-btn" id="login-btn" data-tooltip="Login or view profile">
-                        <i class="fas fa-user"></i>
-                        Login
-                    </button>
-                    <div class="user-dropdown" id="user-dropdown" style="display: none;">
-                        <a href="user_profile.htm"><i class="fas fa-user-circle"></i> Profile</a>
-                        <a href="#" onclick="shortcutSensei.showSettings()"><i class="fas fa-cog"></i> Settings</a>
-                        <a href="user_com.htm"><i class="fas fa-users"></i> Community</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
+                
+                <div class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="theme-icon"></i>
                 </div>
-                <button class="menu-toggle" id="menu-toggle" data-tooltip="Menu">
-                    <i class="fas fa-bars"></i>
+                
+                <button class="auth-btn" id="authBtn">
+                    <i data-lucide="user"></i>
+                    <span>Sign In</span>
+                </button>
+                
+                <!-- Notification Bell (only shown when logged in) -->
+                <button class="notification-bell" id="notificationBell" style="display: none;">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <!-- User Profile Button (when logged in) -->
+                <button class="user-profile-btn" id="userProfileBtn" style="display: none;">
+                    <img src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="Profile" class="user-avatar-small">
+                    <span class="user-name-small">User</span>
+                    <i data-lucide="chevron-down" style="margin-left: 0.5rem; width: 16px; height: 16px;"></i>
+                </button>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
-    </header>
-
-    <h1 style="text-align: left; margin-left: 165px;font-size: 40px;">Top Keyboard Shortcuts for Microsoft Word</h1>
-    <p class="indented-paragraph"> Although you're familiar with Microsoft Word, you might be surprised by the multitude and diversity of keyboard shortcuts you can utilize to expedite your work and enhance convenience.</p>
-    <div class="my-custom-class">
-        <img src="ms_word1.png" alt="MS WORD" class="image">
-    </div>    
-
-    <p class="indented-paragraph">Now, is anyone expecting you to commit all these keyboard combinations to memory? Certainly not! Everyone's requirements differ, so some shortcuts will prove more beneficial to you than others. Yet, even acquiring a handful of new techniques is worthwhile. We've endeavored to present a concise and straightforward list, so feel free to print it for your reference!</p>
-
-    
-    
-   <p class="indented-paragraph"> Moreover, despite the considerable length of our shortcut compilation here, it's not an exhaustive inventory of every keyboard combo accessible in Word. We've focused on the most generally useful shortcuts. Furthermore, you'll be pleased to learn that nearly all of these shortcuts have stood the test of time, remaining useful regardless of the Word version you're using.</p>
-
-<h2 style="text-align: left; margin-left: 165px;">Essential Program Key Combinations</h2>
-<p class="indented-paragraph"> Microsoft Word offers numerous convenient keyboard shortcuts for various tasks, such as saving your document or reversing an action. These shortcuts streamline the use of the program and enhance efficiency.</p>
-
-<table>
-    <tr>
-        <th style="color: #fff;">Key Combination</th>
-        <th style="color: #fff;">Description</th>
-    </tr>
-    <tr>
-        <td>Ctrl+N</td>
-        <td>Create a new document</td>
-    </tr>
-    <tr>
-        <td>Ctrl+O</td>
-        <td>Open an existing document</td>
-    </tr>
-    <tr>
-        <td>Ctrl+S</td>
-        <td>Save the current document</td>
-    </tr>
-    <tr>
-        <td>F12</td>
-        <td>Open the Save As dialog box</td>
-    </tr>
-    <tr>
-        <td>Ctrl+W</td>
-        <td>Close the current document</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Z</td>
-        <td>Undo the last action</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Y</td>
-        <td>Redo the last undone action</td>
-    </tr>
-    <tr>
-        <td>Alt+Ctrl+S</td>
-        <td>Split a window or remove the split view</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Alt+V</td>
-        <td>Switch to Print Layout View</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Alt+O</td>
-        <td>Switch to Outline View</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Alt+N</td>
-        <td>Switch to Draft View</td>
-    </tr>
-    <tr>
-        <td>Ctrl+F2</td>
-        <td>Open Print Preview</td>
-    </tr>
-    <tr>
-        <td>F1</td>
-        <td>Open the Help pane</td>
-    </tr>
-    <tr>
-        <td>Ctrl+F</td>
-        <td>Search within the document</td>
-    </tr>
-    <tr>
-        <td>F7</td>
-        <td>Run a spelling and grammar check</td>
-    </tr>
-    <tr>
-        <td>Shift+F7</td>
-        <td>Open the thesaurus; if a word is selected, it looks up that word in the thesaurus</td>
-    </tr>
-</table>
-
-<!--from here the second part starts-->
-
-<h2 style="text-align: left; margin-left: 165px;">Navigating within a document</h2>
-<p class="indented-paragraph">You can employ keyboard shortcuts for efficient document navigation. This is particularly useful for long documents, allowing you to swiftly move between sections without extensive scrolling.</p>
-<table>
-    <tr>
-        <th style="color: #fff;">Keyboard Shortcut</th>
-        <th style="color: #fff;">Description</th>
-    </tr>
-    <tr>
-        <td>Left/Right Arrow</td>
-        <td>Shift the insertion point (cursor) one character to the left or right.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Left/Right Arrow</td>
-        <td>Jump one word to the left or right.</td>
-    </tr>
-    <tr>
-        <td>Up/Down Arrow</td>
-        <td>Navigate up or down one line.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Up/Down Arrow</td>
-        <td>Move up or down one paragraph.</td>
-    </tr>
-    <tr>
-        <td>End</td>
-        <td>Directly move to the end of the current line.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+End</td>
-        <td>Immediately jump to the end of the document.</td>
-    </tr>
-    <tr>
-        <td>Home</td>
-        <td>Swiftly relocate to the beginning of the current line.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Home</td>
-        <td>Instantly jump to the start of the document.</td>
-    </tr>
-    <tr>
-        <td>Page Up/Page Down</td>
-        <td>Scroll up or down one screen at a time.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Page Up/Page Down</td>
-        <td>Navigate to the previous or next browse object (after performing a search).</td>
-    </tr>
-    <tr>
-        <td>Alt+Ctrl+Page Up/Page Down</td>
-        <td>Jump to the top or bottom of the current window.</td>
-    </tr>
-    <tr>
-        <td>F5</td>
-        <td>Access the Find dialog box with the "Go To" tab selected, allowing for quick navigation to specific pages, sections, or bookmarks.</td>
-    </tr>
-    <tr>
-        <td>Shift+F5</td>
-        <td>Toggle through the last three insertion point locations. When opening a document, Shift+F5 returns you to your last editing point before closing the file.</td>
-    </tr>
-</table>
-
-<!--From here the 3th part starts-->
-
-<h2 style="text-align: left; margin-left: 165px;">Efficient Text Selection Methods</h2>
-
-<p class="indented-paragraph">From the previous section, you learned that arrow keys are for navigating the insertion point, and the Ctrl key changes how you move. Using the Shift key with these combinations enables diverse text selection techniques.</p>
-
-<table>
-    <tr>
-        <th style="color: #fff;">Keyboard Shortcut</th>
-        <th style="color: #fff;">Description</th>
-    </tr>
-    <tr>
-        <td>Shift+Left/Right Arrow</td>
-        <td>Expand your current selection one character to the left or right.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Shift+Left/Right Arrow</td>
-        <td>Expand your current selection one word to the left or right.</td>
-    </tr>
-    <tr>
-        <td>Shift+Up/Down Arrow</td>
-        <td>Extend the selection up or down by one line.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Shift+Up/Down Arrow</td>
-        <td>Extend the selection to the beginning or end of the paragraph.</td>
-    </tr>
-    <tr>
-        <td>Shift+End</td>
-        <td>Extend the selection to the end of the current line.</td>
-    </tr>
-    <tr>
-        <td>Shift+Home</td>
-        <td>Extend the selection to the beginning of the current line.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Shift+Home/End</td>
-        <td>Extend the selection to the beginning or end of the document.</td>
-    </tr>
-    <tr>
-        <td>Shift+Page Down/Page Up</td>
-        <td>Extend the selection down or up by one screen.</td>
-    </tr>
-    <tr>
-        <td>Ctrl+A</td>
-        <td>Select the entire document.</td>
-    </tr>
-    <tr>
-        <td>F8</td>
-        <td>Enter selection mode. Use arrow keys to expand the selection:<br>
-            1st press: Enter selection mode<br>
-            2nd press: Selects the word next to the insertion point<br>
-            3rd press: Selects the entire sentence<br>
-            4th press: Selects all characters in the paragraph<br>
-            5th press: Selects the entire document<br>
-            Press Shift+F8 to cycle backward. Press Esc to exit selection mode.
-        </td>
-    </tr>
-    <tr>
-        <td>Ctrl+Shift+F8</td>
-        <td>Select a column. Use left/right arrow keys to extend the selection across columns.</td>
-    </tr>
-</table>
-
-<!-- from here the next part -->
-
-
-<h2 style="text-align: left; margin-left: 165px;">Reviewing and Editing</h2>
-<p class="indented-paragraph">Word also offers several keyboard shortcuts designed for text editing.</p>
-<table>
-    <thead>
-        <tr>
-            <th style="color: #fff;">Key Combination</th>
-            <th style="color: #fff;">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Backspace</td>
-            <td>Delete one character to the left</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Backspace</td>
-            <td>Delete one word to the left</td>
-        </tr>
-        <tr>
-            <td>Delete</td>
-            <td>Delete one character to the right</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Delete</td>
-            <td>Delete one word to the right</td>
-        </tr>
-        <tr>
-            <td>Ctrl+C</td>
-            <td>Copy text or graphics to the Clipboard</td>
-        </tr>
-        <tr>
-            <td>Ctrl+X</td>
-            <td>Cut selected text or graphics to the Clipboard</td>
-        </tr>
-        <tr>
-            <td>Ctrl+V</td>
-            <td>Paste the Clipboard contents</td>
-        </tr>
-        <tr>
-            <td>Ctrl+F3</td>
-            <td>Cut selected text to the Spike. The Spike is an interesting variant on the regular clipboard. You can keep cutting text to the Spike and Word remembers it all. When you paste the Spike's contents, Word pastes everything you cut, but places each item on its own line.</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+F3</td>
-            <td>Paste the Spike contents</td>
-        </tr>
-        <tr>
-            <td>Alt+Shift+R</td>
-            <td>Copy the header or footer used in the previous section of the document</td>
-        </tr>
-    </tbody>
-</table>
-
-<!--from here the next part -->
-
-
-<h2 style="text-align: left; margin-left: 165px;">Implementing character formatting</h2>
-
-<p class="indented-paragraph">Word is equipped with numerous keyboard combinations that allow you to apply character formatting. These shortcuts can be used either on selected text or on text that you type next when no text is currently selected.</p>
-
-<table>
-    <thead>
-        <tr>
-            <th style="color: #fff;">Key Combination</th>
-            <th style="color: #fff;">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Ctrl+B</td>
-            <td>Apply bold formatting</td>
-        </tr>
-        <tr>
-            <td>Ctrl+I</td>
-            <td>Apply italic formatting</td>
-        </tr>
-        <tr>
-            <td>Ctrl+U</td>
-            <td>Apply underline formatting</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+W</td>
-            <td>Apply underline formatting to words, but not the spaces between words</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+D</td>
-            <td>Apply double underline formatting</td>
-        </tr>
-        <tr>
-            <td>Ctrl+D</td>
-            <td>Open the Font dialog box</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+< or ></td>
-            <td>Decrease or increase font size one preset size at a time</td>
-        </tr>
-        <tr>
-            <td>Ctrl+[ or ]</td>
-            <td>Decrease or increase font size one point at a time</td>
-        </tr>
-        <tr>
-            <td>Ctrl+=</td>
-            <td>Apply subscript formatting</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+Plus key</td>
-            <td>Apply superscript formatting</td>
-        </tr>
-        <tr>
-            <td>Shift+F3</td>
-            <td>Cycle through case formats for your text. Available formats are sentence case, lowercase, uppercase, title case, and toggle case.</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+A</td>
-            <td>Formats all letters as uppercase</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+K</td>
-            <td>Formats all letters as lowercase</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+C</td>
-            <td>Copies the character formatting of a selection</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+V</td>
-            <td>Pastes formatting onto selected text</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Space</td>
-            <td>Removes all manual character formatting from a selection</td>
-        </tr>
-    </tbody>
-</table>
-
-<!--from here the next part-->
-
-
-        <h2 style="text-align: left; margin-left: 165px;">Applying formatting to paragraphs</h2>
-        <p class="indented-paragraph">Similar to character formatting, Word offers a variety of shortcuts specifically for formatting paragraphs</p>
-        <table>
-            <thead>
-                <tr>
-                    <th style="color: #fff;">Key Combination</th>
-                    <th style="color: #fff;">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Ctrl+M</td>
-                    <td>Increase a paragraph's indent one level each time you press it</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+Shift+M</td>
-                    <td>Reduce a paragraph's indent one level each time you press it</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+T</td>
-                    <td>Increase a hanging indent each time you press it</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+Shift+T</td>
-                    <td>Reduce a hanging indent each time you press it</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+E</td>
-                    <td>Center a paragraph</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+L</td>
-                    <td>Left-align a paragraph</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+R</td>
-                    <td>Right-align a paragraph</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+J</td>
-                    <td>Justify a paragraph</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+1</td>
-                    <td>Set single-spacing</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+2</td>
-                    <td>Set double-spacing</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+5</td>
-                    <td>Set 1.5 line spacing</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+0</td>
-                    <td>Remove one line spacing preceding a paragraph</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+Shift+S</td>
-                    <td>Open a popup window for applying styles</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+Shift+N</td>
-                    <td>Apply the normal paragraph style</td>
-                </tr>
-                <tr>
-                    <td>Alt+Ctrl+1</td>
-                    <td>Apply the Heading 1 style</td>
-                </tr>
-                <tr>
-                    <td>Alt+Ctrl+2</td>
-                    <td>Apply the Heading 2 style</td>
-                </tr>
-                <tr>
-                    <td>Alt+Ctrl+3</td>
-                    <td>Apply the Heading 3 style</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+Shift+L</td>
-                    <td>Apply the List style</td>
-                </tr>
-                <tr>
-                    <td>Ctrl+Q</td>
-                    <td>Remove all paragraph formatting</td>
-                </tr>
-            </tbody>
-        </table>
-
-<!--from here the next part-->
-
-
-<h2 style="text-align: left; margin-left: 165px;">Adding content</h2>
-
-<p class="indented-paragraph">Whether you want to insert a section break in your document or quickly add a common symbol without searching, Word's keyboard shortcuts provide convenient solutions.</p>
-
-<table>
-    <thead>
-        <tr>
-            <th style="color: #fff;">Key Combination</th>
-            <th style="color: #fff;">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Shift+Enter</td>
-            <td>Insert a line break</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Enter</td>
-            <td>Insert a page break</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+Enter</td>
-            <td>Insert a column break</td>
-        </tr>
-        <tr>
-            <td>Ctrl+- (hyphen)</td>
-            <td>Insert an optional hyphen or en dash</td>
-        </tr>
-        <tr>
-            <td>Alt+Ctrl+- (hyphen)</td>
-            <td>Insert an em dash</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+- (hyphen)</td>
-            <td>Insert a non-breaking hyphen</td>
-        </tr>
-        <tr>
-            <td>Ctrl+Shift+Spacebar</td>
-            <td>Insert a non-breaking space</td>
-        </tr>
-        <tr>
-            <td>Alt+Ctrl+C</td>
-            <td>Insert a copyright symbol</td>
-        </tr>
-        <tr>
-            <td>Alt+Ctrl+R</td>
-            <td>Insert a registered trademark symbol</td>
-        </tr>
-        <tr>
-            <td>Alt+Ctrl+T</td>
-            <td>Insert a trademark symbol</td>
-        </tr>
-    </tbody>
-</table>
-
-<!-- from here next part-->
-
-
-<h2 style="text-align: left; margin-left: 165px;">Managing outlines</h2>
-<p class="indented-paragraph">For those who prefer to outline before diving into a lengthy document, here are some handy shortcuts to assist you.</p>
-<table>
-<thead>
-    <tr>
-        <th style="color: #fff;">Key Combination</th>
-        <th style="color: #fff;">Description</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Alt+Shift+Left/Right Arrow</td>
-        <td>Promote (move to the left) or demote (move to the right) a line</td>
-    </tr>
-    <tr>
-        <td>Ctrl+Shift+N</td>
-        <td>Demote an outline level to regular body text</td>
-    </tr>
-    <tr>
-        <td>Alt+Shift+Up/Down Arrow</td>
-        <td>Move the line with the insertion point up or down in the outline</td>
-    </tr>
-    <tr>
-        <td>Alt+Shift+Plus or Minus keys</td>
-        <td>Expand or collapse text under a heading</td>
-    </tr>
-    <tr>
-        <td>Alt+Shift+A</td>
-        <td>Expand or collapse all text or headings in an outline</td>
-    </tr>
-    <tr>
-        <td>Alt+Shift+L</td>
-        <td>Show the first line of body text or all body text</td>
-    </tr>
-    <tr>
-        <td>Alt+Shift+1</td>
-        <td>Show all headings that have the Heading 1 style applied</td>
-    </tr>
-    <tr>
-        <td>Alt+Shift+any other number key</td>
-        <td>Show all headings up to that level</td>
-    </tr>
-</tbody>
-</table>
-
-<!--from here the next part-->
-
-<h2 style="text-align: left; margin-left: 165px;">Manipulating tables</h2>
-
-<p class="indented-paragraph"> Navigating within tables requires a different approach compared to regular text. Instead of clicking to move around, utilize these keyboard shortcuts:</p>
-
-<table>
-<thead>
-    <tr>
-        <th style="color: #fff;">Key Combination</th>
-        <th style="color: #fff;">Description</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Tab</td>
-        <td>Move to the next cell in a row and select its contents, if there are any</td>
-    </tr>
-    <tr>
-        <td>Shift+Tab</td>
-        <td>Move to the previous cell in a row and select its contents, if there are any</td>
-    </tr>
-    <tr>
-        <td>Alt+Home/End</td>
-        <td>Move to the first or last cell in a row</td>
-    </tr>
-    <tr>
-        <td>Alt+Page Up/Page Down</td>
-        <td>Move to the first or last cell in a column</td>
-    </tr>
-    <tr>
-        <td>Up/Down Arrow</td>
-        <td>Move to the previous or next row</td>
-    </tr>
-    <tr>
-        <td>Shift+Up/Down Arrow</td>
-        <td>Select the cell in the row above or below the insertion point or selection. Keep pressing this combo to keep selecting more cells. If you have multiple cells in a row selected, this combo selects those same cells in the row above or below.</td>
-    </tr>
-    <tr>
-        <td>Alt+5 on keypad (with NumLock off)</td>
-        <td>Select an entire table</td>
-    </tr>
-</tbody>
-</table>
-
-
-
-<footer>
-    <div class="footer-content">
-        <ul class="footer-links">
-            <li><a href="Homepage.html">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="About.html">About</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#news">Latest News</a></li>
-        </ul>
-        <ul class="social-icons">
-            <li><a href="https://www.facebook.com/profile.php?id=100015198880002"><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href="https://twitter.com/RAFI09925204"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://www.linkedin.com/in/rafi-s-b-m-a3492a265/"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a href="https://www.instagram.com/rafi_s_b_m/"><i class="fab fa-instagram"></i></a></li>
-        </ul>
-        <div class="subscribe-form">
-            <input id="emailInput" type="email" placeholder="Subscribe to our newsletter">
-            <button id="subscribeButton" type="button">Subscribe</button>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="search-overlay">
+            <div class="search-container">
+                <div class="search-input-container">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search shortcuts, applications, or commands..." id="search-input" autocomplete="off">
+                    <button class="search-close" id="search-close">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="search-results" id="search-results">
+                    <div class="search-suggestions">
+                        <div class="suggestion-category">
+                            <h4>Popular Searches</h4>
+                            <div class="suggestions">
+                                <span class="suggestion">Copy</span>
+                                <span class="suggestion">Paste</span>
+                                <span class="suggestion">VS Code</span>
+                                <span class="suggestion">Photoshop</span>
+                                <span class="suggestion">Chrome</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <p id="confirmationMessage" style="display: none;">Thank you for subscribing to our newsletter!</p>
-        <p>&copy; 2024 Shortcut Sensei. All rights reserved.</p>
+    </nav>
+
+<!-- Apple-style Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+    <button class="search-close" id="searchClose">
+        <i data-lucide="x"></i>
+    </button>
+    <div class="search-container">
+        <div class="search-input-container">
+            <input type="text" class="search-input" placeholder="Search shortcuts, applications, or tips..." id="searchInput">
+            <button class="search-submit" id="searchSubmit">
+                <i data-lucide="search"></i>
+            </button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions">
+            <div class="search-suggestion">
+                <i data-lucide="code" class="search-suggestion-icon"></i>
+                <span>VS Code shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="image" class="search-suggestion-icon"></i>
+                <span>Photoshop shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="globe" class="search-suggestion-icon"></i>
+                <span>Chrome shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="file-text" class="search-suggestion-icon"></i>
+                <span>Word shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="command" class="search-suggestion-icon"></i>
+                <span>MacOS shortcuts</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Main Content -->
+
+
+<!-- Standard Footer Template for Shortcut Sensei -->
+<!-- Footer -->
+<footer class="footer-modern">
+    <div class="container">
+        <!-- Newsletter Section -->
+        <div class="footer-newsletter">
+            <div class="newsletter-content">
+                <h3>Stay Updated with Latest Shortcuts</h3>
+                <p>Join our growing community and get updates on new shortcuts, productivity tips, and platform launches</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <div class="newsletter-input-group">
+                        <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i data-lucide="send"></i>
+                            <span>Subscribe</span>
+                        </button>
+                    </div>
+                    <div class="newsletter-privacy">
+                        <i data-lucide="shield-check"></i>
+                        <span>No spam. Unsubscribe anytime.</span>
+                    </div>
+                </form>
+            </div>
+            <div class="newsletter-visual">
+                <div class="floating-icons">
+                    <div class="float-icon" style="--delay: 0s;"><i data-lucide="lightbulb"></i></div>
+                    <div class="float-icon" style="--delay: 1s;"><i data-lucide="zap"></i></div>
+                    <div class="float-icon" style="--delay: 2s;"><i data-lucide="rocket"></i></div>
+                    <div class="float-icon" style="--delay: 3s;"><i data-lucide="keyboard"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-container">
+                    <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                        <defs>
+                            <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea"/>
+                                <stop offset="100%" style="stop-color:#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#footerLogoGradient)"/>
+                        <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
+                        <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                        <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                        <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                    </svg>
+                    <span class="logo-text">Shortcut Sensei</span>
+                </div>
+                <p>The world's most comprehensive keyboard shortcuts learning platform. Trusted by millions of professionals worldwide to accelerate their productivity.</p>
+                <div class="social-links">
+                    <a href="https://twitter.com/shortcutsensei" aria-label="Twitter" target="_blank">
+                        <i data-lucide="twitter"></i>
+                    </a>
+                    <a href="https://github.com/shortcutsensei" aria-label="GitHub" target="_blank">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/shortcutsensei" aria-label="LinkedIn" target="_blank">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://discord.gg/shortcutsensei" aria-label="Discord" target="_blank">
+                        <i data-lucide="message-circle"></i>
+                    </a>
+                    <a href="https://youtube.com/@shortcutsensei" aria-label="YouTube" target="_blank">
+                        <i data-lucide="youtube"></i>
+                    </a>
+                    <a href="https://reddit.com/r/shortcutsensei" aria-label="Reddit" target="_blank">
+                        <i data-lucide="reddit"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="zap"></i>
+                        Platform
+                    </h4>
+                    <a href="applications.html">
+                        <i data-lucide="grid-3x3"></i>
+                        All Applications
+                    </a>
+                    <a href="quiz-integrated.html">
+                        <i data-lucide="brain"></i>
+                        Interactive Quiz
+                    </a>
+                    <a href="index.html#features">
+                        <i data-lucide="star"></i>
+                        Features
+                    </a>
+                    <a href="#leaderboard">
+                        <i data-lucide="trophy"></i>
+                        Leaderboard
+                    </a>
+                    <a href="#achievements">
+                        <i data-lucide="award"></i>
+                        Achievements
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="book-open"></i>
+                        Learning
+                    </h4>
+                    <a href="#beginner-guide">
+                        <i data-lucide="play-circle"></i>
+                        Getting Started
+                    </a>
+                    <a href="#advanced-tips">
+                        <i data-lucide="lightbulb"></i>
+                        Advanced Tips
+                    </a>
+                    <a href="#cheat-sheets">
+                        <i data-lucide="file-text"></i>
+                        Cheat Sheets
+                    </a>
+                    <a href="#video-tutorials">
+                        <i data-lucide="video"></i>
+                        Video Tutorials
+                    </a>
+                    <a href="#practice-mode">
+                        <i data-lucide="target"></i>
+                        Practice Mode
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="users"></i>
+                        Community
+                    </h4>
+                    <a href="#discord">
+                        <i data-lucide="message-circle"></i>
+                        Discord Server
+                    </a>
+                    <a href="#forums">
+                        <i data-lucide="message-square"></i>
+                        Community Forums
+                    </a>
+                    <a href="#challenges">
+                        <i data-lucide="flame"></i>
+                        Weekly Challenges
+                    </a>
+                    <a href="#user-shortcuts">
+                        <i data-lucide="share-2"></i>
+                        Share Shortcuts
+                    </a>
+                    <a href="#experts">
+                        <i data-lucide="users-2"></i>
+                        Expert Network
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="building"></i>
+                        Company
+                    </h4>
+                    <a href="about.html">
+                        <i data-lucide="info"></i>
+                        About Us
+                    </a>
+                    <a href="#careers">
+                        <i data-lucide="briefcase"></i>
+                        Careers
+                    </a>
+                    <a href="#press">
+                        <i data-lucide="newspaper"></i>
+                        Press Kit
+                    </a>
+                    <a href="#contact">
+                        <i data-lucide="mail"></i>
+                        Contact
+                    </a>
+                    <a href="#investors">
+                        <i data-lucide="trending-up"></i>
+                        Investors
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="settings"></i>
+                        Support
+                    </h4>
+                    <a href="#help-center">
+                        <i data-lucide="help-circle"></i>
+                        Help Center
+                    </a>
+                    <a href="#faq">
+                        <i data-lucide="message-circle-question"></i>
+                        FAQ
+                    </a>
+                    <a href="#api-docs">
+                        <i data-lucide="code"></i>
+                        API Documentation
+                    </a>
+                    <a href="#status">
+                        <i data-lucide="activity"></i>
+                        System Status
+                    </a>
+                    <a href="#feedback">
+                        <i data-lucide="message-square-plus"></i>
+                        Send Feedback
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="shield"></i>
+                        Legal
+                    </h4>
+                    <a href="#privacy">
+                        <i data-lucide="shield-check"></i>
+                        Privacy Policy
+                    </a>
+                    <a href="#terms">
+                        <i data-lucide="file-text"></i>
+                        Terms of Service
+                    </a>
+                    <a href="#cookies">
+                        <i data-lucide="cookie"></i>
+                        Cookie Policy
+                    </a>
+                    <a href="#security">
+                        <i data-lucide="lock"></i>
+                        Security
+                    </a>
+                    <a href="#gdpr">
+                        <i data-lucide="database"></i>
+                        GDPR Compliance
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-left">
+                <p>&copy; 2025 Shortcut Sensei Inc. All rights reserved.</p>
+            </div>
+            <div class="footer-bottom-right">
+                <div class="language-selector">
+                    <i data-lucide="globe"></i>
+                    <select class="language-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="ja">日本語</option>
+                        <option value="zh">中文</option>
+                    </select>
+                </div>
+                <div class="theme-toggle-footer" id="footer-theme-toggle">
+                    <i data-lucide="sun"></i>
+                </div>
+                <button class="back-to-top" id="back-to-top">
+                    <i data-lucide="arrow-up"></i>
+                </button>
+            </div>
+        </div>
     </div>
 </footer>
 
-<script>
-
-     // Function to validate email address
-     function isValidEmail(email) {
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    }
-
-    // Function to handle subscription
-    function subscribe() {
-        var email = document.getElementById('emailInput').value.trim();
-
-        if (!isValidEmail(email)) {
-            alert('Please enter a valid email address.');
-            return;
-        }
-
-        // You can replace this part with your actual subscription logic
-        console.log('Subscribing user with email:', email);
-
-        // Hide the subscription form
-        document.querySelector('.subscribe-form').style.display = 'none';
-        // Show the confirmation message
-        document.getElementById('confirmationMessage').style.display = 'block';
-    
-
-    // Subscribe button click event listener
-    //document.getElementById('subscribeButton').addEventListener('click', subscribe);
-
-    // Trigger firework animation
-    for (var i = 0; i < 20; i++) {
-                setTimeout(createFirework, i * 100);
-            }
-        }
-
-        document.getElementById('subscribeButton').addEventListener('click', subscribe);
-
-    document.querySelector('.menu-toggle').addEventListener('click', function() {
-        document.querySelector('.main-nav ul').classList.toggle('show');
-    });
-</script>
-
-    <script src="main-nav.js"></script>
-    <!-- Footer -->
-    <footer class="main-footer" id="main-footer">
-        <div class="footer-content">
-            <div class="container">
-                <div class="footer-sections">
-                    <!-- Brand Section -->
-                    <div class="footer-section brand-section">
-                        <div class="footer-logo">
-                            <a href="index.html">
-                                <i class="fas fa-keyboard"></i>
-                                <span>Shortcut Sensei</span>
-                            </a>
-                        </div>
-                        <p class="footer-description">
-                            Master every keyboard shortcut and boost your productivity. 
-                            Your journey to becoming a true keyboard sensei starts here.
-                        </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link" data-tooltip="Follow us on Twitter">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Like us on Facebook">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Subscribe on YouTube">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Follow us on LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Star us on GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                            <li><a href="all-applications.html"><i class="fas fa-th-large"></i> All Applications</a></li>
-                            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs & Tips</a></li>
-                            <li><a href="quizs/index.html"><i class="fas fa-question-circle"></i> Practice Quiz</a></li>
-                            <li><a href="About.htm"><i class="fas fa-info-circle"></i> About Us</a></li>
-                            <li><a href="user_com.htm"><i class="fas fa-users"></i> Community</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Popular Applications -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-star"></i> Popular Apps</h4>
-                        <ul class="footer-links">
-                            <li><a href="Google Chrome.html"><i class="fab fa-chrome"></i> Google Chrome</a></li>
-                            <li><a href="Visual Studio.html"><i class="fas fa-code"></i> VS Code</a></li>
-                            <li><a href="Microsoft Excell.htm"><i class="fas fa-file-excel"></i> Microsoft Excel</a></li>
-                            <li><a href="Microsoft Word.htm"><i class="fas fa-file-word"></i> Microsoft Word</a></li>
-                            <li><a href="Adobe PhotoShop.html"><i class="fas fa-paint-brush"></i> Photoshop</a></li>
-                            <li><a href="Discord.html"><i class="fab fa-discord"></i> Discord</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Resources -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-graduation-cap"></i> Resources</h4>
-                        <ul class="footer-links">
-                            <li><a href="#"><i class="fas fa-download"></i> Cheat Sheets</a></li>
-                            <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
-                            <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
-                            <li><a href="#"><i class="fas fa-envelope"></i> Newsletter</a></li>
-                            <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
-                            <li><a href="#"><i class="fas fa-bug"></i> Report Bug</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Contact & Support -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-envelope"></i> Contact</h4>
-                        <ul class="footer-contact">
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:hello@shortcutsensei.com">hello@shortcutsensei.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-globe"></i>
-                                <a href="https://shortcutsensei.com">shortcutsensei.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Global Community</span>
-                            </li>
-                        </ul>
-                        
-                        <!-- Newsletter Signup -->
-                        <div class="newsletter-signup">
-                            <h5><i class="fas fa-bell"></i> Stay Updated</h5>
-                            <form class="newsletter-form" id="newsletter-form">
-                                <div class="newsletter-input-group">
-                                    <input type="email" placeholder="Enter your email" required>
-                                    <button type="submit">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <div class="copyright">
-                        <p>&copy; 2025 Shortcut Sensei. All rights reserved. Made with <i class="fas fa-heart"></i> for productivity enthusiasts.</p>
-                    </div>
-                    <div class="footer-bottom-links">
-                        <a href="#" onclick="shortcutSensei.showPrivacyPolicy()">Privacy Policy</a>
-                        <a href="#" onclick="shortcutSensei.showTermsOfService()">Terms of Service</a>
-                        <a href="#" onclick="shortcutSensei.showCookiePolicy()">Cookie Policy</a>
-                        <a href="#" id="back-to-top" onclick="scrollToTop()">
-                            <i class="fas fa-arrow-up"></i> Back to Top
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Notification Container -->
-    <div class="notification-container" id="notification-container"></div>
 
     <!-- Scripts -->
+    <script src="js/enhanced-search-system.js"></script>
+    <script src="js/main.js"></script>
     <script>
-        // Footer JavaScript
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Newsletter form handling
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            const newsletterForm = document.getElementById('newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const email = this.querySelector('input[type="email"]').value;
-                    if (typeof shortcutSensei !== 'undefined') {
-                        shortcutSensei.showNotification(`Thanks for subscribing with ${email}!`, 'success');
-                        this.reset();
-                    } else {
-                        alert('Thanks for subscribing!');
-                        this.reset();
-                    }
-                });
+            if (typeof ShortcutSensei !== 'undefined') {
+                new ShortcutSensei();
             }
         });
     </script>
-    <script src="main-nav.js"></script>
 </body>
 </html>
