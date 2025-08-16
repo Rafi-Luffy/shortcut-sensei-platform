@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz - Shortcut Sensei</title>
+    <meta name="description" content="Test your keyboard shortcut knowledge with our interactive quiz system. Compete with friends and track your progress.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/premium-ui.css">
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body data-theme="dark">
+    <!-- Navigation -->
+    <nav class="nav-modern" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#764ba2"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#logoGradient)"/>
+                            <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
+                            <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Shortcut Sensei</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-nav="home">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="all-applications.html" class="nav-link" data-nav="applications">
+                    <i data-lucide="grid-3x3"></i>
+                    <span>Applications</span>
+                </a>
+                <a href="quiz-integrated.html" class="nav-link active" data-nav="quiz">
+                    <i data-lucide="brain"></i>
+                    <span>Quiz</span>
+                </a>
+                <a href="community-ultimate.html" class="nav-link" data-nav="community">
+                    <i data-lucide="users"></i>
+                    <span>Community</span>
+                </a>
+                <a href="about.html" class="nav-link" data-nav="about">
+                    <i data-lucide="info"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="search-toggle" id="search-toggle" aria-label="Search">
+                    <i data-lucide="search"></i>
+                </button>
+                
+                <div class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="theme-icon"></i>
+                </div>
+                
+                <button class="auth-btn" id="authBtn">
+                    <i data-lucide="user"></i>
+                    <span>Sign In</span>
+                </button>
+                
+                <button class="notification-bell" id="notificationBell" style="display: none;">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <button class="user-profile-btn" id="userProfileBtn" style="display: none;">
+                    <img src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="Profile" class="user-avatar-small">
+                    <span class="user-name-small">User</span>
+                    <i data-lucide="chevron-down" style="margin-left: 0.5rem; width: 16px; height: 16px;"></i>
+                </button>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="search-overlay">
+            <div class="search-container">
+                <div class="search-input-container">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search shortcuts, applications, or commands..." id="search-input" autocomplete="off">
+                    <button class="search-close" id="search-close">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="search-results" id="search-results">
+                    <div class="search-suggestions">
+                        <div class="suggestion-category">
+                            <h4>Popular Searches</h4>
+                            <div class="suggestions">
+                                <span class="suggestion">Copy</span>
+                                <span class="suggestion">Paste</span>
+                                <span class="suggestion">VS Code</span>
+                                <span class="suggestion">Photoshop</span>
+                                <span class="suggestion">Chrome</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quiz Container -->
+    <div class="quiz-container">
+        <!-- Quiz Start Screen -->
+        <div class="quiz-screen active" id="quiz-start-screen">
+            <div class="container">
+                <div class="quiz-start">
+                    <div class="start-header">
+                        <div class="quiz-hero-badge animate-fade-in-up">
+                            <i data-lucide="brain"></i>
+                            <span>Interactive Learning</span>
+                        </div>
+                        <h1 class="animate-fade-in-up animate-delay-1">Test Your Shortcut Knowledge</h1>
+                        <p class="animate-fade-in-up animate-delay-2">Challenge yourself with our interactive quiz system and compete with thousands of learners worldwide</p>
+                    </div>
+                    
+                    <div class="quiz-modes animate-fade-in-up animate-delay-3">
+                        <div class="mode-card featured" data-mode="quick">
+                            <div class="mode-badge">Most Popular</div>
+                            <div class="mode-icon">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <h3>Quick Challenge</h3>
+                            <p>5 random questions, 30 seconds each. Perfect for a quick skill check.</p>
+                            <div class="mode-stats">
+                                <span>⏱️ 2-3 minutes</span>
+                                <span>👥 847 playing now</span>
+                                <span>🏆 Global leaderboard</span>
+                            </div>
+                            <button class="start-quiz-btn magnetic-btn" onclick="startQuiz('quick')">
+                                <i data-lucide="play"></i>
+                                <span>Start Quick Quiz</span>
+                            </button>
+                        </div>
+
+                        <div class="mode-card" data-mode="daily">
+                            <div class="mode-icon">
+                                <i data-lucide="calendar"></i>
+                            </div>
+                            <h3>Daily Challenge</h3>
+                            <p>Today's featured quiz with special rewards and global rankings.</p>
+                            <div class="mode-stats">
+                                <span>⏱️ 10 minutes</span>
+                                <span>🌟 2.1k completed today</span>
+                                <span>💎 Bonus XP rewards</span>
+                            </div>
+                            <button class="start-quiz-btn magnetic-btn" onclick="startQuiz('daily')">
+                                <i data-lucide="star"></i>
+                                <span>Join Daily Challenge</span>
+                            </button>
+                        </div>
+
+                        <div class="mode-card" data-mode="battle">
+                            <div class="mode-icon">
+                                <i data-lucide="swords"></i>
+                            </div>
+                            <h3>1v1 Battle</h3>
+                            <p>Challenge another player in real-time. First to answer correctly wins!</p>
+                            <div class="mode-stats">
+                                <span>⚔️ Real-time PvP</span>
+                                <span>🎮 156 battles active</span>
+                                <span>🏅 ELO ranking</span>
+                            </div>
+                            <button class="start-quiz-btn magnetic-btn" onclick="startQuiz('battle')">
+                                <i data-lucide="sword"></i>
+                                <span>Find Opponent</span>
+                            </button>
+                        </div>
+
+                        <div class="mode-card" data-mode="custom">
+                            <div class="mode-icon">
+                                <i data-lucide="settings"></i>
+                            </div>
+                            <h3>Custom Quiz</h3>
+                            <p>Create your own quiz or browse community-created challenges.</p>
+                            <div class="mode-stats">
+                                <span>🎯 Personalized</span>
+                                <span>📚 500+ community quizzes</span>
+                                <span>⚙️ Full customization</span>
+                            </div>
+                            <button class="start-quiz-btn magnetic-btn" onclick="startQuiz('custom')">
+                                <i data-lucide="plus"></i>
+                                <span>Create Quiz</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-options animate-fade-in-up animate-delay-4">
+                        <div class="option-group">
+                            <h3>Choose Difficulty</h3>
+                            <div class="difficulty-options">
+                                <button class="difficulty-btn active" data-difficulty="easy">
+                                    <i data-lucide="circle"></i>
+                                    <div>
+                                        <strong>Beginner</strong>
+                                        <span>Basic shortcuts everyone should know</span>
+                                    </div>
+                                </button>
+                                <button class="difficulty-btn" data-difficulty="medium">
+                                    <i data-lucide="triangle"></i>
+                                    <div>
+                                        <strong>Intermediate</strong>
+                                        <span>Productivity-boosting shortcuts</span>
+                                    </div>
+                                </button>
+                                <button class="difficulty-btn" data-difficulty="hard">
+                                    <i data-lucide="square"></i>
+                                    <div>
+                                        <strong>Expert</strong>
+                                        <span>Advanced power-user shortcuts</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <h3>Select Category</h3>
+                            <div class="category-options">
+                                <button class="category-btn active" data-category="all">
+                                    <i data-lucide="grid-3x3"></i>
+                                    All Applications
+                                </button>
+                                <button class="category-btn" data-category="development">
+                                    <i data-lucide="code"></i>
+                                    Development Tools
+                                </button>
+                                <button class="category-btn" data-category="design">
+                                    <i data-lucide="palette"></i>
+                                    Design Software
+                                </button>
+                                <button class="category-btn" data-category="productivity">
+                                    <i data-lucide="briefcase"></i>
+                                    Productivity Apps
+                                </button>
+                                <button class="category-btn" data-category="browsers">
+                                    <i data-lucide="globe"></i>
+                                    Web Browsers
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-scores animate-fade-in-up animate-delay-5">
+                        <h3>Your Recent Performance</h3>
+                        <div class="score-timeline">
+                            <div class="score-point" data-score="85">
+                                <div class="score-dot"></div>
+                                <div class="score-info">
+                                    <span class="score-value">85%</span>
+                                    <span class="score-date">VS Code Quiz</span>
+                                </div>
+                            </div>
+                            <div class="score-point" data-score="92">
+                                <div class="score-dot"></div>
+                                <div class="score-info">
+                                    <span class="score-value">92%</span>
+                                    <span class="score-date">Photoshop Quiz</span>
+                                </div>
+                            </div>
+                            <div class="score-point" data-score="78">
+                                <div class="score-dot"></div>
+                                <div class="score-info">
+                                    <span class="score-value">78%</span>
+                                    <span class="score-date">Chrome Quiz</span>
+                                </div>
+                            </div>
+                            <div class="score-point" data-score="88">
+                                <div class="score-dot"></div>
+                                <div class="score-info">
+                                    <span class="score-value">88%</span>
+                                    <span class="score-date">Excel Quiz</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Game Screen -->
+        <div class="quiz-screen" id="quiz-game-screen">
+            <div class="quiz-header">
+                <div class="container">
+                    <div class="quiz-progress-bar">
+                        <div class="progress-fill" id="quiz-progress"></div>
+                    </div>
+                    <div class="quiz-info">
+                        <span class="question-counter" id="question-counter">Question 1 of 10</span>
+                        <div class="quiz-timer" id="quiz-timer">
+                            <i data-lucide="clock"></i>
+                            <span class="timer-text" id="timer-text">30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-content">
+                <div class="container">
+                    <div class="question-card">
+                        <div class="question-header">
+                            <div class="app-context" id="app-context">
+                                <div class="context-icon">
+                                    <i data-lucide="code"></i>
+                                </div>
+                                <span class="context-name">Visual Studio Code</span>
+                            </div>
+                            <div class="difficulty-indicator" id="difficulty-indicator">
+                                <i data-lucide="circle"></i>
+                                <span>Beginner</span>
+                            </div>
+                        </div>
+                        
+                        <div class="question-content">
+                            <h2 class="question-text" id="question-text">
+                                What keyboard shortcut opens the Command Palette in VS Code?
+                            </h2>
+                            <div class="question-hint" id="question-hint" style="display: none;">
+                                <i data-lucide="lightbulb"></i>
+                                <span id="hint-text">Think about accessing all commands...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="answer-options" id="answer-options">
+                            <button class="answer-btn" data-answer="0" onclick="selectAnswer(0)">
+                                <span class="answer-letter">A</span>
+                                <span class="answer-text">Ctrl + Shift + P</span>
+                            </button>
+                            <button class="answer-btn" data-answer="1" onclick="selectAnswer(1)">
+                                <span class="answer-letter">B</span>
+                                <span class="answer-text">Ctrl + P</span>
+                            </button>
+                            <button class="answer-btn" data-answer="2" onclick="selectAnswer(2)">
+                                <span class="answer-letter">C</span>
+                                <span class="answer-text">Ctrl + Alt + P</span>
+                            </button>
+                            <button class="answer-btn" data-answer="3" onclick="selectAnswer(3)">
+                                <span class="answer-letter">D</span>
+                                <span class="answer-text">Ctrl + Shift + O</span>
+                            </button>
+                        </div>
+                        
+                        <div class="quiz-actions">
+                            <div class="power-ups">
+                                <button class="power-up" data-type="hint" title="Show Hint" onclick="usePowerUp('hint')">
+                                    <i data-lucide="lightbulb"></i>
+                                    <span class="power-up-count">2</span>
+                                </button>
+                                <button class="power-up" data-type="time" title="Extra Time (+15s)" onclick="usePowerUp('time')">
+                                    <i data-lucide="clock"></i>
+                                    <span class="power-up-count">1</span>
+                                </button>
+                                <button class="power-up" data-type="skip" title="Skip Question" onclick="usePowerUp('skip')">
+                                    <i data-lucide="skip-forward"></i>
+                                    <span class="power-up-count">1</span>
+                                </button>
+                            </div>
+                            <button class="submit-btn" id="submit-btn" onclick="submitAnswer()" disabled>
+                                <i data-lucide="check"></i>
+                                <span>Submit Answer</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battle Screen -->
+        <div class="quiz-screen" id="battle-screen">
+            <div class="battle-header">
+                <div class="container">
+                    <div class="battle-players">
+                        <div class="player player-1">
+                            <img src="https://ui-avatars.com/api/?name=You&background=6366f1&color=fff" alt="You" class="player-avatar">
+                            <div class="player-info">
+                                <h4>You</h4>
+                                <div class="player-health">
+                                    <div class="health-bar">
+                                        <div class="health-fill" style="width: 100%" id="player-1-health"></div>
+                                    </div>
+                                    <span class="health-text">5/5</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="battle-vs">
+                            <div class="vs-text">VS</div>
+                            <div class="battle-timer" id="battle-timer">15</div>
+                        </div>
+                        
+                        <div class="player player-2">
+                            <img src="https://ui-avatars.com/api/?name=Alex&background=e74c3c&color=fff" alt="Opponent" class="player-avatar">
+                            <div class="player-info">
+                                <h4>Alex_Dev</h4>
+                                <div class="player-health">
+                                    <div class="health-bar">
+                                        <div class="health-fill" style="width: 80%" id="player-2-health"></div>
+                                    </div>
+                                    <span class="health-text">4/5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="battle-content">
+                <div class="container">
+                    <div class="battle-question">
+                        <h2 id="battle-question-text">Quick! What's the shortcut for "Save As"?</h2>
+                        <div class="battle-options" id="battle-options">
+                            <button class="battle-answer" data-answer="0" onclick="selectBattleAnswer(0)">Ctrl + S</button>
+                            <button class="battle-answer" data-answer="1" onclick="selectBattleAnswer(1)">Ctrl + Shift + S</button>
+                            <button class="battle-answer" data-answer="2" onclick="selectBattleAnswer(2)">Ctrl + Alt + S</button>
+                            <button class="battle-answer" data-answer="3" onclick="selectBattleAnswer(3)">F12</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matchmaking Screen -->
+        <div class="quiz-screen" id="matchmaking-screen">
+            <div class="container">
+                <div class="matchmaking-content">
+                    <div class="matchmaking-animation">
+                        <div class="radar-container">
+                            <div class="radar-sweep"></div>
+                            <div class="radar-dot"></div>
+                            <div class="radar-dot"></div>
+                            <div class="radar-dot"></div>
+                            <div class="radar-dot"></div>
+                        </div>
+                    </div>
+                    
+                    <h2>Finding Your Perfect Match</h2>
+                    <p>Searching for players at your skill level...</p>
+                    
+                    <div class="matchmaking-stats">
+                        <div class="stat">
+                            <span class="stat-label">Players online</span>
+                            <span class="stat-value" id="online-players">1,247</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Average wait time</span>
+                            <span class="stat-value">15s</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Your rank</span>
+                            <span class="stat-value">Gold III</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" onclick="cancelMatchmaking()">
+                        <i data-lucide="x"></i>
+                        <span>Cancel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="quiz-screen" id="results-screen">
+            <div class="container">
+                <div class="results-content">
+                    <div class="results-header">
+                        <div class="results-icon" id="results-icon">
+                            <i data-lucide="trophy"></i>
+                        </div>
+                        <h1 id="results-title">Excellent Work!</h1>
+                        <p id="results-subtitle">You scored 8 out of 10 questions correctly</p>
+                    </div>
+                    
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <div class="stat-value" id="score-percentage">80%</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-value" id="time-taken">2:45</div>
+                            <div class="stat-label">Time Taken</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-value" id="xp-gained">+150</div>
+                            <div class="stat-label">XP Gained</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="stat-value" id="streak-bonus">+25</div>
+                            <div class="stat-label">Streak Bonus</div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-breakdown">
+                        <h3>Question Breakdown</h3>
+                        <div class="breakdown-list" id="breakdown-list">
+                            <div class="breakdown-item correct">
+                                <div class="breakdown-icon">
+                                    <i data-lucide="check"></i>
+                                </div>
+                                <div class="breakdown-content">
+                                    <div class="breakdown-question">What opens the Command Palette in VS Code?</div>
+                                    <div class="breakdown-answer">Your answer: Ctrl + Shift + P ✓</div>
+                                </div>
+                            </div>
+                            <div class="breakdown-item incorrect">
+                                <div class="breakdown-icon">
+                                    <i data-lucide="x"></i>
+                                </div>
+                                <div class="breakdown-content">
+                                    <div class="breakdown-question">Which shortcut duplicates a line?</div>
+                                    <div class="breakdown-answer">Your answer: Ctrl + D ✗ (Correct: Alt + Shift + ↓)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button class="btn btn-primary" onclick="restartQuiz()">
+                            <i data-lucide="refresh-cw"></i>
+                            <span>Try Again</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="challengeFriend()">
+                            <i data-lucide="user-plus"></i>
+                            <span>Challenge Friend</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="viewLeaderboard()">
+                            <i data-lucide="trophy"></i>
+                            <span>View Leaderboard</span>
+                        </button>
+                        <button class="btn btn-outline" onclick="shareResults()">
+                            <i data-lucide="share"></i>
+                            <span>Share Results</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div class="modal-overlay" id="leaderboard-modal">
+        <div class="modal leaderboard-modal">
+            <div class="modal-header">
+                <h3>
+                    <i data-lucide="trophy"></i>
+                    Global Leaderboard
+                </h3>
+                <button class="modal-close" onclick="closeLeaderboard()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div class="leaderboard-tabs">
+                    <button class="leaderboard-tab active" data-tab="global" onclick="switchLeaderboardTab('global')">Global</button>
+                    <button class="leaderboard-tab" data-tab="friends" onclick="switchLeaderboardTab('friends')">Friends</button>
+                    <button class="leaderboard-tab" data-tab="weekly" onclick="switchLeaderboardTab('weekly')">This Week</button>
+                </div>
+                
+                <div class="leaderboard-list" id="leaderboard-list">
+                    <div class="leaderboard-item current-user">
+                        <div class="leaderboard-rank">24</div>
+                        <img src="https://ui-avatars.com/api/?name=You&background=6366f1&color=fff" alt="You" class="leaderboard-avatar">
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">You</div>
+                            <div class="leaderboard-score">2,450 XP</div>
+                        </div>
+                        <div class="leaderboard-points">+150</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank top-3">1</div>
+                        <img src="https://ui-avatars.com/api/?name=Alex&background=f59e0b&color=fff" alt="Alex" class="leaderboard-avatar">
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Alex_Master</div>
+                            <div class="leaderboard-score">15,890 XP</div>
+                        </div>
+                        <div class="leaderboard-points">+89</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank top-3">2</div>
+                        <img src="https://ui-avatars.com/api/?name=Sarah&background=10b981&color=fff" alt="Sarah" class="leaderboard-avatar">
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Sarah_Pro</div>
+                            <div class="leaderboard-score">14,567 XP</div>
+                        </div>
+                        <div class="leaderboard-points">+67</div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank top-3">3</div>
+                        <img src="https://ui-avatars.com/api/?name=Mike&background=8b5cf6&color=fff" alt="Mike" class="leaderboard-avatar">
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Mike_Wizard</div>
+                            <div class="leaderboard-score">13,245 XP</div>
+                        </div>
+                        <div class="leaderboard-points">+45</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+        <div class="container">
+            <!-- Newsletter Section -->
+            <div class="footer-newsletter">
+                <div class="newsletter-content">
+                    <h3>Stay Updated with Latest Shortcuts</h3>
+                    <p>Join our growing community and get updates on new shortcuts, productivity tips, and platform launches</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i data-lucide="send"></i>
+                                <span>Subscribe</span>
+                            </button>
+                        </div>
+                        <div class="newsletter-privacy">
+                            <i data-lucide="shield-check"></i>
+                            <span>No spam. Unsubscribe anytime.</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="newsletter-visual">
+                    <div class="floating-icons">
+                        <div class="float-icon" style="--delay: 0s;"><i data-lucide="lightbulb"></i></div>
+                        <div class="float-icon" style="--delay: 1s;"><i data-lucide="zap"></i></div>
+                        <div class="float-icon" style="--delay: 2s;"><i data-lucide="rocket"></i></div>
+                        <div class="float-icon" style="--delay: 3s;"><i data-lucide="keyboard"></i></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-container">
+                        <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                            <defs>
+                                <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#764ba2"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#footerLogoGradient)"/>
+                            <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
+                            <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        </svg>
+                        <span class="logo-text">Shortcut Sensei</span>
+                    </div>
+                    <p>The world's most comprehensive keyboard shortcuts learning platform. Trusted by millions of professionals worldwide to accelerate their productivity.</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/shortcutsensei" aria-label="Twitter" target="_blank">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="https://github.com/shortcutsensei" aria-label="GitHub" target="_blank">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/shortcutsensei" aria-label="LinkedIn" target="_blank">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://discord.gg/shortcutsensei" aria-label="Discord" target="_blank">
+                            <i data-lucide="message-circle"></i>
+                        </a>
+                        <a href="https://youtube.com/@shortcutsensei" aria-label="YouTube" target="_blank">
+                            <i data-lucide="youtube"></i>
+                        </a>
+                        <a href="https://reddit.com/r/shortcutsensei" aria-label="Reddit" target="_blank">
+                            <i data-lucide="reddit"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="link-column">
+                        <h4>
+                            <i data-lucide="zap"></i>
+                            Platform
+                        </h4>
+                        <a href="all-applications.html">
+                            <i data-lucide="grid-3x3"></i>
+                            All Applications
+                        </a>
+                        <a href="quiz-integrated.html">
+                            <i data-lucide="brain"></i>
+                            Interactive Quiz
+                        </a>
+                        <a href="index.html#features">
+                            <i data-lucide="star"></i>
+                            Features
+                        </a>
+                        <a href="#leaderboard">
+                            <i data-lucide="trophy"></i>
+                            Leaderboard
+                        </a>
+                        <a href="#achievements">
+                            <i data-lucide="award"></i>
+                            Achievements
+                        </a>
+                    </div>
+                    <div class="link-column">
+                        <h4>
+                            <i data-lucide="book-open"></i>
+                            Learning
+                        </h4>
+                        <a href="#beginner-guide">
+                            <i data-lucide="play-circle"></i>
+                            Getting Started
+                        </a>
+                        <a href="#advanced-tips">
+                            <i data-lucide="lightbulb"></i>
+                            Advanced Tips
+                        </a>
+                        <a href="#cheat-sheets">
+                            <i data-lucide="file-text"></i>
+                            Cheat Sheets
+                        </a>
+                        <a href="#video-tutorials">
+                            <i data-lucide="video"></i>
+                            Video Tutorials
+                        </a>
+                        <a href="#practice-mode">
+                            <i data-lucide="target"></i>
+                            Practice Mode
+                        </a>
+                    </div>
+                    <div class="link-column">
+                        <h4>
+                            <i data-lucide="users"></i>
+                            Community
+                        </h4>
+                        <a href="#discord">
+                            <i data-lucide="message-circle"></i>
+                            Discord Server
+                        </a>
+                        <a href="#forums">
+                            <i data-lucide="message-square"></i>
+                            Community Forums
+                        </a>
+                        <a href="#challenges">
+                            <i data-lucide="flame"></i>
+                            Weekly Challenges
+                        </a>
+                        <a href="#user-shortcuts">
+                            <i data-lucide="share-2"></i>
+                            Share Shortcuts
+                        </a>
+                        <a href="#experts">
+                            <i data-lucide="users-2"></i>
+                            Expert Network
+                        </a>
+                    </div>
+                    <div class="link-column">
+                        <h4>
+                            <i data-lucide="building"></i>
+                            Company
+                        </h4>
+                        <a href="about.html">
+                            <i data-lucide="info"></i>
+                            About Us
+                        </a>
+                        <a href="#careers">
+                            <i data-lucide="briefcase"></i>
+                            Careers
+                        </a>
+                        <a href="#press">
+                            <i data-lucide="newspaper"></i>
+                            Press Kit
+                        </a>
+                        <a href="#contact">
+                            <i data-lucide="mail"></i>
+                            Contact
+                        </a>
+                        <a href="#investors">
+                            <i data-lucide="trending-up"></i>
+                            Investors
+                        </a>
+                    </div>
+                    <div class="link-column">
+                        <h4>
+                            <i data-lucide="settings"></i>
+                            Support
+                        </h4>
+                        <a href="#help-center">
+                            <i data-lucide="help-circle"></i>
+                            Help Center
+                        </a>
+                        <a href="#faq">
+                            <i data-lucide="message-circle-question"></i>
+                            FAQ
+                        </a>
+                        <a href="#api-docs">
+                            <i data-lucide="code"></i>
+                            API Documentation
+                        </a>
+                        <a href="#status">
+                            <i data-lucide="activity"></i>
+                            System Status
+                        </a>
+                        <a href="#feedback">
+                            <i data-lucide="message-square-plus"></i>
+                            Send Feedback
+                        </a>
+                    </div>
+                    <div class="link-column">
+                        <h4>
+                            <i data-lucide="shield"></i>
+                            Legal
+                        </h4>
+                        <a href="#privacy">
+                            <i data-lucide="shield-check"></i>
+                            Privacy Policy
+                        </a>
+                        <a href="#terms">
+                            <i data-lucide="file-text"></i>
+                            Terms of Service
+                        </a>
+                        <a href="#cookies">
+                            <i data-lucide="cookie"></i>
+                            Cookie Policy
+                        </a>
+                        <a href="#security">
+                            <i data-lucide="lock"></i>
+                            Security
+                        </a>
+                        <a href="#gdpr">
+                            <i data-lucide="database"></i>
+                            GDPR Compliance
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2025 Shortcut Sensei Inc. All rights reserved.</p>
+                </div>
+                <div class="footer-bottom-right">
+                    <div class="language-selector">
+                        <i data-lucide="globe"></i>
+                        <select class="language-select">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="de">Deutsch</option>
+                            <option value="ja">日本語</option>
+                            <option value="zh">中文</option>
+                        </select>
+                    </div>
+                    <div class="theme-toggle-footer" id="footer-theme-toggle">
+                        <i data-lucide="sun"></i>
+                    </div>
+                    <button class="back-to-top" id="back-to-top">
+                        <i data-lucide="arrow-up"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal-overlay" id="authModalOverlay">
+        <div class="auth-modal">
+            <div class="auth-modal-header">
+                <div class="auth-modal-title">
+                    <h2 id="authModalTitle">Welcome to Shortcut Sensei</h2>
+                    <p id="authModalSubtitle">Sign in to track your progress and compete</p>
+                </div>
+                <button class="auth-modal-close" id="authModalClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <div class="auth-modal-tabs">
+                <button class="auth-tab active" id="signinTab">Sign In</button>
+                <button class="auth-tab" id="signupTab">Sign Up</button>
+            </div>
+            
+            <div class="auth-modal-content">
+                <!-- Sign In Form -->
+                <form class="auth-form" id="signinForm">
+                    <div class="form-group">
+                        <label for="signinEmail">Email Address</label>
+                        <input type="email" id="signinEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signinPassword">Password</label>
+                        <input type="password" id="signinPassword" required placeholder="Enter your password">
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">
+                        <i data-lucide="log-in"></i>
+                        <span>Sign In</span>
+                    </button>
+                </form>
+                
+                <!-- Sign Up Form -->
+                <form class="auth-form" id="signupForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="signupName">Full Name</label>
+                        <input type="text" id="signupName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required placeholder="Confirm your password">
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#terms">Terms of Service</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">
+                        <i data-lucide="user-plus"></i>
+                        <span>Create Account</span>
+                    </button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>Or continue with</span>
+                </div>
+                
+                <div class="social-auth">
+                    <button class="social-btn google-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        <span>Google</span>
+                    </button>
+                    <button class="social-btn github-btn">
+                        <i data-lucide="github"></i>
+                        <span>GitHub</span>
+                    </button>
+                    <button class="social-btn discord-btn">
+                        <i data-lucide="message-circle"></i>
+                        <span>Discord</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/auth-system.js"></script>
+    <script src="js/footer-functionality.js"></script>
+    
+    <script>
+        // Quiz System Implementation
+        class QuizSystem {
+            constructor() {
+                this.currentQuestion = 0;
+                this.score = 0;
+                this.timeLeft = 30;
+                this.timer = null;
+                this.selectedAnswer = null;
+                this.questions = [];
+                this.powerUps = { hint: 2, time: 1, skip: 1 };
+                this.init();
+            }
+
+            init() {
+                this.loadQuestions();
+                this.setupEventListeners();
+                lucide.createIcons();
+            }
+
+            loadQuestions() {
+                this.questions = [
+                    {
+                        question: "What keyboard shortcut opens the Command Palette in VS Code?",
+                        options: ["Ctrl + Shift + P", "Ctrl + P", "Ctrl + Alt + P", "Ctrl + Shift + O"],
+                        correct: 0,
+                        hint: "Think about accessing all commands in VS Code",
+                        app: "VS Code",
+                        difficulty: "Beginner"
+                    },
+                    {
+                        question: "Which shortcut duplicates the current line in VS Code?",
+                        options: ["Ctrl + D", "Ctrl + Shift + D", "Alt + Shift + ↓", "Ctrl + C, Ctrl + V"],
+                        correct: 2,
+                        hint: "It involves Alt and Shift with an arrow key",
+                        app: "VS Code",
+                        difficulty: "Intermediate"
+                    },
+                    {
+                        question: "What's the shortcut to open a new tab in Chrome?",
+                        options: ["Ctrl + T", "Ctrl + N", "Ctrl + Shift + T", "Alt + T"],
+                        correct: 0,
+                        hint: "Think 'T' for Tab",
+                        app: "Chrome",
+                        difficulty: "Beginner"
+                    },
+                    {
+                        question: "How do you select all in most applications?",
+                        options: ["Ctrl + A", "Ctrl + S", "Ctrl + E", "Ctrl + L"],
+                        correct: 0,
+                        hint: "Think 'A' for All",
+                        app: "General",
+                        difficulty: "Beginner"
+                    },
+                    {
+                        question: "What's the shortcut to save a file?",
+                        options: ["Ctrl + S", "Ctrl + F", "Ctrl + W", "Ctrl + Q"],
+                        correct: 0,
+                        hint: "Think 'S' for Save",
+                        app: "General",
+                        difficulty: "Beginner"
+                    }
+                ];
+            }
+
+            setupEventListeners() {
+                // Difficulty selection
+                document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+
+                // Category selection
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
+            }
+
+            showScreen(screenId) {
+                document.querySelectorAll('.quiz-screen').forEach(screen => {
+                    screen.classList.remove('active');
+                });
+                document.getElementById(screenId).classList.add('active');
+            }
+
+            startTimer() {
+                this.timeLeft = 30;
+                document.getElementById('timer-text').textContent = this.timeLeft;
+                
+                this.timer = setInterval(() => {
+                    this.timeLeft--;
+                    document.getElementById('timer-text').textContent = this.timeLeft;
+                    
+                    const timerElement = document.getElementById('quiz-timer');
+                    if (this.timeLeft <= 10) {
+                        timerElement.classList.add('urgent');
+                    }
+                    
+                    if (this.timeLeft <= 0) {
+                        this.timeUp();
+                    }
+                }, 1000);
+            }
+
+            timeUp() {
+                clearInterval(this.timer);
+                this.showToast('Time\'s up! Moving to next question...', 'warning');
+                setTimeout(() => this.nextQuestion(), 1500);
+            }
+
+            updateProgress() {
+                const progress = ((this.currentQuestion + 1) / this.questions.length) * 100;
+                document.getElementById('quiz-progress').style.width = `${progress}%`;
+                document.getElementById('question-counter').textContent = `Question ${this.currentQuestion + 1} of ${this.questions.length}`;
+            }
+
+            displayQuestion() {
+                const question = this.questions[this.currentQuestion];
+                
+                document.getElementById('question-text').textContent = question.question;
+                document.getElementById('app-context').querySelector('.context-name').textContent = question.app;
+                document.getElementById('difficulty-indicator').querySelector('span').textContent = question.difficulty;
+                
+                const optionsContainer = document.getElementById('answer-options');
+                optionsContainer.innerHTML = question.options.map((option, index) => `
+                    <button class="answer-btn" data-answer="${index}" onclick="selectAnswer(${index})">
+                        <span class="answer-letter">${String.fromCharCode(65 + index)}</span>
+                        <span class="answer-text">${option}</span>
+                    </button>
+                `).join('');
+                
+                // Reset UI state
+                document.getElementById('question-hint').style.display = 'none';
+                document.getElementById('submit-btn').disabled = true;
+                this.selectedAnswer = null;
+                
+                this.updateProgress();
+                this.startTimer();
+            }
+
+            nextQuestion() {
+                this.currentQuestion++;
+                if (this.currentQuestion >= this.questions.length) {
+                    this.endQuiz();
+                } else {
+                    this.displayQuestion();
+                }
+            }
+
+            endQuiz() {
+                clearInterval(this.timer);
+                const percentage = Math.round((this.score / this.questions.length) * 100);
+                this.showResults(percentage);
+            }
+
+            showResults(percentage) {
+                this.showScreen('results-screen');
+                
+                document.getElementById('score-percentage').textContent = `${percentage}%`;
+                document.getElementById('xp-gained').textContent = `+${percentage * 2}`;
+                
+                const resultsIcon = document.getElementById('results-icon');
+                const resultsTitle = document.getElementById('results-title');
+                
+                if (percentage >= 90) {
+                    resultsIcon.innerHTML = '<i data-lucide="crown"></i>';
+                    resultsTitle.textContent = 'Outstanding! 🏆';
+                    this.createCelebration();
+                } else if (percentage >= 75) {
+                    resultsIcon.innerHTML = '<i data-lucide="trophy"></i>';
+                    resultsTitle.textContent = 'Excellent Work! 🥇';
+                } else if (percentage >= 60) {
+                    resultsIcon.innerHTML = '<i data-lucide="award"></i>';
+                    resultsTitle.textContent = 'Good Job! 🥈';
+                } else {
+                    resultsIcon.innerHTML = '<i data-lucide="target"></i>';
+                    resultsTitle.textContent = 'Keep Practicing! 💪';
+                }
+                
+                lucide.createIcons();
+            }
+
+            createCelebration() {
+                // Create confetti effect
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.cssText = `
+                        position: fixed;
+                        width: 10px;
+                        height: 10px;
+                        background: ${['#6366f1', '#8b5cf6', '#ec4899', '#06b6d4', '#10b981'][Math.floor(Math.random() * 5)]};
+                        left: ${Math.random() * 100}%;
+                        top: -10px;
+                        z-index: 10000;
+                        animation: confetti-fall ${Math.random() * 3 + 2}s linear forwards;
+                    `;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }
+            }
+
+            showToast(message, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.innerHTML = `
+                    <div class="toast-content">
+                        <i data-lucide="${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : type === 'warning' ? 'alert-triangle' : 'info'}"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button class="toast-close" onclick="this.parentElement.remove()">
+                        <i data-lucide="x"></i>
+                    </button>
+                `;
+                
+                const colors = {
+                    success: '#10b981',
+                    error: '#ef4444',
+                    warning: '#f59e0b',
+                    info: '#3b82f6'
+                };
+                
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: ${colors[type]};
+                    color: white;
+                    padding: 1rem 1.5rem;
+                    border-radius: 0.75rem;
+                    z-index: 10001;
+                    animation: slideInRight 0.3s ease;
+                    max-width: 400px;
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                `;
+                
+                document.body.appendChild(toast);
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    toast.style.animation = 'slideOutRight 0.3s ease';
+                    setTimeout(() => {
+                        if (toast.parentNode) {
+                            toast.parentNode.removeChild(toast);
+                        }
+                    }, 300);
+                }, 4000);
+            }
+        }
+
+        // Global quiz instance
+        let quizSystem;
+
+        // Quiz functions
+        function startQuiz(mode) {
+            quizSystem.showScreen('quiz-game-screen');
+            quizSystem.currentQuestion = 0;
+            quizSystem.score = 0;
+            quizSystem.displayQuestion();
+            quizSystem.showToast(`Starting ${mode} quiz!`, 'success');
+        }
+
+        function selectAnswer(answerIndex) {
+            document.querySelectorAll('.answer-btn').forEach(btn => btn.classList.remove('selected'));
+            document.querySelector(`[data-answer="${answerIndex}"]`).classList.add('selected');
+            quizSystem.selectedAnswer = answerIndex;
+            document.getElementById('submit-btn').disabled = false;
+        }
+
+        function submitAnswer() {
+            if (quizSystem.selectedAnswer === null) return;
+            
+            clearInterval(quizSystem.timer);
+            const question = quizSystem.questions[quizSystem.currentQuestion];
+            const isCorrect = quizSystem.selectedAnswer === question.correct;
+            
+            // Show correct answer
+            document.querySelectorAll('.answer-btn').forEach((btn, index) => {
+                if (index === question.correct) {
+                    btn.classList.add('correct');
+                } else if (index === quizSystem.selectedAnswer && !isCorrect) {
+                    btn.classList.add('incorrect');
+                }
+                btn.disabled = true;
+            });
+            
+            if (isCorrect) {
+                quizSystem.score++;
+                quizSystem.showToast('Correct! Great job! 🎉', 'success');
+            } else {
+                quizSystem.showToast('Not quite right. Keep learning! 💪', 'info');
+            }
+            
+            setTimeout(() => {
+                quizSystem.nextQuestion();
+            }, 2000);
+        }
+
+        function usePowerUp(type) {
+            if (quizSystem.powerUps[type] <= 0) {
+                quizSystem.showToast('No more power-ups of this type!', 'warning');
+                return;
+            }
+            
+            switch(type) {
+                case 'hint':
+                    document.getElementById('question-hint').style.display = 'block';
+                    document.getElementById('hint-text').textContent = quizSystem.questions[quizSystem.currentQuestion].hint;
+                    quizSystem.powerUps.hint--;
+                    quizSystem.showToast('Hint revealed! 💡', 'info');
+                    break;
+                case 'time':
+                    quizSystem.timeLeft += 15;
+                    quizSystem.powerUps.time--;
+                    quizSystem.showToast('+15 seconds added! ⏰', 'success');
+                    break;
+                case 'skip':
+                    quizSystem.powerUps.skip--;
+                    quizSystem.showToast('Question skipped! ⏭️', 'info');
+                    clearInterval(quizSystem.timer);
+                    setTimeout(() => quizSystem.nextQuestion(), 1000);
+                    break;
+            }
+            
+            // Update power-up display
+            document.querySelector(`[data-type="${type}"] .power-up-count`).textContent = quizSystem.powerUps[type];
+        }
+
+        function restartQuiz() {
+            quizSystem.showScreen('quiz-start-screen');
+            quizSystem.currentQuestion = 0;
+            quizSystem.score = 0;
+            quizSystem.powerUps = { hint: 2, time: 1, skip: 1 };
+        }
+
+        function challengeFriend() {
+            quizSystem.showToast('Challenge feature coming soon! 🚀', 'info');
+        }
+
+        function viewLeaderboard() {
+            document.getElementById('leaderboard-modal').classList.add('active');
+        }
+
+        function closeLeaderboard() {
+            document.getElementById('leaderboard-modal').classList.remove('active');
+        }
+
+        function switchLeaderboardTab(tab) {
+            document.querySelectorAll('.leaderboard-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+            quizSystem.showToast(`Switched to ${tab} leaderboard`, 'info');
+        }
+
+        function shareResults() {
+            const score = document.getElementById('score-percentage').textContent;
+            const text = `I just scored ${score} on Shortcut Sensei! Can you beat my score?`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Shortcut Sensei Score',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(text + ' ' + window.location.href);
+                quizSystem.showToast('Results copied to clipboard!', 'success');
+            }
+        }
+
+        function selectBattleAnswer(answerIndex) {
+            document.querySelectorAll('.battle-answer').forEach(btn => btn.classList.remove('selected'));
+            document.querySelector(`[data-answer="${answerIndex}"]`).classList.add('selected');
+            
+            // Simulate opponent also answering
+            setTimeout(() => {
+                const opponentChoice = Math.floor(Math.random() * 4);
+                const isPlayerCorrect = answerIndex === 1; // Correct answer is index 1
+                const isOpponentCorrect = opponentChoice === 1;
+                
+                if (isPlayerCorrect && !isOpponentCorrect) {
+                    quizSystem.showToast('You won this round! 🎉', 'success');
+                } else if (!isPlayerCorrect && isOpponentCorrect) {
+                    quizSystem.showToast('Opponent got it right! 😅', 'warning');
+                } else if (isPlayerCorrect && isOpponentCorrect) {
+                    quizSystem.showToast('Both correct! It\'s a tie! 🤝', 'info');
+                } else {
+                    quizSystem.showToast('Both wrong! Next question! 🤔', 'info');
+                }
+                
+                setTimeout(() => {
+                    quizSystem.showScreen('results-screen');
+                }, 2000);
+            }, 1000);
+        }
+
+        function cancelMatchmaking() {
+            quizSystem.showScreen('quiz-start-screen');
+            quizSystem.showToast('Matchmaking cancelled', 'info');
+        }
+
+        // Initialize quiz system
+        document.addEventListener('DOMContentLoaded', function() {
+            quizSystem = new QuizSystem();
+            
+            // Initialize animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        
+                        if (element.classList.contains('animate-fade-in-up')) {
+                            element.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                        }
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.animate-fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <!-- Add confetti animation CSS -->
+    <style>
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOutRight {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    </style>
+</body>
+</html>

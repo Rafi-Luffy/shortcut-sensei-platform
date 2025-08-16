@@ -3,35 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shortcut Sensei - Master Every Keyboard Shortcut</title>
-    <meta name="description" content="The world's most comprehensive keyboard shortcuts learning platform. Master productivity shortcuts for 30+ applications and 10x your workflow efficiency.">
-    <meta name="keywords" content="keyboard shortcuts, productivity, learning, code editor, VS Code, Photoshop, shortcuts">
+    <title>Shortcut Sensei - Master Keyboard Shortcuts for Maximum Productivity</title>
+    <meta name="description" content="The world's most comprehensive keyboard shortcuts learning platform. Master shortcuts for VS Code, Photoshop, Chrome, and 100+ applications.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shortcutsensei.com/">
-    <meta property="og:title" content="Shortcut Sensei - Master Every Keyboard Shortcut">
-    <meta property="og:description" content="The world's most comprehensive keyboard shortcuts learning platform.">
-    <meta property="og:image" content="https://shortcutsensei.com/meta-image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://shortcutsensei.com/">
-    <meta property="twitter:title" content="Shortcut Sensei - Master Every Keyboard Shortcut">
-    <meta property="twitter:description" content="The world's most comprehensive keyboard shortcuts learning platform.">
-    <meta property="twitter:image" content="https://shortcutsensei.com/meta-image.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -41,23 +23,7 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/premium-ui.css">
 </head>
-<body>
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="skip-to-main">Skip to main content</a>
-    
-    <!-- Preloader -->
-    <div class="preloader" id="preloader" aria-hidden="true">
-        <div class="preloader-content">
-            <div class="keyboard-animation">
-                <i data-lucide="keyboard" aria-hidden="true"></i>
-            </div>
-            <div class="loading-text">Loading...</div>
-            <div class="loading-bar" role="progressbar" aria-label="Loading progress">
-                <div class="loading-progress"></div>
-            </div>
-        </div>
-    </div>
-
+<body data-theme="dark">
     <!-- Navigation -->
     <nav class="nav-modern" id="main-nav">
         <div class="nav-container">
@@ -78,13 +44,10 @@
                                     </feMerge>
                                 </filter>
                             </defs>
-                            <!-- Magical crystal/gem shape representing mastery -->
                             <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#logoGradient)" filter="url(#logoGlow)"/>
-                            <!-- Inner sparkle -->
                             <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
                             <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
                             <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
-                            <!-- Keyboard keys effect -->
                             <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
                             <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
                             <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
@@ -99,11 +62,11 @@
                     <i data-lucide="home"></i>
                     <span>Home</span>
                 </a>
-                <a href="applications.html" class="nav-link" data-nav="applications">
+                <a href="all-applications.html" class="nav-link" data-nav="applications">
                     <i data-lucide="grid-3x3"></i>
                     <span>Applications</span>
                 </a>
-                <a href="quiz-integrated.html" class="nav-link" data-nav="quiz">
+                <a href="quiz.html" class="nav-link" data-nav="quiz">
                     <i data-lucide="brain"></i>
                     <span>Quiz</span>
                 </a>
@@ -131,13 +94,11 @@
                     <span>Sign In</span>
                 </button>
                 
-                <!-- Notification Bell (only shown when logged in) -->
                 <button class="notification-bell" id="notificationBell" style="display: none;">
                     <i data-lucide="bell"></i>
                     <span class="notification-badge">3</span>
                 </button>
                 
-                <!-- User Profile Button (when logged in) -->
                 <button class="user-profile-btn" id="userProfileBtn" style="display: none;">
                     <img src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="Profile" class="user-avatar-small">
                     <span class="user-name-small">User</span>
@@ -153,384 +114,258 @@
         </div>
         
         <!-- Search Overlay -->
-        
+        <div class="search-overlay" id="search-overlay">
+            <div class="search-container">
+                <div class="search-input-container">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search shortcuts, applications, or commands..." id="search-input" autocomplete="off">
+                    <button class="search-close" id="search-close">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="search-results" id="search-results">
+                    <div class="search-suggestions">
+                        <div class="suggestion-category">
+                            <h4>Popular Searches</h4>
+                            <div class="suggestions">
+                                <span class="suggestion">Copy</span>
+                                <span class="suggestion">Paste</span>
+                                <span class="suggestion">VS Code</span>
+                                <span class="suggestion">Photoshop</span>
+                                <span class="suggestion">Chrome</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Authentication Modal -->
-    <div class="auth-modal-overlay" id="authModalOverlay" style="display: none;">
-        <div class="auth-modal" id="authModal">
-            <div class="auth-modal-header">
-                <div class="auth-modal-title">
-                    <h2 id="authModalTitle">Welcome to Shortcut Sensei</h2>
-                    <p id="authModalSubtitle">Sign in to track your progress and compete with friends</p>
-                </div>
-                <button class="auth-modal-close" id="authModalClose">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-            
-            <div class="auth-modal-content">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="signin" id="signinTab">Sign In</button>
-                    <button class="auth-tab" data-tab="signup" id="signupTab">Sign Up</button>
-                </div>
-                
-                <!-- Sign In Form -->
-                <form class="auth-form" id="signinForm">
-                    <div class="form-group">
-                        <label for="signinEmail">Email</label>
-                        <input type="email" id="signinEmail" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signinPassword">Password</label>
-                        <input type="password" id="signinPassword" placeholder="Enter your password" required>
-                    </div>
-                    <div class="form-options">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="rememberMe">
-                            <span class="checkmark"></span>
-                            Remember me
-                        </label>
-                        <a href="#" class="forgot-password">Forgot password?</a>
-                    </div>
-                    <button type="submit" class="auth-submit-btn">
-                        <i data-lucide="log-in"></i>
-                        Sign In
-                    </button>
-                </form>
-                
-                <!-- Sign Up Form -->
-                <form class="auth-form" id="signupForm" style="display: none;">
-                    <div class="form-group">
-                        <label for="signupName">Full Name</label>
-                        <input type="text" id="signupName" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupEmail">Email</label>
-                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupPassword">Password</label>
-                        <input type="password" id="signupPassword" placeholder="Create a password" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-                    </div>
-                    <div class="form-options">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="agreeTerms" required>
-                            <span class="checkmark"></span>
-                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                        </label>
-                    </div>
-                    <button type="submit" class="auth-submit-btn">
-                        <i data-lucide="user-plus"></i>
-                        Create Account
-                    </button>
-                </form>
-                
-                <div class="auth-divider">
-                    <span>or continue with</span>
-                </div>
-                
-                <div class="social-auth">
-                    <button class="social-btn google-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                        </svg>
-                        Google
-                    </button>
-                    <button class="social-btn github-btn">
-                        <i data-lucide="github"></i>
-                        GitHub
-                    </button>
-                    <button class="social-btn discord-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419-.0003 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9554 2.4189-2.1568 2.4189Z"/>
-                        </svg>
-                        Discord
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content Wrapper -->
-    <main class="main-content" id="main-content">
-        <!-- Hero Section -->
-        <section class="hero-modern hero-section" id="home" aria-labelledby="hero-title">
-        <div class="hero-background" aria-hidden="true">
-            <div class="floating-elements">
-                <div class="floating-shortcut" style="--delay: 0s; --x: 10%; --y: 20%;" aria-hidden="true">
-                    <kbd>Ctrl</kbd><span>+</span><kbd>C</kbd>
-                </div>
-                <div class="floating-shortcut" style="--delay: 1s; --x: 80%; --y: 30%;" aria-hidden="true">
-                    <kbd>Cmd</kbd><span>+</span><kbd>Space</kbd>
-                </div>
-                <div class="floating-shortcut" style="--delay: 2s; --x: 15%; --y: 70%;" aria-hidden="true">
-                    <kbd>Alt</kbd><span>+</span><kbd>Tab</kbd>
-                </div>
-                <div class="floating-shortcut" style="--delay: 3s; --x: 75%; --y: 65%;" aria-hidden="true">
-                    <kbd>Ctrl</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>P</kbd>
-                </div>
-                <div class="floating-shortcut" style="--delay: 4s; --x: 50%; --y: 15%;" aria-hidden="true">
-                    <kbd>Win</kbd><span>+</span><kbd>D</kbd>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="floating-particles"></div>
+            <div class="gradient-orbs">
+                <div class="orb orb-1"></div>
+                <div class="orb orb-2"></div>
+                <div class="orb orb-3"></div>
             </div>
         </div>
         
-        <div class="hero-container">
+        <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <i data-lucide="trending-up" aria-hidden="true"></i>
-                    <span>Growing community of 100+ early users</span>
-                </div>
-                
-                <h1 class="hero-title" id="hero-title">
-                    Master Every
-                    <span class="gradient-text">Keyboard Shortcut</span>
-                    <br>& 10x Your Productivity
-                </h1>
-                
-                <p class="hero-description">
-                    The world's most comprehensive shortcut learning platform. Master 5,000+ shortcuts across 30+ applications with interactive quizzes, real-time practice, and gamified learning.
-                </p>
-                
-                <div class="hero-cta">
-                    <button class="btn-primary btn-hero magnetic-btn" id="start-learning" onclick="window.location.href='all-applications-enhanced.html'">
-                        <span>
+                <div class="hero-text">
+                    <div class="hero-badge animate-fade-in-up">
+                        <i data-lucide="zap"></i>
+                        <span>The Ultimate Productivity Platform</span>
+                    </div>
+                    
+                    <h1 class="hero-title animate-fade-in-up animate-delay-1">
+                        Master <span class="gradient-text">Keyboard Shortcuts</span> 
+                        for Maximum Productivity
+                    </h1>
+                    
+                    <p class="hero-description animate-fade-in-up animate-delay-2">
+                        Join over 100,000+ professionals who've accelerated their workflow with our 
+                        comprehensive shortcut learning platform. From VS Code to Photoshop, 
+                        master every tool you use.
+                    </p>
+                    
+                    <div class="hero-actions animate-fade-in-up animate-delay-3">
+                        <button class="btn btn-primary btn-lg magnetic-btn" id="getStartedBtn">
                             <i data-lucide="rocket"></i>
-                            Start Learning Free
-                        </span>
-                        <div class="btn-glow"></div>
-                    </button>
-                    <button class="btn-secondary btn-hero magnetic-btn" id="explore-apps" onclick="window.location.href='quiz-enhanced.html'">
-                        <span>
-                            <i data-lucide="play-circle"></i>
-                            Take Quiz
-                        </span>
-                    </button>
-                </div>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="100">0</div>
-                        <div class="stat-label">Active Learners</div>
+                            <span>Start Learning Free</span>
+                        </button>
+                        <button class="btn btn-secondary btn-lg" id="watchDemoBtn">
+                            <i data-lucide="play"></i>
+                            <span>Watch Demo</span>
+                        </button>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="5000">0</div>
-                        <div class="stat-label">Shortcuts Database</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="30">0</div>
-                        <div class="stat-label">Applications</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-count="98">0</div>
-                        <div class="stat-label">% Success Rate</div>
-                    </div>
-                </div>
-                
-                <div class="social-proof">
-                    <div class="avatars">
-                        <img src="https://ui-avatars.com/api/?name=Sarah&background=667eea&color=fff" alt="User" class="avatar">
-                        <img src="https://ui-avatars.com/api/?name=Mike&background=2ecc71&color=fff" alt="User" class="avatar">
-                        <img src="https://ui-avatars.com/api/?name=Lisa&background=e74c3c&color=fff" alt="User" class="avatar">
-                        <img src="https://ui-avatars.com/api/?name=John&background=f39c12&color=fff" alt="User" class="avatar">
-                        <div class="avatar-count">+100</div>
-                    </div>
-                    <div class="rating">
-                        <div class="stars">
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
+                    
+                    <div class="hero-stats animate-fade-in-up animate-delay-4">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="100000">0</span>
+                            <span class="stat-label">Active Users</span>
                         </div>
-                        <span>4.9/5 from early users</span>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="500">0</span>
+                            <span class="stat-label">Applications</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="10000">0</span>
+                            <span class="stat-label">Shortcuts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="98">0</span>
+                            <span class="stat-label">% Satisfaction</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="mockup-container">
-                    <div class="app-mockup">
-                        <div class="mockup-header">
+                
+                <div class="hero-visual animate-fade-in-right animate-delay-2">
+                    <div class="demo-window">
+                        <div class="window-header">
                             <div class="window-controls">
                                 <span class="control close"></span>
                                 <span class="control minimize"></span>
                                 <span class="control maximize"></span>
                             </div>
-                            <div class="window-title">Shortcut Sensei</div>
+                            <div class="window-title">VS Code - Shortcuts Demo</div>
                         </div>
-                        <div class="mockup-content">
-                            <div class="quiz-interface">
-                                <div class="quiz-header">
-                                    <h3>VS Code Quiz</h3>
-                                    <div class="progress-indicator">
-                                        <div class="progress-bar">
-                                            <div class="progress-fill" style="width: 60%"></div>
-                                        </div>
-                                        <span>6/10</span>
-                                    </div>
-                                </div>
+                        <div class="window-content">
+                            <div class="demo-quiz" id="demoQuiz">
                                 <div class="quiz-question">
-                                    <p>What's the shortcut to open the command palette?</p>
-                                    <div class="quiz-options">
-                                        <div class="option correct">
-                                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
-                                        </div>
-                                        <div class="option">
-                                            <kbd>Ctrl</kbd> + <kbd>P</kbd>
-                                        </div>
-                                        <div class="option">
-                                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd>
-                                        </div>
-                                    </div>
+                                    <h3>What does <kbd>Ctrl + Shift + P</kbd> do?</h3>
+                                </div>
+                                <div class="quiz-options">
+                                    <button class="quiz-option" data-correct="true">
+                                        <span class="option-letter">A</span>
+                                        <span>Open Command Palette</span>
+                                    </button>
+                                    <button class="quiz-option">
+                                        <span class="option-letter">B</span>
+                                        <span>Open File Explorer</span>
+                                    </button>
+                                    <button class="quiz-option">
+                                        <span class="option-letter">C</span>
+                                        <span>Create New File</span>
+                                    </button>
+                                    <button class="quiz-option">
+                                        <span class="option-letter">D</span>
+                                        <span>Toggle Terminal</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-arrow">
-                <i data-lucide="chevron-down"></i>
-            </div>
-            <span>Scroll to explore</span>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-section" id="features">
+    <section class="features-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge">
-                    <i data-lucide="zap"></i>
-                    <span>Features</span>
+                <div class="section-badge animate-fade-in-up">
+                    <i data-lucide="star"></i>
+                    <span>Why Choose Shortcut Sensei</span>
                 </div>
-                <h2>Everything You Need to Master Shortcuts</h2>
-                <p>Comprehensive learning tools designed to accelerate your productivity journey</p>
+                <h2 class="section-title animate-fade-in-up animate-delay-1">
+                    Everything You Need to <span class="gradient-text">Master Shortcuts</span>
+                </h2>
+                <p class="section-description animate-fade-in-up animate-delay-2">
+                    Our platform combines interactive learning, real-time practice, and community features 
+                    to help you become a keyboard shortcut expert.
+                </p>
             </div>
             
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card animate-fade-in-up animate-delay-1">
                     <div class="feature-icon">
                         <i data-lucide="brain"></i>
                     </div>
-                    <h3>Adaptive Learning</h3>
-                    <p>AI-powered system that adapts to your learning pace and focuses on areas where you need improvement.</p>
-                    <div class="feature-demo">
-                        <div class="demo-content">
-                            <div class="skill-bar">
-                                <span>VS Code Shortcuts</span>
-                                <div class="bar"><div class="fill" style="width: 85%"></div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <span>Photoshop Shortcuts</span>
-                                <div class="bar"><div class="fill" style="width: 60%"></div></div>
-                            </div>
-                        </div>
+                    <h3>Interactive Learning</h3>
+                    <p>Learn through hands-on practice with our interactive quiz system. Real-time feedback helps you master shortcuts faster.</p>
+                    <div class="feature-stats">
+                        <span class="feature-stat">
+                            <i data-lucide="users"></i>
+                            50K+ learners
+                        </span>
+                        <span class="feature-stat">
+                            <i data-lucide="trending-up"></i>
+                            95% retention
+                        </span>
                     </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-fade-in-up animate-delay-2">
                     <div class="feature-icon">
-                        <i data-lucide="gamepad-2"></i>
+                        <i data-lucide="zap"></i>
                     </div>
-                    <h3>Gamified Experience</h3>
-                    <p>Level up, earn achievements, and compete with friends in an engaging game-like environment.</p>
-                    <div class="feature-demo">
-                        <div class="demo-content">
-                            <div class="level-badge">Level 15</div>
-                            <div class="xp-bar">
-                                <div class="xp-fill" style="width: 70%"></div>
-                                <span>2,450 / 3,500 XP</span>
-                            </div>
-                        </div>
+                    <h3>Real-time Practice</h3>
+                    <p>Practice shortcuts in simulated environments that mirror real applications. Build muscle memory effectively.</p>
+                    <div class="feature-stats">
+                        <span class="feature-stat">
+                            <i data-lucide="clock"></i>
+                            Instant feedback
+                        </span>
+                        <span class="feature-stat">
+                            <i data-lucide="target"></i>
+                            Adaptive difficulty
+                        </span>
                     </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-fade-in-up animate-delay-3">
                     <div class="feature-icon">
                         <i data-lucide="users"></i>
                     </div>
-                    <h3>Community Learning</h3>
-                    <p>Join a vibrant community of learners, share tips, and participate in weekly challenges.</p>
-                    <div class="feature-demo">
-                        <div class="demo-content">
-                            <div class="community-stat">
-                                <i data-lucide="message-circle"></i>
-                                <span>2.1K discussions</span>
-                            </div>
-                            <div class="community-stat">
-                                <i data-lucide="heart"></i>
-                                <span>50K helpful votes</span>
-                            </div>
-                        </div>
+                    <h3>Community Challenges</h3>
+                    <p>Compete with friends, join tournaments, and climb leaderboards. Make learning shortcuts social and fun.</p>
+                    <div class="feature-stats">
+                        <span class="feature-stat">
+                            <i data-lucide="trophy"></i>
+                            Weekly tournaments
+                        </span>
+                        <span class="feature-stat">
+                            <i data-lucide="award"></i>
+                            Achievement system
+                        </span>
                     </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-fade-in-up animate-delay-4">
                     <div class="feature-icon">
-                        <i data-lucide="target"></i>
+                        <i data-lucide="bar-chart"></i>
                     </div>
-                    <h3>Real-time Practice</h3>
-                    <p>Practice shortcuts directly in simulated environments with instant feedback and correction.</p>
-                    <div class="feature-demo">
-                        <div class="demo-content">
-                            <div class="practice-prompt">
-                                <span>Try: Copy this text</span>
-                                <div class="shortcut-hint">
-                                    <kbd>Ctrl</kbd> + <kbd>C</kbd>
-                                </div>
-                            </div>
-                        </div>
+                    <h3>Progress Tracking</h3>
+                    <p>Detailed analytics show your improvement over time. Track accuracy, speed, and mastery across all applications.</p>
+                    <div class="feature-stats">
+                        <span class="feature-stat">
+                            <i data-lucide="activity"></i>
+                            Detailed analytics
+                        </span>
+                        <span class="feature-stat">
+                            <i data-lucide="calendar"></i>
+                            Daily streaks
+                        </span>
                     </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-fade-in-up animate-delay-5">
                     <div class="feature-icon">
-                        <i data-lucide="bar-chart-3"></i>
+                        <i data-lucide="grid-3x3"></i>
                     </div>
-                    <h3>Progress Analytics</h3>
-                    <p>Detailed insights into your learning progress with personalized recommendations for improvement.</p>
-                    <div class="feature-demo">
-                        <div class="demo-content">
-                            <div class="chart-mini">
-                                <div class="chart-bar" style="height: 60%"></div>
-                                <div class="chart-bar" style="height: 80%"></div>
-                                <div class="chart-bar" style="height: 90%"></div>
-                                <div class="chart-bar" style="height: 70%"></div>
-                            </div>
-                        </div>
+                    <h3>500+ Applications</h3>
+                    <p>Comprehensive coverage of popular applications from development tools to design software and productivity apps.</p>
+                    <div class="feature-stats">
+                        <span class="feature-stat">
+                            <i data-lucide="code"></i>
+                            Dev tools
+                        </span>
+                        <span class="feature-stat">
+                            <i data-lucide="palette"></i>
+                            Design apps
+                        </span>
                     </div>
                 </div>
                 
-                <div class="feature-card">
+                <div class="feature-card animate-fade-in-up animate-delay-6">
                     <div class="feature-icon">
                         <i data-lucide="smartphone"></i>
                     </div>
-                    <h3>Cross-platform</h3>
-                    <p>Learn on any device with our responsive web app that syncs your progress across all platforms.</p>
-                    <div class="feature-demo">
-                        <div class="demo-content">
-                            <div class="device-icons">
-                                <i data-lucide="monitor"></i>
-                                <i data-lucide="tablet"></i>
-                                <i data-lucide="smartphone"></i>
-                            </div>
-                        </div>
+                    <h3>Cross-Platform</h3>
+                    <p>Learn shortcuts for Windows, macOS, and Linux. Our platform adapts to show the right shortcuts for your system.</p>
+                    <div class="feature-stats">
+                        <span class="feature-stat">
+                            <i data-lucide="monitor"></i>
+                            All platforms
+                        </span>
+                        <span class="feature-stat">
+                            <i data-lucide="sync"></i>
+                            Cloud sync
+                        </span>
                     </div>
                 </div>
             </div>
@@ -538,134 +373,265 @@
     </section>
 
     <!-- Applications Showcase -->
-    <section class="apps-showcase" id="applications">
+    <section class="apps-showcase-section">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge">
-                    <i data-lucide="grid-3x3"></i>
-                    <span>Applications</span>
-                </div>
-                <h2>Master Shortcuts for Your Favorite Apps</h2>
-                <p>From code editors to design tools - we've got you covered</p>
+                <h2 class="section-title animate-fade-in-up">
+                    Popular <span class="gradient-text">Applications</span>
+                </h2>
+                <p class="section-description animate-fade-in-up animate-delay-1">
+                    Master shortcuts for the tools you use every day
+                </p>
             </div>
             
-            <div class="app-categories">
-                <button class="category-btn active" data-category="all">
-                    <i data-lucide="grid-3x3"></i>
-                    <span>All Apps</span>
-                </button>
-                <button class="category-btn" data-category="development">
-                    <i data-lucide="code"></i>
-                    <span>Development</span>
-                </button>
-                <button class="category-btn" data-category="design">
-                    <i data-lucide="palette"></i>
-                    <span>Design</span>
-                </button>
-                <button class="category-btn" data-category="productivity">
-                    <i data-lucide="briefcase"></i>
-                    <span>Productivity</span>
-                </button>
-                <button class="category-btn" data-category="browser">
-                    <i data-lucide="globe"></i>
-                    <span>Browsers</span>
-                </button>
+            <div class="apps-grid" id="appsGrid">
+                <a href="Visual Studio.html" class="app-card animate-fade-in-up animate-delay-1">
+                    <div class="app-icon">
+                        <i data-lucide="code"></i>
+                    </div>
+                    <h3>VS Code</h3>
+                    <p>Master the world's most popular code editor</p>
+                    <span class="shortcut-count">150+ shortcuts</span>
+                    <div class="app-stats">
+                        <span class="stat">
+                            <i data-lucide="users"></i>
+                            25K learners
+                        </span>
+                        <span class="stat">
+                            <i data-lucide="star"></i>
+                            4.9/5
+                        </span>
+                    </div>
+                </a>
+                
+                <a href="Adobe PhotoShop.html" class="app-card animate-fade-in-up animate-delay-2">
+                    <div class="app-icon">
+                        <i data-lucide="image"></i>
+                    </div>
+                    <h3>Photoshop</h3>
+                    <p>Professional photo editing shortcuts</p>
+                    <span class="shortcut-count">200+ shortcuts</span>
+                    <div class="app-stats">
+                        <span class="stat">
+                            <i data-lucide="users"></i>
+                            18K learners
+                        </span>
+                        <span class="stat">
+                            <i data-lucide="star"></i>
+                            4.8/5
+                        </span>
+                    </div>
+                </a>
+                
+                <a href="Google Chrome.html" class="app-card animate-fade-in-up animate-delay-3">
+                    <div class="app-icon">
+                        <i data-lucide="globe"></i>
+                    </div>
+                    <h3>Chrome</h3>
+                    <p>Browse the web more efficiently</p>
+                    <span class="shortcut-count">80+ shortcuts</span>
+                    <div class="app-stats">
+                        <span class="stat">
+                            <i data-lucide="users"></i>
+                            35K learners
+                        </span>
+                        <span class="stat">
+                            <i data-lucide="star"></i>
+                            4.7/5
+                        </span>
+                    </div>
+                </a>
+                
+                <a href="Microsoft Excell.htm" class="app-card animate-fade-in-up animate-delay-4">
+                    <div class="app-icon">
+                        <i data-lucide="grid-3x3"></i>
+                    </div>
+                    <h3>Excel</h3>
+                    <p>Spreadsheet mastery made simple</p>
+                    <span class="shortcut-count">120+ shortcuts</span>
+                    <div class="app-stats">
+                        <span class="stat">
+                            <i data-lucide="users"></i>
+                            22K learners
+                        </span>
+                        <span class="stat">
+                            <i data-lucide="star"></i>
+                            4.6/5
+                        </span>
+                    </div>
+                </a>
+                
+                <a href="Discord.html" class="app-card animate-fade-in-up animate-delay-5">
+                    <div class="app-icon">
+                        <i data-lucide="message-circle"></i>
+                    </div>
+                    <h3>Discord</h3>
+                    <p>Gaming and community communication</p>
+                    <span class="shortcut-count">50+ shortcuts</span>
+                    <div class="app-stats">
+                        <span class="stat">
+                            <i data-lucide="users"></i>
+                            15K learners
+                        </span>
+                        <span class="stat">
+                            <i data-lucide="star"></i>
+                            4.5/5
+                        </span>
+                    </div>
+                </a>
+                
+                <a href="Microsoft Word.htm" class="app-card animate-fade-in-up animate-delay-6">
+                    <div class="app-icon">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <h3>Word</h3>
+                    <p>Document editing made faster</p>
+                    <span class="shortcut-count">100+ shortcuts</span>
+                    <div class="app-stats">
+                        <span class="stat">
+                            <i data-lucide="users"></i>
+                            28K learners
+                        </span>
+                        <span class="stat">
+                            <i data-lucide="star"></i>
+                            4.4/5
+                        </span>
+                    </div>
+                </a>
             </div>
             
-            <div class="apps-grid" id="apps-grid">
-                <!-- Apps will be populated by JavaScript -->
-            </div>
-            
-            <div class="apps-cta">
-                <button class="btn-outline" id="view-all-apps" onclick="window.location.href='all-applications-enhanced.html'">
-                    View All 30+ Applications
+            <div class="apps-cta animate-fade-in-up animate-delay-7">
+                <button class="btn btn-outline btn-lg" id="viewAllAppsBtn">
+                    <span>View All 500+ Applications</span>
                     <i data-lucide="arrow-right"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials-section">
+    <!-- Live Quiz Section -->
+    <section class="live-quiz-section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-badge">
-                    <i data-lucide="heart"></i>
-                    <span>Testimonials</span>
+            <div class="quiz-showcase">
+                <div class="quiz-content animate-fade-in-left">
+                    <div class="section-badge">
+                        <i data-lucide="brain"></i>
+                        <span>Interactive Learning</span>
+                    </div>
+                    <h2>Test Your Knowledge</h2>
+                    <p>Challenge yourself with our interactive quiz system. Compete with friends, track your progress, and earn achievements as you master shortcuts.</p>
+                    
+                    <div class="quiz-features">
+                        <div class="quiz-feature">
+                            <i data-lucide="zap"></i>
+                            <span>Real-time feedback</span>
+                        </div>
+                        <div class="quiz-feature">
+                            <i data-lucide="users"></i>
+                            <span>Multiplayer battles</span>
+                        </div>
+                        <div class="quiz-feature">
+                            <i data-lucide="trophy"></i>
+                            <span>Global leaderboards</span>
+                        </div>
+                        <div class="quiz-feature">
+                            <i data-lucide="target"></i>
+                            <span>Adaptive difficulty</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-lg magnetic-btn" id="startQuizBtn">
+                        <i data-lucide="play"></i>
+                        <span>Start Quiz Challenge</span>
+                    </button>
                 </div>
-                <h2>Loved by Professionals Worldwide</h2>
+                
+                <div class="quiz-demo animate-fade-in-right">
+                    <div class="demo-quiz-window">
+                        <div class="quiz-header">
+                            <div class="quiz-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%;"></div>
+                                </div>
+                                <span class="progress-text">6/10</span>
+                            </div>
+                            <div class="quiz-timer">
+                                <i data-lucide="clock"></i>
+                                <span>15s</span>
+                            </div>
+                        </div>
+                        <div class="quiz-body">
+                            <h3>Which shortcut duplicates a line in VS Code?</h3>
+                            <div class="demo-options">
+                                <div class="demo-option">
+                                    <span class="option-letter">A</span>
+                                    <span>Ctrl + D</span>
+                                </div>
+                                <div class="demo-option correct">
+                                    <span class="option-letter">B</span>
+                                    <span>Alt + Shift + ↓</span>
+                                </div>
+                                <div class="demo-option">
+                                    <span class="option-letter">C</span>
+                                    <span>Ctrl + C, Ctrl + V</span>
+                                </div>
+                                <div class="demo-option">
+                                    <span class="option-letter">D</span>
+                                    <span>Ctrl + Shift + D</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="quote-icon">
-                            <i data-lucide="quote"></i>
-                        </div>
-                        <p>"Shortcut Sensei completely transformed my workflow. I went from being a casual user to mastering VS Code in just 2 weeks. The gamification keeps me coming back!"</p>
-                        <div class="rating">
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                        </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card animate-scale-in animate-delay-1">
+                    <div class="stat-icon">
+                        <i data-lucide="users"></i>
                     </div>
-                    <div class="testimonial-author">
-                        <img src="https://ui-avatars.com/api/?name=Sarah+Chen&background=667eea&color=fff" alt="Sarah Chen">
-                        <div class="author-info">
-                            <h4>Sarah Chen</h4>
-                            <p>Senior Frontend Developer</p>
-                            <span class="company">Google</span>
-                        </div>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="100000">0</span>
+                        <span class="stat-label">Active Users</span>
+                        <span class="stat-description">Learning shortcuts daily</span>
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="quote-icon">
-                            <i data-lucide="quote"></i>
-                        </div>
-                        <p>"As a design team lead, I needed my team to be more efficient. Shortcut Sensei helped us reduce design iteration time by 60%. The Photoshop shortcuts section is incredible!"</p>
-                        <div class="rating">
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                        </div>
+                <div class="stat-card animate-scale-in animate-delay-2">
+                    <div class="stat-icon">
+                        <i data-lucide="grid-3x3"></i>
                     </div>
-                    <div class="testimonial-author">
-                        <img src="https://ui-avatars.com/api/?name=Mike+Rodriguez&background=2ecc71&color=fff" alt="Mike Rodriguez">
-                        <div class="author-info">
-                            <h4>Mike Rodriguez</h4>
-                            <p>Design Team Lead</p>
-                            <span class="company">Adobe</span>
-                        </div>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span class="stat-label">Applications</span>
+                        <span class="stat-description">Comprehensive coverage</span>
                     </div>
                 </div>
                 
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <div class="quote-icon">
-                            <i data-lucide="quote"></i>
-                        </div>
-                        <p>"The community aspect is what sets Shortcut Sensei apart. Learning from other professionals and sharing tips has made me not just faster, but smarter about my workflow."</p>
-                        <div class="rating">
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                            <i data-lucide="star" class="star filled"></i>
-                        </div>
+                <div class="stat-card animate-scale-in animate-delay-3">
+                    <div class="stat-icon">
+                        <i data-lucide="zap"></i>
                     </div>
-                    <div class="testimonial-author">
-                        <img src="https://ui-avatars.com/api/?name=Emma+Thompson&background=e74c3c&color=fff" alt="Emma Thompson">
-                        <div class="author-info">
-                            <h4>Emma Thompson</h4>
-                            <p>Product Manager</p>
-                            <span class="company">Microsoft</span>
-                        </div>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="10000">0</span>
+                        <span class="stat-label">Shortcuts</span>
+                        <span class="stat-description">Ready to master</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card animate-scale-in animate-delay-4">
+                    <div class="stat-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number" data-count="300">0</span>
+                        <span class="stat-label">% Faster</span>
+                        <span class="stat-description">Average productivity gain</span>
                     </div>
                 </div>
             </div>
@@ -675,26 +641,26 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <div class="cta-content">
-                <div class="cta-text">
-                    <h2>Ready to 10x Your Productivity?</h2>
-                    <p>Join our growing community of learners and master shortcuts that will transform your workflow</p>
-                </div>
+            <div class="cta-content animate-fade-in-up">
+                <h2>Ready to Become a Shortcut Master?</h2>
+                <p>Join thousands of professionals who've transformed their productivity with keyboard shortcuts</p>
                 <div class="cta-actions">
-                    <button class="btn-primary btn-large" id="get-started" onclick="window.location.href='all-applications-enhanced.html'">
+                    <button class="btn btn-primary btn-lg magnetic-btn" id="joinNowBtn">
                         <i data-lucide="rocket"></i>
-                        <span>Get Started Free</span>
+                        <span>Start Your Journey</span>
                     </button>
-                    <div class="cta-note">
-                        <i data-lucide="check"></i>
-                        <span>Completely FREE • No payment required ever</span>
-                    </div>
+                    <button class="btn btn-outline btn-lg" id="learnMoreBtn">
+                        <i data-lucide="info"></i>
+                        <span>Learn More</span>
+                    </button>
+                </div>
+                <div class="cta-note">
+                    <i data-lucide="shield-check"></i>
+                    <span>Free to start • No credit card required • Cancel anytime</span>
                 </div>
             </div>
         </div>
     </section>
-
-    </main>
 
     <!-- Footer -->
     <footer class="footer-modern">
@@ -777,15 +743,15 @@
                             <i data-lucide="zap"></i>
                             Platform
                         </h4>
-                        <a href="all-applications-enhanced.html">
+                        <a href="all-applications.html">
                             <i data-lucide="grid-3x3"></i>
                             All Applications
                         </a>
-                        <a href="quiz-enhanced.html">
+                        <a href="quiz.html">
                             <i data-lucide="brain"></i>
                             Interactive Quiz
                         </a>
-                        <a href="index-enhanced.html#features">
+                        <a href="index.html#features">
                             <i data-lucide="star"></i>
                             Features
                         </a>
@@ -855,7 +821,7 @@
                             <i data-lucide="building"></i>
                             Company
                         </h4>
-                        <a href="About-enhanced.html">
+                        <a href="about.html">
                             <i data-lucide="info"></i>
                             About Us
                         </a>
@@ -934,20 +900,6 @@
             <div class="footer-bottom">
                 <div class="footer-bottom-left">
                     <p>&copy; 2025 Shortcut Sensei Inc. All rights reserved.</p>
-                    <div class="footer-badges">
-                        <span class="security-badge">
-                            <i data-lucide="shield-check"></i>
-                            SOC 2 Certified
-                        </span>
-                        <span class="security-badge">
-                            <i data-lucide="lock"></i>
-                            ISO 27001
-                        </span>
-                        <span class="security-badge">
-                            <i data-lucide="globe"></i>
-                            GDPR Compliant
-                        </span>
-                    </div>
                 </div>
                 <div class="footer-bottom-right">
                     <div class="language-selector">
@@ -972,37 +924,35 @@
         </div>
     </footer>
 
-    <!-- Authentication Modal -->
+    <!-- Auth Modal -->
     <div class="auth-modal-overlay" id="authModalOverlay">
         <div class="auth-modal">
             <div class="auth-modal-header">
                 <div class="auth-modal-title">
-                    <h2 id="authModalTitle">Welcome Back!</h2>
-                    <p id="authModalSubtitle">Sign in to track your progress and compete with friends</p>
+                    <h2 id="authModalTitle">Welcome to Shortcut Sensei</h2>
+                    <p id="authModalSubtitle">Sign in to unlock your full potential</p>
                 </div>
                 <button class="auth-modal-close" id="authModalClose">
                     <i data-lucide="x"></i>
                 </button>
             </div>
             
+            <div class="auth-modal-tabs">
+                <button class="auth-tab active" id="signinTab">Sign In</button>
+                <button class="auth-tab" id="signupTab">Sign Up</button>
+            </div>
+            
             <div class="auth-modal-content">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="signin" id="signinTab">Sign In</button>
-                    <button class="auth-tab" data-tab="signup" id="signupTab">Sign Up</button>
-                </div>
-                
                 <!-- Sign In Form -->
-                <form class="auth-form" id="signinForm" style="display: block;">
+                <form class="auth-form" id="signinForm">
                     <div class="form-group">
-                        <label for="signinEmail">Email</label>
-                        <input type="email" id="signinEmail" required>
+                        <label for="signinEmail">Email Address</label>
+                        <input type="email" id="signinEmail" required placeholder="Enter your email">
                     </div>
-                    
                     <div class="form-group">
                         <label for="signinPassword">Password</label>
-                        <input type="password" id="signinPassword" required>
+                        <input type="password" id="signinPassword" required placeholder="Enter your password">
                     </div>
-                    
                     <div class="form-options">
                         <label class="checkbox-label">
                             <input type="checkbox" id="rememberMe">
@@ -1011,10 +961,9 @@
                         </label>
                         <a href="#" class="forgot-password">Forgot password?</a>
                     </div>
-                    
                     <button type="submit" class="auth-submit-btn">
                         <i data-lucide="log-in"></i>
-                        Sign In
+                        <span>Sign In</span>
                     </button>
                 </form>
                 
@@ -1022,92 +971,155 @@
                 <form class="auth-form" id="signupForm" style="display: none;">
                     <div class="form-group">
                         <label for="signupName">Full Name</label>
-                        <input type="text" id="signupName" required>
+                        <input type="text" id="signupName" required placeholder="Enter your full name">
                     </div>
-                    
                     <div class="form-group">
-                        <label for="signupEmail">Email</label>
-                        <input type="email" id="signupEmail" required>
+                        <label for="signupEmail">Email Address</label>
+                        <input type="email" id="signupEmail" required placeholder="Enter your email">
                     </div>
-                    
                     <div class="form-group">
                         <label for="signupPassword">Password</label>
-                        <input type="password" id="signupPassword" required>
+                        <input type="password" id="signupPassword" required placeholder="Create a password">
                     </div>
-                    
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" required>
+                        <input type="password" id="confirmPassword" required placeholder="Confirm your password">
                     </div>
-                    
                     <div class="form-options">
                         <label class="checkbox-label">
                             <input type="checkbox" id="agreeTerms" required>
                             <span class="checkmark"></span>
-                            I agree to the Terms of Service and Privacy Policy
+                            I agree to the <a href="#terms">Terms of Service</a>
                         </label>
                     </div>
-                    
                     <button type="submit" class="auth-submit-btn">
                         <i data-lucide="user-plus"></i>
-                        Create Account
+                        <span>Create Account</span>
                     </button>
                 </form>
                 
                 <div class="auth-divider">
-                    <span>or continue with</span>
+                    <span>Or continue with</span>
                 </div>
                 
                 <div class="social-auth">
                     <button class="social-btn google-btn">
-                        <svg class="social-icon" viewBox="0 0 24 24">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                             <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                             <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                         </svg>
-                        Google
+                        <span>Google</span>
                     </button>
-                    
                     <button class="social-btn github-btn">
                         <i data-lucide="github"></i>
-                        GitHub
+                        <span>GitHub</span>
                     </button>
-                    
                     <button class="social-btn discord-btn">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="#5865F2">
-                            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
-                        </svg>
-                        Discord
+                        <i data-lucide="message-circle"></i>
+                        <span>Discord</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    
-    </div>
-
     <!-- Toast Container -->
     <div class="toast-container" id="toast-container"></div>
 
     <!-- Scripts -->
-    
     <script src="js/main.js"></script>
+    <script src="js/auth-system.js"></script>
+    <script src="js/footer-functionality.js"></script>
+    
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
         
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            new ShortcutSensei();
+            if (typeof ShortcutSensei !== 'undefined') {
+                new ShortcutSensei();
+            }
+            
+            // Demo quiz functionality
+            const demoQuiz = document.getElementById('demoQuiz');
+            if (demoQuiz) {
+                const options = demoQuiz.querySelectorAll('.quiz-option');
+                options.forEach(option => {
+                    option.addEventListener('click', function() {
+                        options.forEach(opt => opt.classList.remove('selected', 'correct'));
+                        this.classList.add('selected');
+                        
+                        setTimeout(() => {
+                            if (this.dataset.correct) {
+                                this.classList.add('correct');
+                                // Show success animation
+                                this.style.animation = 'pulse 0.6s ease';
+                            }
+                        }, 500);
+                    });
+                });
+            }
+            
+            // Animate stats on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        
+                        // Animate counters
+                        if (element.hasAttribute('data-count')) {
+                            animateCounter(element);
+                        }
+                        
+                        // Add animation classes
+                        if (element.classList.contains('animate-fade-in-up')) {
+                            element.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                        }
+                        if (element.classList.contains('animate-fade-in-left')) {
+                            element.style.animation = 'fadeInLeft 0.8s ease-out forwards';
+                        }
+                        if (element.classList.contains('animate-fade-in-right')) {
+                            element.style.animation = 'fadeInRight 0.8s ease-out forwards';
+                        }
+                        if (element.classList.contains('animate-scale-in')) {
+                            element.style.animation = 'scaleIn 0.8s ease-out forwards';
+                        }
+                        
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all animated elements
+            document.querySelectorAll('[data-count], .animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-scale-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            function animateCounter(element) {
+                const target = parseInt(element.dataset.count);
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 16);
+            }
         });
     </script>
-    
-    <!-- App Controllers -->
-    <script src="js/quiz.js"></script>
-    <script src="js/master-integration.js"></script>
-    <script src="js/auth-system.js"></script>
-    <script src="js/footer-functionality.js"></script>
 </body>
 </html>
