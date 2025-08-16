@@ -5,933 +5,986 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Chrome Shortcuts - Shortcut Sensei</title>
     <meta name="description" content="Master Google Chrome with our comprehensive keyboard shortcuts guide. Learn essential Chrome shortcuts for faster browsing, tab management, and productivity.">
-    <meta name="keywords" content="Google Chrome shortcuts, Chrome keyboard shortcuts, browser shortcuts, productivity tips, web browsing">
-    <link rel="canonical" href="https://shortcutsensei.com/Google%20Chrome.html">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="main-styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/premium-ui.css">
+
     <style>
-        /* Base styles with CSS variables for easier theming */
-        :root {
-            --primary-color: #06a3be;
-            --primary-hover: #048ea6;
-            --secondary-color: #8a2be2;
-            --secondary-hover: #7a1dc5;
-            --dark-bg: #121212;
-            --dark-card: #1e1e1e;
-            --dark-text: #f4f4f4;
-            --light-bg: #f4f4f4;
-            --light-card: #ffffff;
-            --light-text: #333;
-            --header-footer-bg: #000000;
-            --selection-color: rgba(6, 163, 190, 0.2);
-            --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --shadow-dark: 0 4px 8px rgba(0, 0, 0, 0.3);
-            --border-radius: 8px;
-            --transition-speed: 0.3s;
+        /* CRITICAL LAYOUT FIXES */
+        
+        /* Header Z-index and positioning fix */
+        .header, 
+        .nav-header,
+        #app-header {
+            z-index: 1000 !important;
+            position: fixed !important;
+            top: 0 !important;
+            width: 100% !important;
+            background: var(--bg-primary, #0a0a0a) !important;
+            backdrop-filter: blur(20px) !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
         }
         
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
+        /* Main content spacing - CRITICAL FIX */
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--light-bg);
-            color: var(--light-text);
-            line-height: 1.6;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-        }
-        
-        body.dark-mode {
-            background-color: var(--dark-bg);
-            color: var(--dark-text);
-        }
-        
-        ::selection {
-            background-color: var(--selection-color);
-        }
-        
-        /* Header styles - sticky with shadow */
-        header {
-            background-color: var(--header-footer-bg);
-            color: #fff;
-            padding: 15px 0;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 90%;
-            margin: 0 auto;
-        }
-
-        .logo a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.8em;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-icon {
-            margin-right: 10px;
-            color: var(--primary-color);
-        }
-
-        .main-nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        .main-nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 15px;
-            display: block;
-            transition: all var(--transition-speed) ease;
-            border-radius: var(--border-radius);
-        }
-
-        .main-nav ul li a:hover {
-            background-color: #444;
-        }
-        
-        .main-nav ul li a.active {
-            background-color: var(--primary-color);
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.8em;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        .search-container {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 25px;
-            padding: 5px 15px;
-            box-shadow: var(--shadow-light);
-            position: relative;
-            transition: all var(--transition-speed);
-        }
-        
-        .dark-mode .search-container {
-            background-color: #333;
-            box-shadow: var(--shadow-dark);
-        }
-
-        .search-container input[type="text"] {
-            flex: 1;
-            padding: 8px;
-            border: none;
-            border-radius: 20px;
-            margin-right: 10px;
-            font-size: 16px;
-            outline: none;
-            background-color: transparent;
-            color: var(--light-text);
-            transition: color var(--transition-speed);
-        }
-        
-        .dark-mode .search-container input[type="text"] {
-            color: var(--dark-text);
-        }
-        
-        .search-container input[type="text"]::placeholder {
-            color: #888;
-        }
-
-        .search-container button {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            background-color: var(--secondary-color);
-            color: #fff;
-            cursor: pointer;
-            font-size: 16px;
-            outline: none;
-            transition: background-color var(--transition-speed);
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .search-container button:hover {
-            background-color: var(--secondary-hover);
-        }
-        
-        .dark-mode-toggle {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin-left: 15px;
-            position: relative;
-            user-select: none;
-        }
-        
-        .dark-mode-toggle i {
-            font-size: 24px;
-            transition: transform 0.4s ease;
-        }
-        
-        /* Main content */
-        .content-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 20px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding-top: 100px !important; /* Push all content below fixed header */
         }
         
         .page-title {
+            margin-top: 40px !important;
+            margin-bottom: 30px !important;
+            text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
+        /* Content container - proper centering and max-width */
+        .intro-container,
+        .filter-section,
+        .shortcuts-container,
+        .main-content {
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+            padding: 0 20px !important;
+        }
+        
+        /* Section spacing improvements */
         .intro-container {
-            background-color: var(--light-card);
-            border-radius: var(--border-radius);
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow-light);
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-        }
-        
-        .dark-mode .intro-container {
-            background-color: var(--dark-card);
-            box-shadow: var(--shadow-dark);
+            margin-bottom: 60px !important;
+            text-align: center;
         }
         
         .intro-text {
             font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: var(--text-secondary, #a1a1aa);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
+        /* Featured Image Fixes */
         .featured-image-container {
-            position: relative;
             width: 100%;
-            border-radius: var(--border-radius);
+            max-width: 600px;
+            margin: 3rem auto 2rem auto !important;
+            border-radius: 16px;
             overflow: hidden;
-            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .featured-image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
         
         .featured-image {
             width: 100%;
-            max-height: 500px;
+            height: auto;
+            max-height: 400px;
             object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-light);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
         }
         
-        .dark-mode .featured-image {
-            box-shadow: var(--shadow-dark);
-        }
-        
-        .featured-image:hover {
-            transform: scale(1.02);
-        }
-        
-        .section-title {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 0.5rem;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 50px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            transition: width 0.3s ease;
-        }
-        
-        .section-title:hover::after {
-            width: 100px;
-        }
-        
-        .section-description {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Actions toolbar */
+        /* Actions toolbar improvements */
         .actions-toolbar {
             display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0 60px 0;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 2rem;
         }
         
         .action-button {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 8px 15px;
-            border-radius: var(--border-radius);
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            color: #6366f1;
             text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
             cursor: pointer;
-            transition: background-color var(--transition-speed), transform 0.2s;
-            border: none;
-            font-size: 1rem;
         }
         
         .action-button:hover {
-            background-color: var(--primary-hover);
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
         }
         
-        .action-button i {
-            margin-right: 8px;
-        }
-        
-        /* Filter section with improved styling */
+        /* Filter section improvements */
         .filter-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background-color: var(--light-card);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-light);
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-        }
-        
-        .dark-mode .filter-section {
-            background-color: var(--dark-card);
-            box-shadow: var(--shadow-dark);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
         }
         
         .filter-title {
             font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .filter-container {
-            margin-bottom: 1rem;
+            color: var(--text-primary, #ffffff);
+            margin-bottom: 16px;
         }
         
         .filter-input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: var(--text-primary, #ffffff);
             font-size: 1rem;
-            transition: border-color var(--transition-speed), background-color var(--transition-speed);
-            outline: none;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
         }
         
         .filter-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(6, 163, 190, 0.2);
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
         
-        .dark-mode .filter-input {
-            background-color: #333;
-            border-color: #555;
-            color: var(--dark-text);
-        }
-        
-        /* Category filter */
         .category-filter {
             display: flex;
+            gap: 12px;
             flex-wrap: wrap;
-            gap: 10px;
+            justify-content: center;
         }
         
         .category-btn {
-            background-color: #eee;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            color: var(--text-secondary, #a1a1aa);
             cursor: pointer;
-            transition: all var(--transition-speed);
-            font-size: 0.9rem;
-            color: var(--light-text);
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
         
-        .dark-mode .category-btn {
-            background-color: #333;
-            color: var(--dark-text);
-        }
-        
+        .category-btn.active,
         .category-btn:hover {
-            background-color: #ddd;
-            transform: translateY(-2px);
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+            color: #6366f1;
         }
         
-        .dark-mode .category-btn:hover {
-            background-color: #444;
-        }
-        
-        .category-btn.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        /* Empty state message */
-        .empty-state {
-            display: none;
-            text-align: center;
-            padding: 30px;
-            background-color: var(--light-card);
-            border-radius: var(--border-radius);
-            margin: 20px 0;
-            box-shadow: var(--shadow-light);
-        }
-        
-        .dark-mode .empty-state {
-            background-color: var(--dark-card);
-            box-shadow: var(--shadow-dark);
-        }
-        
-        .empty-state i {
-            font-size: 3rem;
-            color: #ccc;
-            margin-bottom: 15px;
-        }
-        
-        /* Table styles with enhanced design */
-        .table-container {
-            background-color: var(--light-card);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-light);
-            transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
-            overflow: hidden;
-        }
-        
-        .dark-mode .table-container {
-            background-color: var(--dark-card);
-            box-shadow: var(--shadow-dark);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-        
-        th {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 15px;
-            text-align: left;
-            position: sticky;
-            top: 0;
-        }
-        
-        td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-            transition: background-color var(--transition-speed);
-        }
-        
-        .dark-mode td {
-            border-bottom: 1px solid #444;
-        }
-        
-        tbody tr {
-            transition: background-color var(--transition-speed);
-        }
-        
-        tbody tr:nth-child(even) {
-            background-color: rgba(0, 0, 0, 0.02);
-        }
-        
-        .dark-mode tbody tr:nth-child(even) {
-            background-color: rgba(255, 255, 255, 0.02);
-        }
-        
-        tbody tr:hover {
-            background-color: rgba(6, 163, 190, 0.08);
-        }
-        
-        /* Copy button for shortcuts */
-        .actions-cell {
-            white-space: nowrap;
-        }
-        
+        /* Copy Button Improvements */
         .copy-btn {
-            background-color: transparent;
-            border: none;
-            color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            color: #6366f1;
             cursor: pointer;
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            transition: all var(--transition-speed);
-        }
-        
-        .copy-btn:hover {
-            color: var(--secondary-color);
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-        
-        .dark-mode .copy-btn:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        /* Tooltip for copied message */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 80px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            text-align: center;
-            border-radius: 4px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -40px;
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-            transform: translateY(10px);
-            font-size: 0.8rem;
-        }
-        
-        .tooltip .tooltiptext::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
-        }
-        
-        .tooltip .tooltiptext.visible {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Key combination styling */
-        .key-combo {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        
-        .key {
-            display: inline-block;
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 3px 8px;
-            font-family: monospace;
-            font-size: 0.9em;
-            box-shadow: 0 2px 0 #ccc;
-            transition: all var(--transition-speed);
-        }
-        
-        .dark-mode .key {
-            background-color: #333;
-            border-color: #555;
-            box-shadow: 0 2px 0 #222;
-        }
-        
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity var(--transition-speed), visibility var(--transition-speed), background-color var(--transition-speed), transform 0.2s;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .back-to-top:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-5px);
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Footer styles with enhanced design */
-        footer {
-            background-color: var(--header-footer-bg);
-            color: #fff;
-            padding: 40px 0 20px;
-            margin-top: 2rem;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 20px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--primary-color);
-        }
-
-        .footer-links, .social-icons {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links li a, .social-icons li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: all var(--transition-speed);
-            display: inline-block;
-        }
-
-        .footer-links li a:hover {
-            color: #fff;
-            transform: translateX(5px);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons li a {
-            font-size: 1.5em;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: all var(--transition-speed);
-        }
-
-        .social-icons li a:hover {
-            color: #fff;
-            background-color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-
-        .subscribe-form {
-            display: flex;
-            gap: 10px;
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .subscribe-form input[type="email"] {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 20px;
-            outline: none;
-            font-size: 1em;
-        }
-
-        .subscribe-form button {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 20px;
-            background-color: var(--secondary-color);
-            color: #fff;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color var(--transition-speed);
-            white-space: nowrap;
-        }
-
-        .subscribe-form button:hover {
-            background-color: var(--secondary-hover);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            margin-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
         
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1100;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.3s, transform 0.3s;
+        .copy-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
         }
         
-        .notification.show {
-            opacity: 1;
+        .copy-btn:active {
             transform: translateY(0);
+            background: rgba(99, 102, 241, 0.3);
         }
         
-        /* Print styles */
-        @media print {
-            header, footer, .actions-toolbar, .filter-section, .copy-btn, .back-to-top {
-                display: none !important;
-            }
-            
-            body {
-                background-color: white;
-                color: black;
-            }
-            
-            .content-wrapper {
-                max-width: 100%;
-                padding: 0;
-            }
-            
-            .table-container, .intro-container {
-                box-shadow: none;
-                padding: 0;
-            }
-            
-            table {
-                border: 1px solid #ddd;
-            }
-            
-            th {
-                background-color: #f2f2f2 !important;
-                color: black !important;
-            }
-            
-            .page-title {
-                color: black;
-            }
-            
-            @page {
-                margin: 1.5cm;
-            }
+        .copy-btn i {
+            width: 16px;
+            height: 16px;
         }
         
-        /* Responsive styles */
-        @media (max-width: 992px) {
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            .footer-column {
-                min-width: 100%;
-            }
+        /* CRITICAL FIX: Table spacing improvements */
+        .table-container {
+            margin-bottom: 80px !important; /* Increased spacing between tables */
         }
         
+        .section-title {
+            margin-top: 60px !important; /* Space after previous table */
+            margin-bottom: 24px !important;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary, #ffffff);
+        }
+        
+        .section-description {
+            margin-bottom: 32px;
+            color: var(--text-secondary, #a1a1aa);
+            line-height: 1.6;
+        }
+        
+        /* Shortcuts table improvements */
+        .shortcuts-container {
+            margin-bottom: 80px;
+        }
+        
+        .shortcuts-table {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 60px !important; /* Critical spacing fix */
+        }
+        
+        .shortcuts-table th {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary, #ffffff);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .shortcuts-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary, #a1a1aa);
+        }
+        
+        .shortcuts-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        /* CRITICAL FIX: Search input improvements */
+        .filter-input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: var(--text-primary, #ffffff);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .filter-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .filter-input::placeholder {
+            color: rgba(161, 161, 170, 0.7);
+        }
+        
+        .search-clear-btn:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+        }
+        
+        /* CRITICAL FIX: Copy button complete styling */
+        .copy-btn {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            color: #6366f1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(0);
+            background: rgba(99, 102, 241, 0.3);
+        }
+        
+        .copy-btn i {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Shortcuts table improvements */
+        .shortcuts-container {
+            margin-bottom: 80px;
+        }
+        
+        .shortcuts-table {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .shortcuts-table th {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-primary, #ffffff);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .shortcuts-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary, #a1a1aa);
+        }
+        
+        .shortcuts-table tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        /* Key styling improvements */
+        .key {
+            display: inline-block;
+            padding: 4px 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary, #ffffff);
+            margin: 0 2px;
+        }
+        
+        .key-combo {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        
+        /* Remove old tooltip styles */
+        .tooltip .tooltiptext {
+            display: none;
+        }
+        
+        /* RESPONSIVE DESIGN FIXES */
+        
+        /* Mobile devices (320px to 768px) */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .main-nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--header-footer-bg);
-                width: 100%;
-                z-index: 10;
-                flex-direction: column;
-                gap: 0;
-                padding: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-
-            .main-nav ul.show {
-                display: flex;
-            }
-            
-            .search-container {
-                margin-right: 10px;
-            }
-            
-            .search-container input[type="text"] {
-                width: 120px;
-            }
-            
-            .search-container button {
-                padding: 8px 12px;
-            }
-            
-            .category-filter {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
-                -webkit-overflow-scrolling: touch;
-                scroll-snap-type: x mandatory;
-            }
-            
-            .category-btn {
-                scroll-snap-align: start;
-                flex: 0 0 auto;
+            body {
+                padding-top: 80px !important;
             }
             
             .page-title {
                 font-size: 2rem;
+                margin-top: 20px !important;
+                margin-bottom: 20px !important;
             }
             
-            th, td {
-                padding: 10px;
+            .intro-container,
+            .filter-section,
+            .shortcuts-container {
+                padding: 0 15px !important;
+                margin-bottom: 40px !important;
             }
             
-            .table-container {
-                padding: 10px;
-                overflow-x: auto;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                width: 95%;
+            .intro-text {
+                font-size: 1rem;
+                margin-bottom: 30px;
             }
             
-            .page-title {
-                font-size: 1.8rem;
-            }
-            
-            .logo a {
-                font-size: 1.5em;
-            }
-            
-            .dark-mode-toggle i {
-                font-size: 20px;
-            }
-            
-            .search-container {
-                display: none;
+            .featured-image-container {
+                margin: 2rem auto 1.5rem auto !important;
+                max-width: 100%;
             }
             
             .actions-toolbar {
                 flex-direction: column;
+                align-items: center;
+                gap: 12px;
+                margin: 30px 0 40px 0;
             }
             
             .action-button {
                 width: 100%;
+                max-width: 280px;
                 justify-content: center;
             }
             
-            .key-combo {
-                flex-direction: column;
-                align-items: flex-start;
+            .filter-section {
+                padding: 20px;
             }
+            
+            .category-filter {
+                justify-content: flex-start;
+                gap: 8px;
+            }
+            
+            .category-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .shortcuts-table {
+                font-size: 0.9rem;
+            }
+            
+            .shortcuts-table th,
+            .shortcuts-table td {
+                padding: 12px 15px;
+            }
+            
+            .key {
+                padding: 3px 6px;
+                font-size: 0.8rem;
+            }
+            
+            /* CRITICAL: Mobile email subscription fixes */
+            .footer-newsletter {
+                padding: 30px 16px !important;
+                margin: 0 16px 40px 16px !important;
+            }
+            
+            .footer-newsletter h3 {
+                font-size: 1.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .newsletter-form input[type="email"] {
+                min-width: unset;
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 24px !important;
+            }
+        }
+        
+        /* Tablet devices (768px to 1024px) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            body {
+                padding-top: 90px !important;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .intro-container,
+            .filter-section,
+            .shortcuts-container {
+                padding: 0 30px !important;
+            }
+            
+            .actions-toolbar {
+                gap: 14px;
+            }
+            
+            .featured-image-container {
+                max-width: 500px;
+            }
+            
+            .footer-newsletter {
+                padding: 35px 30px !important;
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+        }
+        
+        /* Desktop (1024px and above) */
+        @media (min-width: 1024px) {
+            body {
+                padding-top: 100px !important;
+            }
+            
+            .intro-container,
+            .filter-section,
+            .shortcuts-container {
+                padding: 0 40px !important;
+            }
+            
+            .page-title {
+                font-size: 2.8rem;
+            }
+            
+            .intro-text {
+                font-size: 1.2rem;
+            }
+            
+            .footer-links {
+                grid-template-columns: repeat(4, 1fr) !important;
+            }
+        }
+        
+        /* Large screens (1400px and above) */
+        @media (min-width: 1400px) {
+            .intro-container,
+            .filter-section,
+            .shortcuts-container {
+                padding: 0 60px !important;
+            }
+        }
+        
+        /* Ensure proper visual flow and typography */
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        /* Better visual hierarchy */
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary, #ffffff);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        /* Ensure smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Professional polish - remove rough edges */
+        * {
+            box-sizing: border-box;
+        }
+        
+        button, 
+        input, 
+        select, 
+        textarea {
+            font-family: inherit;
+        }
+        
+        /* Improved focus states for accessibility */
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 2px solid #6366f1;
+            outline-offset: 2px;
+        }
+        
+        /* CRITICAL FIX: Email subscription section improvements */
+        .footer-newsletter {
+            max-width: 800px !important;
+            margin: 0 auto 60px auto !important;
+            padding: 40px 20px !important;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .footer-newsletter h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .footer-newsletter p {
+            color: var(--text-secondary, #a1a1aa);
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            min-width: 250px;
+            padding: 16px 20px !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 12px !important;
+            color: var(--text-primary, #ffffff) !important;
+            font-size: 1rem !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .newsletter-form input[type="email"]:focus {
+            outline: none !important;
+            border-color: #6366f1 !important;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+        
+        .newsletter-form input[type="email"]::placeholder {
+            color: rgba(161, 161, 170, 0.7) !important;
+        }
+        
+        .newsletter-form button {
+            padding: 16px 32px !important;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+            border: none !important;
+            border-radius: 12px !important;
+            color: white !important;
+            font-weight: 600 !important;
+            font-size: 1rem !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            white-space: nowrap !important;
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4) !important;
+        }
+        
+        /* CRITICAL FIX: Footer columns alignment */
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-links {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+            gap: 32px !important;
+            margin-bottom: 40px !important;
+        }
+        
+        .footer-column h4 {
+            color: var(--text-primary, #ffffff) !important;
+            font-weight: 600 !important;
+            margin-bottom: 16px !important;
+            font-size: 1.1rem !important;
+        }
+        
+        .footer-column ul {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px !important;
+        }
+        
+        .footer-column ul li a {
+            color: var(--text-secondary, #a1a1aa) !important;
+            text-decoration: none !important;
+            transition: color 0.3s ease !important;
+            line-height: 1.5 !important;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #6366f1 !important;
+        }
+        
+        .footer-brand p {
+            color: var(--text-secondary, #a1a1aa) !important;
+            line-height: 1.6 !important;
+            margin-top: 16px !important;
+            max-width: 300px !important;
+        }
+    </style>
+            color: #6366f1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+            transform: translateY(-1px);
+        }
+        
+        .copy-btn:active {
+            transform: translateY(0);
+            background: rgba(99, 102, 241, 0.3);
+        }
+        
+        .copy-btn i {
+            width: 16px;
+            height: 16px;
+        }
+        
+        /* Remove old tooltip styles */
+        .tooltip .tooltiptext {
+            display: none;
+        }
+        
+        /* Ensure images don't overflow */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Specific fixes for application page images */
+        .intro-container img,
+        .featured-image {
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
 <body>
-    <!-- Header will be loaded by shared components -->
-    <div id="app-header"></div>
-
-    <!-- Main Content -->
-
-    <!-- Chrome Shortcuts Content -->
-    <h1 class="page-title">Top Google Chrome Shortcuts</h1>
-    
-    <div class="intro-container">
-        <p class="intro-text">
-            Master these essential keyboard shortcuts to navigate and manage Google Chrome efficiently. Even if you're quite familiar with Chrome, you might be taken aback by the range and diversity of keyboard shortcuts you can use to accelerate your tasks and generally enhance convenience.
-        </p>
-        
-        <div class="featured-image-container">
-            <img src="Google_Chrome.jpg" alt="Google Chrome Interface" class="featured-image">
+<!-- Standard Header Template for Shortcut Sensei -->
+<!-- Navigation -->
+<nav class="nav-modern" id="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo-container">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                            <defs>
+                                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea"/>
+                                    <stop offset="100%" style="stop-color:#764ba2"/>
+                                </linearGradient>
+                                <filter id="logoGlow">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge> 
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            <!-- Magical crystal/gem shape representing mastery -->
+                            <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#logoGradient)" filter="url(#logoGlow)"/>
+                            <!-- Inner sparkle -->
+                            <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
+                            <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                            <!-- Keyboard keys effect -->
+                            <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                            <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Shortcut Sensei</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-nav="home">
+                    <i data-lucide="home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="applications.html" class="nav-link active" data-nav="applications">
+                    <i data-lucide="grid-3x3"></i>
+                    <span>Applications</span>
+                </a>
+                <a href="quiz-integrated.html" class="nav-link" data-nav="quiz">
+                    <i data-lucide="brain"></i>
+                    <span>Quiz</span>
+                </a>
+                <a href="community-ultimate.html" class="nav-link" data-nav="community">
+                    <i data-lucide="users"></i>
+                    <span>Community</span>
+                </a>
+                <a href="about.html" class="nav-link" data-nav="about">
+                    <i data-lucide="info"></i>
+                    <span>About</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="search-toggle" id="search-toggle" aria-label="Search">
+                    <i data-lucide="search"></i>
+                </button>
+                
+                <div class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="theme-icon"></i>
+                </div>
+                
+                <button class="auth-btn" id="authBtn">
+                    <i data-lucide="user"></i>
+                    <span>Sign In</span>
+                </button>
+                
+                <!-- Notification Bell (only shown when logged in) -->
+                <button class="notification-bell" id="notificationBell" style="display: none;">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <!-- User Profile Button (when logged in) -->
+                <button class="user-profile-btn" id="userProfileBtn" style="display: none;">
+                    <img src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="Profile" class="user-avatar-small">
+                    <span class="user-name-small">User</span>
+                    <i data-lucide="chevron-down" style="margin-left: 0.5rem; width: 16px; height: 16px;"></i>
+                </button>
+                
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
         
-        <div class="actions-toolbar">
-            <button class="action-button" id="print-btn">
-                <i class="fas fa-print"></i> Print Guide
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="search-overlay">
+            <div class="search-container">
+                <div class="search-input-container">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search shortcuts, applications, or commands..." id="search-input" autocomplete="off">
+                    <button class="search-close" id="search-close">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="search-results" id="search-results">
+                    <div class="search-suggestions">
+                        <div class="suggestion-category">
+                            <h4>Popular Searches</h4>
+                            <div class="suggestions">
+                                <span class="suggestion">Copy</span>
+                                <span class="suggestion">Paste</span>
+                                <span class="suggestion">VS Code</span>
+                                <span class="suggestion">Photoshop</span>
+                                <span class="suggestion">Chrome</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<!-- Apple-style Search Overlay -->
+<div class="search-overlay" id="searchOverlay">
+    <button class="search-close" id="searchClose">
+        <i data-lucide="x"></i>
+    </button>
+    <div class="search-container">
+        <div class="search-input-container">
+            <input type="text" class="search-input" placeholder="Search shortcuts, applications, or tips..." id="searchInput">
+            <button class="search-submit" id="searchSubmit">
+                <i data-lucide="search"></i>
             </button>
-            <button class="action-button" id="download-btn">
-                <i class="fas fa-download"></i> Download PDF
-            </button>
-            <button class="action-button" id="share-btn">
-                <i class="fas fa-share-alt"></i> Share
-            </button>
-            <button class="action-button" id="bookmark-btn">
-                <i class="fas fa-bookmark"></i> Bookmark
-            </button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions">
+            <div class="search-suggestion">
+                <i data-lucide="code" class="search-suggestion-icon"></i>
+                <span>VS Code shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="image" class="search-suggestion-icon"></i>
+                <span>Photoshop shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="globe" class="search-suggestion-icon"></i>
+                <span>Chrome shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="file-text" class="search-suggestion-icon"></i>
+                <span>Word shortcuts</span>
+            </div>
+            <div class="search-suggestion">
+                <i data-lucide="command" class="search-suggestion-icon"></i>
+                <span>MacOS shortcuts</span>
+            </div>
         </div>
     </div>
+</div>
+
+
+    <!-- Main Content -->
+<!-- Header will be loaded by shared components -->
+    <div id="app-header"></div>
+
+    <!-- Main Content Container with proper spacing -->
+    <main class="main-content">
+        <!-- Chrome Shortcuts Content -->
+        <h1 class="page-title">Top Google Chrome Shortcuts</h1>
+        
+        <div class="intro-container">
+            <p class="intro-text">
+                Master these essential keyboard shortcuts to navigate and manage Google Chrome efficiently. Even if you're quite familiar with Chrome, you might be taken aback by the range and diversity of keyboard shortcuts you can use to accelerate your tasks and generally enhance convenience.
+            </p>
+            
+            <div class="featured-image-container">
+                <img src="images/Google_Chrome.jpg" alt="Google Chrome Interface" class="featured-image">
+            </div>
+            
+            <div class="actions-toolbar">
+                <button class="action-button" id="print-btn">
+                    <i data-lucide="printer"></i> Print Guide
+                </button>
+                <button class="action-button" id="download-btn">
+                    <i data-lucide="download"></i> Download PDF
+                </button>
+                <button class="action-button" id="share-btn">
+                    <i data-lucide="share-2"></i> Share
+                </button>
+                <button class="action-button" id="bookmark-btn">
+                    <i data-lucide="bookmark"></i> Bookmark
+                </button>
+            </div>
+        </div>
     
     <div class="filter-section">
         <div class="filter-container">
@@ -961,13 +1014,14 @@
         <p>A plus (+) signifies that you should press those keys simultaneously. A comma (,) signifies that you should press keys sequentially. For instance, "Ctrl+N" indicates holding down the Ctrl key while pressing the N key and then releasing both keys. Conversely, "Alt+N,P" entails holding down the Alt key, pressing the N key, releasing the N key, pressing the P key, and then releasing all keys.</p>
     </div>
 
-    <div class="table-container">
-        <h2 class="section-title" id="tab-window-shortcuts">Tab Panel & Window Hotkeys</h2>
-        <p class="section-description">
-            Boost productivity and streamline navigation by utilizing Google Chrome's keyboard shortcuts for seamless tab and window management.
-        </p>
+    <div class="shortcuts-container">
+        <div class="table-container">
+            <h2 class="section-title" id="tab-window-shortcuts">Tab Panel & Window Hotkeys</h2>
+            <p class="section-description">
+                Boost productivity and streamline navigation by utilizing Google Chrome's keyboard shortcuts for seamless tab and window management.
+            </p>
 
-        <table id="tabs-table" data-category="tabs">
+            <table id="tabs-table" data-category="tabs" class="shortcuts-table">
             <thead>
                 <tr>
                     <th width="30%">Key Combination</th>
@@ -984,10 +1038,7 @@
                     </td>
                     <td>Open a new window</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + N">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + N" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -998,10 +1049,7 @@
                     </td>
                     <td>Open a new window in Incognito mode</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + N">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + N" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1012,10 +1060,7 @@
                     </td>
                     <td>Open a new tab, and jump to it</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + T">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + T" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1026,10 +1071,7 @@
                     </td>
                     <td>Reopen previously closed tabs in the order they were closed</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + T">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + T" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1044,10 +1086,7 @@
                     </td>
                     <td>Jump to the next open tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Tab">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Tab" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1062,10 +1101,7 @@
                     </td>
                     <td>Jump to the previous open tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + Tab">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + Tab" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1076,10 +1112,7 @@
                     </td>
                     <td>Jump to a specific tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + [1-8]">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + [1-8]" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1090,10 +1123,7 @@
                     </td>
                     <td>Jump to the rightmost tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + 9">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + 9" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1104,10 +1134,7 @@
                     </td>
                     <td>Open your home page in the current tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + Home">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + Home" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1118,10 +1145,7 @@
                     </td>
                     <td>Open the previous page from your browsing history in the current tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + Left arrow">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + Left arrow" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1132,10 +1156,7 @@
                     </td>
                     <td>Open the next page from your browsing history in the current tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + Right arrow">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + Right arrow" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1150,10 +1171,7 @@
                     </td>
                     <td>Close the current tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + W">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + W" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1168,10 +1186,7 @@
                     </td>
                     <td>Close the current window</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + W">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + W" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1182,10 +1197,7 @@
                     </td>
                     <td>Minimize the current window</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + Space, N">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + Space, N" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1196,10 +1208,7 @@
                     </td>
                     <td>Maximize the current window</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + Space, X">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + Space, X" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1210,10 +1219,7 @@
                     </td>
                     <td>Quit Google Chrome</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + F, X">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + F, X" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1228,10 +1234,7 @@
                     </td>
                     <td>Move tabs right or left</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + PgUp/PgDn">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + PgUp/PgDn" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -1244,7 +1247,7 @@
             Quickly access and utilize Chrome's diverse features with intuitive keyboard shortcuts, optimizing browsing convenience and productivity.
         </p>
 
-        <table id="features-table" data-category="features">
+        <table id="features-table" data-category="features" class="shortcuts-table">
             <thead>
                 <tr>
                     <th width="30%">Key Combination</th>
@@ -1265,10 +1268,7 @@
                     </td>
                     <td>Open the Chrome menu</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + F">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + F" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1279,10 +1279,7 @@
                     </td>
                     <td>Show or hide the Bookmarks bar</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + B">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + B" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1293,10 +1290,7 @@
                     </td>
                     <td>Open the Bookmarks Manager</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + O">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + O" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1307,10 +1301,7 @@
                     </td>
                     <td>Open the History page in a new tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + H">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + H" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1321,10 +1312,7 @@
                     </td>
                     <td>Open the Downloads page in a new tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + J">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + J" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1335,10 +1323,7 @@
                     </td>
                     <td>Open the Chrome Task Manager</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Shift + Esc">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Shift + Esc" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1349,10 +1334,7 @@
                     </td>
                     <td>Set focus on the first item in the Chrome toolbar</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Shift + Alt + T">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Shift + Alt + T" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1363,10 +1345,7 @@
                     </td>
                     <td>Set focus on the rightmost item in the Chrome toolbar</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="F10">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="F10" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1377,10 +1356,7 @@
                     </td>
                     <td>Switch focus to unfocused dialog (if showing) and all toolbars</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="F6">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="F6" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1395,10 +1371,7 @@
                     </td>
                     <td>Open the Find Bar to search the current page</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + F">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + F" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1409,10 +1382,7 @@
                     </td>
                     <td>Jump to the next match to your Find Bar search</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + G">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + G" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1423,10 +1393,7 @@
                     </td>
                     <td>Jump to the previous match to your Find Bar search</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + G">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + G" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1441,10 +1408,7 @@
                     </td>
                     <td>Open Developer Tools</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + J">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + J" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1455,10 +1419,7 @@
                     </td>
                     <td>Open the Clear Browsing Data options</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + Delete">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + Delete" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1469,10 +1430,7 @@
                     </td>
                     <td>Open the Chrome Help Center in a new tab</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="F1">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="F1" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1483,10 +1441,7 @@
                     </td>
                     <td>Log in a different user or browse as a Guest</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + M">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + Shift + M" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1497,10 +1452,7 @@
                     </td>
                     <td>Open a feedback form</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + Shift + I">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + Shift + I" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1511,10 +1463,7 @@
                     </td>
                     <td>Turn on caret browsing</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="F7">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="F7" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1525,10 +1474,7 @@
                     </td>
                     <td>Skip to web contents</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Ctrl + F6">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Ctrl + F6" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
                 <tr>
@@ -1539,10 +1485,7 @@
                     </td>
                     <td>Focus on inactive dialogs</td>
                     <td class="actions-cell">
-                        <button class="copy-btn tooltip" data-shortcut="Alt + Shift + A">
-                            <i class="fas fa-copy"></i>
-                            <span class="tooltiptext">Click to copy</span>
-                        </button>
+                        <button class="copy-btn" data-shortcut="Alt + Shift + A" title="Copy shortcut"><i data-lucide="copy"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -1557,7 +1500,7 @@
         Accelerate your browsing experience with Address Bar Quick Keys, enabling swift access to URLs and commands for efficient navigation in Google Chrome.
     </p>
 
-    <table id="address-bar-table" data-category="address-bar">
+    <table id="address-bar-table" data-category="address-bar" class="shortcuts-table">
         <thead>
             <tr>
                 <th width="30%">Key Combination</th>
@@ -1574,10 +1517,7 @@
                 </td>
                 <td>Search with your default search engine</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Type a search term + Enter">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Type a search term + Enter" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1588,10 +1528,7 @@
                 </td>
                 <td>Search using a different search engine</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Type a search engine name + Tab">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Type a search engine name + Tab" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1602,10 +1539,7 @@
                 </td>
                 <td>Add www. and .com to a site name, and open it in the current tab</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Type a site name + Ctrl + Enter">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Type a site name + Ctrl + Enter" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1616,10 +1550,7 @@
                 </td>
                 <td>Add www. and .com to a site name, and open it in a new window</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Type a site name + Ctrl + Shift + Enter">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Type a site name + Ctrl + Shift + Enter" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1630,10 +1561,7 @@
                 </td>
                 <td>Open a new tab and perform a Google search</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Type a search term + Alt + Enter">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Type a search term + Alt + Enter" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1652,10 +1580,7 @@
                 </td>
                 <td>Jump to the address bar</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + L">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + L" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1670,10 +1595,7 @@
                 </td>
                 <td>Search from anywhere on the page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + K">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + K" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1684,10 +1606,7 @@
                 </td>
                 <td>Remove predictions from your address bar</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Down arrow to highlight + Shift + Delete">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Down arrow to highlight + Shift + Delete" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1698,10 +1617,7 @@
                 </td>
                 <td>Move cursor to the address bar</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + F5">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + F5" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
         </tbody>
@@ -1715,7 +1631,7 @@
         Simplify browsing tasks and streamline navigation with Webpage Shortcuts, empowering users to swiftly access key features and commands for enhanced productivity in Google Chrome.
     </p>
 
-    <table id="webpage-table" data-category="webpage">
+    <table id="webpage-table" data-category="webpage" class="shortcuts-table">
         <thead>
             <tr>
                 <th width="30%">Key Combination</th>
@@ -1732,10 +1648,7 @@
                 </td>
                 <td>Open options to print the current page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + P">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + P" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1746,10 +1659,7 @@
                 </td>
                 <td>Open options to save the current page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + S">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + S" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1764,10 +1674,7 @@
                 </td>
                 <td>Reload the current page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="F5">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="F5" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1782,10 +1689,7 @@
                 </td>
                 <td>Reload the current page, ignoring cached content</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Shift + F5">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Shift + F5" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1796,10 +1700,7 @@
                 </td>
                 <td>Stop the page loading</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Esc">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Esc" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1810,10 +1711,7 @@
                 </td>
                 <td>Browse clickable items moving forward</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Tab">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Tab" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1824,10 +1722,7 @@
                 </td>
                 <td>Browse clickable items moving backward</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Shift + Tab">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Shift + Tab" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1838,10 +1733,7 @@
                 </td>
                 <td>Open a file from your computer in Chrome</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + O + Select a file">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + O + Select a file" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1852,10 +1744,7 @@
                 </td>
                 <td>Display non-editable HTML source code for the current page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + U">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + U" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1866,10 +1755,7 @@
                 </td>
                 <td>Save your current webpage as a bookmark</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + D">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + D" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1880,10 +1766,7 @@
                 </td>
                 <td>Save all open tabs as bookmarks in a new folder</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + D">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Shift + D" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1894,10 +1777,7 @@
                 </td>
                 <td>Turn full-screen mode on or off</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="F11">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="F11" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1908,10 +1788,7 @@
                 </td>
                 <td>Make everything on the page bigger</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + +">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + +" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1922,10 +1799,7 @@
                 </td>
                 <td>Make everything on the page smaller</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + -">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + -" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1936,10 +1810,7 @@
                 </td>
                 <td>Return everything on the page to default size</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + 0">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + 0" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1954,10 +1825,7 @@
                 </td>
                 <td>Scroll down a webpage, a screen at a time</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Space">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Space" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1972,10 +1840,7 @@
                 </td>
                 <td>Scroll up a webpage, a screen at a time</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Shift + Space">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Shift + Space" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -1986,10 +1851,7 @@
                 </td>
                 <td>Go to the top of the page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Home">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Home" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2000,10 +1862,7 @@
                 </td>
                 <td>Go to the bottom of the page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="End">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="End" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2014,10 +1873,7 @@
                 </td>
                 <td>Scroll horizontally on the page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Shift + Scroll your mousewheel">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Shift + Scroll your mousewheel" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2028,10 +1884,7 @@
                 </td>
                 <td>Move your cursor to the beginning of the previous word in a text field</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Left arrow">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Left arrow" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2042,10 +1895,7 @@
                 </td>
                 <td>Move your cursor to the next word</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Right arrow">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Right arrow" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2056,10 +1906,7 @@
                 </td>
                 <td>Delete the previous word in a text field</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Backspace">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Backspace" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2070,10 +1917,7 @@
                 </td>
                 <td>Open the Home page in the current tab</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Alt + Home">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Alt + Home" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
         </tbody>
@@ -2088,7 +1932,7 @@
         Navigate efficiently using these essential mouse gestures and combination shortcuts.
     </p>
 
-    <table id="mouse-gestures-table" data-category="mouse">
+    <table id="mouse-gestures-table" data-category="mouse" class="shortcuts-table">
         <thead>
             <tr>
                 <th width="30%">Key Combination</th>
@@ -2105,10 +1949,7 @@
                 </td>
                 <td>Open a link in a current tab (mouse only)</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Drag a link to a tab">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Drag a link to a tab" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2119,10 +1960,7 @@
                 </td>
                 <td>Open a link in new background tab</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Click a link">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Click a link" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2133,10 +1971,7 @@
                 </td>
                 <td>Open a link, and jump to it</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Shift + Click a link">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Shift + Click a link" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2147,10 +1982,7 @@
                 </td>
                 <td>Open a link, and jump to it (mouse only)</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Drag a link to a blank area of the tab strip">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Drag a link to a blank area of the tab strip" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2161,10 +1993,7 @@
                 </td>
                 <td>Open a link in a new window</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Shift + Click a link">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Shift + Click a link" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2175,10 +2004,7 @@
                 </td>
                 <td>Open a tab in a new window (mouse only)</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Drag the tab out of the tab strip">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Drag the tab out of the tab strip" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2189,10 +2015,7 @@
                 </td>
                 <td>Move a tab to a current window (mouse only)</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Drag the tab into an existing window">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Drag the tab into an existing window" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2203,10 +2026,7 @@
                 </td>
                 <td>Return a tab to its original position</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Esc while dragging">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Esc while dragging" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2217,10 +2037,7 @@
                 </td>
                 <td>Save the current webpage as a bookmark</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Drag the web address to the Bookmarks Bar">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Drag the web address to the Bookmarks Bar" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2231,10 +2048,7 @@
                 </td>
                 <td>Scroll horizontally on the page</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Shift + Scroll your mousewheel">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Shift + Scroll your mousewheel" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2245,10 +2059,7 @@
                 </td>
                 <td>Download the target of a link</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Alt + Click a link">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Alt + Click a link" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2259,10 +2070,7 @@
                 </td>
                 <td>Display your browsing history</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Right-click Back or click & hold Back">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Right-click Back or click & hold Back" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2273,10 +2081,7 @@
                 </td>
                 <td>Display your browsing history</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Right-click Next or click & hold Next">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Right-click Next or click & hold Next" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2287,10 +2092,7 @@
                 </td>
                 <td>Switch between maximized and windowed modes</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Double-click a blank area of the tab strip">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Double-click a blank area of the tab strip" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2301,10 +2103,7 @@
                 </td>
                 <td>Make everything on the page bigger</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Scroll your mousewheel up">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Scroll your mousewheel up" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
             <tr>
@@ -2315,15 +2114,14 @@
                 </td>
                 <td>Make everything on the page smaller</td>
                 <td class="actions-cell">
-                    <button class="copy-btn tooltip" data-shortcut="Ctrl + Scroll your mousewheel down">
-                        <i class="fas fa-copy"></i>
-                        <span class="tooltiptext">Click to copy</span>
-                    </button>
+                    <button class="copy-btn" data-shortcut="Ctrl + Scroll your mousewheel down" title="Copy shortcut"><i data-lucide="copy"></i></button>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+    </div> <!-- End of shortcuts-container -->
+    </main> <!-- End of main content -->
     
         <div class="back-to-top">
             <i class="fas fa-arrow-up"></i>
@@ -2332,404 +2130,535 @@
         <div class="notification" id="notification"></div>
     </div>
     
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>About Shortcut Sensei</h3>
-                <p>Your ultimate guide to mastering keyboard shortcuts. We provide comprehensive guides and tips to help you work faster and more efficiently.</p>
-            </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="Homepage.html">Home</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="About.html">About</a></li>
-                    <li><a href="Privacy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Follow Us</h3>
-                <ul class="social-icons">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Subscribe</h3>
-                <form class="subscribe-form">
-                    <input type="email" placeholder="Your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Shortcut Sensei. All rights reserved.</p>
-        </div>
-    </footer>
     
-    <script>
-        // Menu toggle functionality
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mainNav = document.querySelector('.main-nav ul');
     
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('show');
-        });
-        
-        // Dark mode toggle
-        const darkModeToggle = document.querySelector('.dark-mode-toggle');
-        const darkModeIcon = darkModeToggle.querySelector('i');
-        
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            
-            if (document.body.classList.contains('dark-mode')) {
-                darkModeIcon.classList.remove('fa-moon');
-                darkModeIcon.classList.add('fa-sun');
-            } else {
-                darkModeIcon.classList.remove('fa-sun');
-                darkModeIcon.classList.add('fa-moon');
-            }
-        });
-        
-        // Filter shortcuts function
-        const filterInput = document.getElementById('shortcut-filter');
-        const noResults = document.getElementById('no-results');
-        
-        filterInput.addEventListener('keyup', () => {
-            const filterValue = filterInput.value.toLowerCase();
-            const tables = document.querySelectorAll('table');
-            let hasVisibleRows = false;
-            
-            tables.forEach(table => {
-                const rows = table.querySelectorAll('tbody tr');
-                let tableHasVisibleRows = false;
-                
-                rows.forEach(row => {
-                    const keyCombo = row.cells[0].textContent.toLowerCase();
-                    const description = row.cells[1].textContent.toLowerCase();
-                    
-                    if (keyCombo.includes(filterValue) || description.includes(filterValue)) {
-                        row.style.display = '';
-                        tableHasVisibleRows = true;
-                        hasVisibleRows = true;
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-                
-                // Show/hide section titles based on visible rows
-                const sectionTitle = table.previousElementSibling.previousElementSibling;
-                const sectionDesc = table.previousElementSibling;
-                const tableContainer = table.closest('.table-container');
-                
-                if (tableHasVisibleRows) {
-                    tableContainer.style.display = '';
-                    sectionTitle.style.display = '';
-                    sectionDesc.style.display = '';
-                } else {
-                    tableContainer.style.display = 'none';
-                    sectionTitle.style.display = 'none';
-                    sectionDesc.style.display = 'none';
-                }
-            });
-            
-            // Show/hide "no results" message
-            if (hasVisibleRows) {
-                noResults.style.display = 'none';
-            } else {
-                noResults.style.display = 'block';
-            }
-        });
-        
-        // Category filter
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                const category = button.getAttribute('data-category');
-                const tables = document.querySelectorAll('table');
-                let hasVisibleTables = false;
-                
-                tables.forEach(table => {
-                    const tableCategory = table.getAttribute('data-category');
-                    const sectionTitle = table.previousElementSibling.previousElementSibling;
-                    const sectionDesc = table.previousElementSibling;
-                    const tableContainer = table.closest('.table-container');
-                    
-                    if (category === 'all' || category === tableCategory) {
-                        tableContainer.style.display = '';
-                        sectionTitle.style.display = '';
-                        sectionDesc.style.display = '';
-                        hasVisibleTables = true;
-                    } else {
-                        tableContainer.style.display = 'none';
-                        sectionTitle.style.display = 'none';
-                        sectionDesc.style.display = 'none';
-                    }
-                });
-                
-                // Show/hide "no results" message
-                if (hasVisibleTables) {
-                    noResults.style.display = 'none';
-                } else {
-                    noResults.style.display = 'block';
-                }
-            });
-        });
-        
-        // Copy shortcut function
-        function copyShortcut(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                // Show notification
-                showNotification('Shortcut copied to clipboard!');
-            });
-        }
-        
-        // Copy button event listeners
-        const copyButtons = document.querySelectorAll('.copy-btn');
-        copyButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const shortcut = event.currentTarget.getAttribute('data-shortcut');
-                copyShortcut(shortcut);
-                
-                // Show tooltip
-                const tooltip = event.currentTarget.querySelector('.tooltiptext');
-                tooltip.classList.add('visible');
-                
-                // Hide tooltip after 2 seconds
-                setTimeout(() => {
-                    tooltip.classList.remove('visible');
-                }, 2000);
-            });
-        });
-        
-        // Back to top button
-        const backToTopButton = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) { // Show button after scrolling down 300px
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Print button functionality
-        const printButton = document.getElementById('print-btn');
-        printButton.addEventListener('click', () => {
-            window.print();
-        });
-        
-        // Notification function
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Add active class to current page link
-        const currentPage = window.location.pathname.split('/').pop();
-        const navLinks = document.querySelectorAll('.main-nav ul li a');
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === currentPage || (currentPage === 'Google Chrome.html' && link.getAttribute('href') === 'Google Chrome.html')) {
-                link.classList.add('active');
-            }
-        });
-    </script>
+    
     
     <!-- Main Navigation Script -->
-    <script src="main-nav.js"></script>
+    
     <!-- Footer -->
-    <footer class="main-footer" id="main-footer">
-        <div class="footer-content">
-            <div class="container">
-                <div class="footer-sections">
-                    <!-- Brand Section -->
-                    <div class="footer-section brand-section">
-                        <div class="footer-logo">
-                            <a href="index.html">
-                                <i class="fas fa-keyboard"></i>
-                                <span>Shortcut Sensei</span>
-                            </a>
-                        </div>
-                        <p class="footer-description">
-                            Master every keyboard shortcut and boost your productivity. 
-                            Your journey to becoming a true keyboard sensei starts here.
-                        </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link" data-tooltip="Follow us on Twitter">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Like us on Facebook">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Subscribe on YouTube">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Follow us on LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="#" class="social-link" data-tooltip="Star us on GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-bolt"></i> Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                            <li><a href="all-applications.html"><i class="fas fa-th-large"></i> All Applications</a></li>
-                            <li><a href="blogs.html"><i class="fas fa-blog"></i> Blogs & Tips</a></li>
-                            <li><a href="quizs/index.html"><i class="fas fa-question-circle"></i> Practice Quiz</a></li>
-                            <li><a href="About.htm"><i class="fas fa-info-circle"></i> About Us</a></li>
-                            <li><a href="user_com.htm"><i class="fas fa-users"></i> Community</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Popular Applications -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-star"></i> Popular Apps</h4>
-                        <ul class="footer-links">
-                            <li><a href="Google Chrome.html"><i class="fab fa-chrome"></i> Google Chrome</a></li>
-                            <li><a href="Visual Studio.html"><i class="fas fa-code"></i> VS Code</a></li>
-                            <li><a href="Microsoft Excell.htm"><i class="fas fa-file-excel"></i> Microsoft Excel</a></li>
-                            <li><a href="Microsoft Word.htm"><i class="fas fa-file-word"></i> Microsoft Word</a></li>
-                            <li><a href="Adobe PhotoShop.html"><i class="fas fa-paint-brush"></i> Photoshop</a></li>
-                            <li><a href="Discord.html"><i class="fab fa-discord"></i> Discord</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Resources -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-graduation-cap"></i> Resources</h4>
-                        <ul class="footer-links">
-                            <li><a href="#"><i class="fas fa-download"></i> Cheat Sheets</a></li>
-                            <li><a href="#"><i class="fas fa-mobile-alt"></i> Mobile App</a></li>
-                            <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
-                            <li><a href="#"><i class="fas fa-envelope"></i> Newsletter</a></li>
-                            <li><a href="#"><i class="fas fa-headset"></i> Support</a></li>
-                            <li><a href="#"><i class="fas fa-bug"></i> Report Bug</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Contact & Support -->
-                    <div class="footer-section">
-                        <h4><i class="fas fa-envelope"></i> Contact</h4>
-                        <ul class="footer-contact">
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:hello@shortcutsensei.com">hello@shortcutsensei.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-globe"></i>
-                                <a href="https://shortcutsensei.com">shortcutsensei.com</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Global Community</span>
-                            </li>
-                        </ul>
-                        
-                        <!-- Newsletter Signup -->
-                        <div class="newsletter-signup">
-                            <h5><i class="fas fa-bell"></i> Stay Updated</h5>
-                            <form class="newsletter-form" id="newsletter-form">
-                                <div class="newsletter-input-group">
-                                    <input type="email" placeholder="Enter your email" required>
-                                    <button type="submit">
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="footer-bottom-content">
-                    <div class="copyright">
-                        <p>&copy; 2025 Shortcut Sensei. All rights reserved. Made with <i class="fas fa-heart"></i> for productivity enthusiasts.</p>
-                    </div>
-                    <div class="footer-bottom-links">
-                        <a href="#" onclick="shortcutSensei.showPrivacyPolicy()">Privacy Policy</a>
-                        <a href="#" onclick="shortcutSensei.showTermsOfService()">Terms of Service</a>
-                        <a href="#" onclick="shortcutSensei.showCookiePolicy()">Cookie Policy</a>
-                        <a href="#" id="back-to-top" onclick="scrollToTop()">
-                            <i class="fas fa-arrow-up"></i> Back to Top
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    
 
     <!-- Notification Container -->
     <div class="notification-container" id="notification-container"></div>
 
     <!-- Scripts -->
-    <script>
-        // Footer JavaScript
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Newsletter form handling
-        document.addEventListener('DOMContentLoaded', function() {
-            const newsletterForm = document.getElementById('newsletter-form');
-            if (newsletterForm) {
-                newsletterForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    const email = this.querySelector('input[type="email"]').value;
-                    if (typeof shortcutSensei !== 'undefined') {
-                        shortcutSensei.showNotification(`Thanks for subscribing with ${email}!`, 'success');
-                        this.reset();
-                    } else {
-                        alert('Thanks for subscribing!');
-                        this.reset();
-                    }
-                });
-            }
-        });
-    </script>
+    
 
     <!-- Footer will be loaded by shared components -->
     <div id="app-footer"></div>
 
     <!-- Load shared components -->
-    <script src="shared-components.js"></script>
+
+<!-- Standard Footer Template for Shortcut Sensei -->
+<!-- Footer -->
+<footer class="footer-modern">
+    <div class="container">
+        <!-- Newsletter Section -->
+        <div class="footer-newsletter">
+            <div class="newsletter-content">
+                <h3>Stay Updated with Latest Shortcuts</h3>
+                <p>Join our growing community and get updates on new shortcuts, productivity tips, and platform launches</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <div class="newsletter-input-group">
+                        <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i data-lucide="send"></i>
+                            <span>Subscribe</span>
+                        </button>
+                    </div>
+                    <div class="newsletter-privacy">
+                        <i data-lucide="shield-check"></i>
+                        <span>No spam. Unsubscribe anytime.</span>
+                    </div>
+                </form>
+            </div>
+            <div class="newsletter-visual">
+                <div class="floating-icons">
+                    <div class="float-icon" style="--delay: 0s;"><i data-lucide="lightbulb"></i></div>
+                    <div class="float-icon" style="--delay: 1s;"><i data-lucide="zap"></i></div>
+                    <div class="float-icon" style="--delay: 2s;"><i data-lucide="rocket"></i></div>
+                    <div class="float-icon" style="--delay: 3s;"><i data-lucide="keyboard"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-container">
+                    <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+                        <defs>
+                            <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea"/>
+                                <stop offset="100%" style="stop-color:#764ba2"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M16 2L26 8V16L22 24L16 30L10 24L6 16V8L16 2Z" fill="url(#footerLogoGradient)"/>
+                        <circle cx="16" cy="12" r="2" fill="white" opacity="0.9"/>
+                        <circle cx="12" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                        <circle cx="20" cy="18" r="1.5" fill="white" opacity="0.7"/>
+                        <rect x="10" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        <rect x="13.5" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                        <rect x="17" y="20" width="3" height="3" rx="0.5" fill="white" opacity="0.6"/>
+                    </svg>
+                    <span class="logo-text">Shortcut Sensei</span>
+                </div>
+                <p>The world's most comprehensive keyboard shortcuts learning platform. Trusted by millions of professionals worldwide to accelerate their productivity.</p>
+                <div class="social-links">
+                    <a href="https://twitter.com/shortcutsensei" aria-label="Twitter" target="_blank">
+                        <i data-lucide="twitter"></i>
+                    </a>
+                    <a href="https://github.com/shortcutsensei" aria-label="GitHub" target="_blank">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/company/shortcutsensei" aria-label="LinkedIn" target="_blank">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://discord.gg/shortcutsensei" aria-label="Discord" target="_blank">
+                        <i data-lucide="message-circle"></i>
+                    </a>
+                    <a href="https://youtube.com/@shortcutsensei" aria-label="YouTube" target="_blank">
+                        <i data-lucide="youtube"></i>
+                    </a>
+                    <a href="https://reddit.com/r/shortcutsensei" aria-label="Reddit" target="_blank">
+                        <i data-lucide="reddit"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="zap"></i>
+                        Platform
+                    </h4>
+                    <a href="applications.html">
+                        <i data-lucide="grid-3x3"></i>
+                        All Applications
+                    </a>
+                    <a href="quiz-integrated.html">
+                        <i data-lucide="brain"></i>
+                        Interactive Quiz
+                    </a>
+                    <a href="index.html#features">
+                        <i data-lucide="star"></i>
+                        Features
+                    </a>
+                    <a href="#leaderboard">
+                        <i data-lucide="trophy"></i>
+                        Leaderboard
+                    </a>
+                    <a href="#achievements">
+                        <i data-lucide="award"></i>
+                        Achievements
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="book-open"></i>
+                        Learning
+                    </h4>
+                    <a href="#beginner-guide">
+                        <i data-lucide="play-circle"></i>
+                        Getting Started
+                    </a>
+                    <a href="#advanced-tips">
+                        <i data-lucide="lightbulb"></i>
+                        Advanced Tips
+                    </a>
+                    <a href="#cheat-sheets">
+                        <i data-lucide="file-text"></i>
+                        Cheat Sheets
+                    </a>
+                    <a href="#video-tutorials">
+                        <i data-lucide="video"></i>
+                        Video Tutorials
+                    </a>
+                    <a href="#practice-mode">
+                        <i data-lucide="target"></i>
+                        Practice Mode
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="users"></i>
+                        Community
+                    </h4>
+                    <a href="#discord">
+                        <i data-lucide="message-circle"></i>
+                        Discord Server
+                    </a>
+                    <a href="#forums">
+                        <i data-lucide="message-square"></i>
+                        Community Forums
+                    </a>
+                    <a href="#challenges">
+                        <i data-lucide="flame"></i>
+                        Weekly Challenges
+                    </a>
+                    <a href="#user-shortcuts">
+                        <i data-lucide="share-2"></i>
+                        Share Shortcuts
+                    </a>
+                    <a href="#experts">
+                        <i data-lucide="users-2"></i>
+                        Expert Network
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="building"></i>
+                        Company
+                    </h4>
+                    <a href="about.html">
+                        <i data-lucide="info"></i>
+                        About Us
+                    </a>
+                    <a href="#careers">
+                        <i data-lucide="briefcase"></i>
+                        Careers
+                    </a>
+                    <a href="#press">
+                        <i data-lucide="newspaper"></i>
+                        Press Kit
+                    </a>
+                    <a href="#contact">
+                        <i data-lucide="mail"></i>
+                        Contact
+                    </a>
+                    <a href="#investors">
+                        <i data-lucide="trending-up"></i>
+                        Investors
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="settings"></i>
+                        Support
+                    </h4>
+                    <a href="#help-center">
+                        <i data-lucide="help-circle"></i>
+                        Help Center
+                    </a>
+                    <a href="#faq">
+                        <i data-lucide="message-circle-question"></i>
+                        FAQ
+                    </a>
+                    <a href="#api-docs">
+                        <i data-lucide="code"></i>
+                        API Documentation
+                    </a>
+                    <a href="#status">
+                        <i data-lucide="activity"></i>
+                        System Status
+                    </a>
+                    <a href="#feedback">
+                        <i data-lucide="message-square-plus"></i>
+                        Send Feedback
+                    </a>
+                </div>
+                <div class="link-column">
+                    <h4>
+                        <i data-lucide="shield"></i>
+                        Legal
+                    </h4>
+                    <a href="#privacy">
+                        <i data-lucide="shield-check"></i>
+                        Privacy Policy
+                    </a>
+                    <a href="#terms">
+                        <i data-lucide="file-text"></i>
+                        Terms of Service
+                    </a>
+                    <a href="#cookies">
+                        <i data-lucide="cookie"></i>
+                        Cookie Policy
+                    </a>
+                    <a href="#security">
+                        <i data-lucide="lock"></i>
+                        Security
+                    </a>
+                    <a href="#gdpr">
+                        <i data-lucide="database"></i>
+                        GDPR Compliance
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-left">
+                <p>&copy; 2025 Shortcut Sensei Inc. All rights reserved.</p>
+            </div>
+            <div class="footer-bottom-right">
+                <div class="language-selector">
+                    <i data-lucide="globe"></i>
+                    <select class="language-select">
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="ja">日本語</option>
+                        <option value="zh">中文</option>
+                    </select>
+                </div>
+                <div class="theme-toggle-footer" id="footer-theme-toggle">
+                    <i data-lucide="sun"></i>
+                </div>
+                <button class="back-to-top" id="back-to-top">
+                    <i data-lucide="arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Scripts -->
+    <script src="js/enhanced-search-system.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- CRITICAL FIXES: Search Functionality & Copy Buttons -->
     <script>
-        // Initialize shared components
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // CRITICAL FIX 1: Implement proper search functionality
+        function initializeSearchFunctionality() {
+            const searchInput = document.getElementById('shortcut-filter');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const tables = document.querySelectorAll('.shortcuts-table');
+            const noResultsContainer = document.querySelector('.no-results');
+            
+            let currentCategory = 'all';
+            
+            // Create no results message if it doesn't exist
+            if (!noResultsContainer) {
+                const noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.style.display = 'none';
+                noResults.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; color: #6b7280;">
+                        <i data-lucide="search-x" style="width: 48px; height: 48px; margin-bottom: 16px; color: #6366f1;"></i>
+                        <h3 style="margin-bottom: 8px; color: #ffffff;">No shortcuts found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                `;
+                document.querySelector('.shortcuts-container').appendChild(noResults);
+                lucide.createIcons();
+            }
+            
+            // Search function
+            function searchShortcuts(query = '', category = 'all') {
+                const searchTerm = query.toLowerCase().trim();
+                let visibleCount = 0;
+                
+                tables.forEach(table => {
+                    const tableCategory = table.getAttribute('data-category');
+                    const rows = table.querySelectorAll('tbody tr');
+                    let tableHasVisible = false;
+                    
+                    rows.forEach(row => {
+                        const text = row.textContent.toLowerCase();
+                        const matchesSearch = !searchTerm || text.includes(searchTerm);
+                        const matchesCategory = category === 'all' || tableCategory === category;
+                        const shouldShow = matchesSearch && matchesCategory;
+                        
+                        row.style.display = shouldShow ? '' : 'none';
+                        if (shouldShow) {
+                            visibleCount++;
+                            tableHasVisible = true;
+                        }
+                    });
+                    
+                    // Show/hide entire table section
+                    const tableContainer = table.closest('.table-container') || table.closest('div');
+                    if (tableContainer) {
+                        tableContainer.style.display = (matchesCategory && tableHasVisible) ? '' : 'none';
+                    }
+                });
+                
+                // Show/hide no results message
+                const noResultsElement = document.querySelector('.no-results');
+                if (noResultsElement) {
+                    noResultsElement.style.display = visibleCount === 0 ? 'block' : 'none';
+                }
+            }
+            
+            // Search input event listener
+            if (searchInput) {
+                // Add loading state
+                searchInput.addEventListener('input', function(e) {
+                    const query = e.target.value;
+                    
+                    // Add clear button
+                    let clearBtn = document.querySelector('.search-clear-btn');
+                    if (query && !clearBtn) {
+                        clearBtn = document.createElement('button');
+                        clearBtn.className = 'search-clear-btn';
+                        clearBtn.innerHTML = '<i data-lucide="x"></i>';
+                        clearBtn.style.cssText = `
+                            position: absolute;
+                            right: 12px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            background: none;
+                            border: none;
+                            color: #6b7280;
+                            cursor: pointer;
+                            padding: 4px;
+                            border-radius: 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        `;
+                        clearBtn.addEventListener('click', () => {
+                            searchInput.value = '';
+                            searchShortcuts('', currentCategory);
+                            clearBtn.remove();
+                        });
+                        
+                        // Make search container relative
+                        const filterContainer = searchInput.closest('.filter-container');
+                        if (filterContainer) {
+                            filterContainer.style.position = 'relative';
+                            filterContainer.appendChild(clearBtn);
+                            lucide.createIcons();
+                        }
+                    } else if (!query && clearBtn) {
+                        clearBtn.remove();
+                    }
+                    
+                    // Debounced search
+                    clearTimeout(window.searchTimeout);
+                    window.searchTimeout = setTimeout(() => {
+                        searchShortcuts(query, currentCategory);
+                    }, 150);
+                });
+            }
+            
+            // Category filter event listeners
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentCategory = this.getAttribute('data-category');
+                    const searchQuery = searchInput ? searchInput.value : '';
+                    searchShortcuts(searchQuery, currentCategory);
+                });
+            });
+        }
+        
+        // CRITICAL FIX 2: Implement copy button functionality with animations
+        function initializeCopyButtons() {
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.copy-btn')) {
+                    const button = e.target.closest('.copy-btn');
+                    const shortcut = button.getAttribute('data-shortcut');
+                    
+                    if (shortcut && navigator.clipboard) {
+                        navigator.clipboard.writeText(shortcut).then(() => {
+                            // Store original state
+                            const originalHTML = button.innerHTML;
+                            const originalBg = button.style.backgroundColor;
+                            
+                            // Success animation
+                            button.innerHTML = '<i data-lucide="check"></i>';
+                            button.style.backgroundColor = '#22c55e';
+                            button.style.transform = 'scale(1.05)';
+                            button.style.transition = 'all 0.2s ease';
+                            
+                            // Recreate icons
+                            lucide.createIcons();
+                            
+                            // Show success tooltip
+                            const tooltip = document.createElement('div');
+                            tooltip.textContent = 'Copied!';
+                            tooltip.style.cssText = `
+                                position: absolute;
+                                bottom: 120%;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                background: #22c55e;
+                                color: white;
+                                padding: 6px 12px;
+                                border-radius: 6px;
+                                font-size: 12px;
+                                font-weight: 500;
+                                white-space: nowrap;
+                                z-index: 1000;
+                                animation: fadeInOut 1.5s ease;
+                            `;
+                            
+                            // Add tooltip styles
+                            if (!document.querySelector('#tooltip-styles')) {
+                                const style = document.createElement('style');
+                                style.id = 'tooltip-styles';
+                                style.textContent = `
+                                    @keyframes fadeInOut {
+                                        0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+                                        20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                                        80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                                        100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+                                    }
+                                `;
+                                document.head.appendChild(style);
+                            }
+                            
+                            button.style.position = 'relative';
+                            button.appendChild(tooltip);
+                            
+                            // Reset after delay
+                            setTimeout(() => {
+                                button.innerHTML = originalHTML;
+                                button.style.backgroundColor = originalBg;
+                                button.style.transform = 'scale(1)';
+                                if (tooltip.parentNode) {
+                                    tooltip.remove();
+                                }
+                                lucide.createIcons();
+                            }, 1500);
+                            
+                        }).catch(err => {
+                            console.error('Failed to copy: ', err);
+                            
+                            // Fallback for older browsers
+                            const textArea = document.createElement('textarea');
+                            textArea.value = shortcut;
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            
+                            // Show copied feedback even for fallback
+                            button.style.backgroundColor = '#22c55e';
+                            setTimeout(() => {
+                                button.style.backgroundColor = '';
+                            }, 1000);
+                        });
+                    }
+                }
+            });
+        }
+        
+        // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            loadSharedComponents('Google Chrome.html');
+            // Initialize search functionality
+            initializeSearchFunctionality();
+            
+            // Initialize copy buttons
+            initializeCopyButtons();
+            
+            // Initialize existing app
+            if (typeof ShortcutSensei !== 'undefined') {
+                new ShortcutSensei();
+            }
         });
     </script>
+
+    <script src="js/auth-system.js"></script>
+    <script src="js/footer-functionality.js"></script>
 </body>
 </html>
-    

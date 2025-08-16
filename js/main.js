@@ -147,22 +147,8 @@ class ShortcutSensei {
     }
 
     handleKeydown(e) {
-        // Global keyboard shortcuts
-        if (e.metaKey || e.ctrlKey) {
-            switch (e.key) {
-                case 'k':
-                    e.preventDefault();
-                    this.toggleSearch();
-                    break;
-                case '/':
-                    e.preventDefault();
-                    this.toggleSearch();
-                    break;
-            }
-        }
-        
+        // Global keyboard shortcuts disabled - search functionality removed
         if (e.key === 'Escape') {
-            this.closeSearch();
             this.closeModal();
         }
     }
@@ -231,7 +217,7 @@ class ShortcutSensei {
                 this.closeSearch();
             }
         });
-    }
+    }    // DISABLED:    // DISABLED:  
 
     toggleSearch() {
         const overlay = document.getElementById('search-overlay');
@@ -243,7 +229,7 @@ class ShortcutSensei {
             overlay?.classList.add('active');
             setTimeout(() => input?.focus(), 100);
         }
-    }
+    }    // DISABLED:    // DISABLED:  
 
     closeSearch() {
         const overlay = document.getElementById('search-overlay');
@@ -282,7 +268,7 @@ class ShortcutSensei {
             { type: 'page', title: 'About', description: 'Learn more about Shortcut Sensei', url: 'About.htm' },
             { type: 'page', title: 'Blog', description: 'Read our latest articles', url: 'blogs.html' }
         ];
-    }
+    }    // DISABLED:    // DISABLED:  
 
     performSearch(query) {
         if (!query.trim()) {

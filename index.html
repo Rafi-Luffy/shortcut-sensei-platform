@@ -42,14 +42,17 @@
     <link rel="stylesheet" href="css/premium-ui.css">
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+    
     <!-- Preloader -->
-    <div class="preloader" id="preloader">
+    <div class="preloader" id="preloader" aria-hidden="true">
         <div class="preloader-content">
             <div class="keyboard-animation">
-                <i data-lucide="keyboard"></i>
+                <i data-lucide="keyboard" aria-hidden="true"></i>
             </div>
             <div class="loading-text">Loading...</div>
-            <div class="loading-bar">
+            <div class="loading-bar" role="progressbar" aria-label="Loading progress">
                 <div class="loading-progress"></div>
             </div>
         </div>
@@ -59,7 +62,7 @@
     <nav class="nav-modern" id="main-nav">
         <div class="nav-container">
             <div class="nav-brand">
-                <a href="index-enhanced.html" class="logo-container">
+                <a href="index.html" class="logo-container">
                     <div class="logo-icon">
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
                             <defs>
@@ -92,23 +95,23 @@
             </div>
             
             <div class="nav-menu" id="nav-menu">
-                <a href="index-enhanced.html" class="nav-link active" data-nav="home">
+                <a href="index.html" class="nav-link active" data-nav="home">
                     <i data-lucide="home"></i>
                     <span>Home</span>
                 </a>
-                <a href="all-applications-enhanced.html" class="nav-link" data-nav="applications">
+                <a href="applications.html" class="nav-link" data-nav="applications">
                     <i data-lucide="grid-3x3"></i>
                     <span>Applications</span>
                 </a>
-                <a href="quiz-enhanced.html" class="nav-link" data-nav="quiz">
+                <a href="quiz-integrated.html" class="nav-link" data-nav="quiz">
                     <i data-lucide="brain"></i>
                     <span>Quiz</span>
                 </a>
-                <a href="community-enhanced.html" class="nav-link" data-nav="community">
+                <a href="community-ultimate.html" class="nav-link" data-nav="community">
                     <i data-lucide="users"></i>
                     <span>Community</span>
                 </a>
-                <a href="About-enhanced.html" class="nav-link" data-nav="about">
+                <a href="about.html" class="nav-link" data-nav="about">
                     <i data-lucide="info"></i>
                     <span>About</span>
                 </a>
@@ -150,28 +153,7 @@
         </div>
         
         <!-- Search Overlay -->
-        <div class="search-overlay" id="search-overlay">
-            <div class="search-container">
-                <div class="search-input-container">
-                    <i data-lucide="search"></i>
-                    <input type="text" placeholder="Search shortcuts, applications, or commands..." id="search-input" autocomplete="off">
-                    <button class="search-close" id="search-close">
-                        <i data-lucide="x"></i>
-                    </button>
-                </div>
-                <div class="search-results" id="search-results">
-                    <div class="search-suggestions">
-                        <div class="suggestion-category">
-                            <h4>Popular Searches</h4>
-                            <div class="suggestions">
-                                <span class="suggestion">Copy</span>
-                                <span class="suggestion">Paste</span>
-                                <span class="suggestion">VS Code</span>
-                                <span class="suggestion">Photoshop</span>
-                                <span class="suggestion">Chrome</span>
-                            </div>
-                        </div>
-                    </div>
+        
                 </div>
             </div>
         </div>
@@ -281,24 +263,24 @@
     </div>
 
     <!-- Main Content Wrapper -->
-    <main class="main-content">
+    <main class="main-content" id="main-content">
         <!-- Hero Section -->
-        <section class="hero-modern" id="home">
-        <div class="hero-background">
+        <section class="hero-modern hero-section" id="home" aria-labelledby="hero-title">
+        <div class="hero-background" aria-hidden="true">
             <div class="floating-elements">
-                <div class="floating-shortcut" style="--delay: 0s; --x: 10%; --y: 20%;">
+                <div class="floating-shortcut" style="--delay: 0s; --x: 10%; --y: 20%;" aria-hidden="true">
                     <kbd>Ctrl</kbd><span>+</span><kbd>C</kbd>
                 </div>
-                <div class="floating-shortcut" style="--delay: 1s; --x: 80%; --y: 30%;">
+                <div class="floating-shortcut" style="--delay: 1s; --x: 80%; --y: 30%;" aria-hidden="true">
                     <kbd>Cmd</kbd><span>+</span><kbd>Space</kbd>
                 </div>
-                <div class="floating-shortcut" style="--delay: 2s; --x: 15%; --y: 70%;">
+                <div class="floating-shortcut" style="--delay: 2s; --x: 15%; --y: 70%;" aria-hidden="true">
                     <kbd>Alt</kbd><span>+</span><kbd>Tab</kbd>
                 </div>
-                <div class="floating-shortcut" style="--delay: 3s; --x: 75%; --y: 65%;">
+                <div class="floating-shortcut" style="--delay: 3s; --x: 75%; --y: 65%;" aria-hidden="true">
                     <kbd>Ctrl</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>P</kbd>
                 </div>
-                <div class="floating-shortcut" style="--delay: 4s; --x: 50%; --y: 15%;">
+                <div class="floating-shortcut" style="--delay: 4s; --x: 50%; --y: 15%;" aria-hidden="true">
                     <kbd>Win</kbd><span>+</span><kbd>D</kbd>
                 </div>
             </div>
@@ -307,11 +289,11 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <i data-lucide="trending-up"></i>
+                    <i data-lucide="trending-up" aria-hidden="true"></i>
                     <span>Growing community of 100+ early users</span>
                 </div>
                 
-                <h1 class="hero-title">
+                <h1 class="hero-title" id="hero-title">
                     Master Every
                     <span class="gradient-text">Keyboard Shortcut</span>
                     <br>& 10x Your Productivity
@@ -353,19 +335,6 @@
                     <div class="stat-item">
                         <div class="stat-number" data-count="98">0</div>
                         <div class="stat-label">% Success Rate</div>
-                    </div>
-                </div>
-                
-                <!-- Professional Quick Search -->
-                <div class="hero-search-section fade-in-up">
-                    <div class="search-container">
-                        <input type="text" class="search-input premium-input" placeholder="Quick search: VS Code, Photoshop, Chrome..." autocomplete="off">
-                        <button class="search-button magnetic-btn" type="button">
-                            <i data-lucide="search"></i>
-                        </button>
-                    </div>
-                    <div class="search-tips">
-                        <span class="tip"><i data-lucide="lightbulb" style="width: 16px; height: 16px; display: inline; vertical-align: text-bottom;"></i> Try: "Ctrl+C", "copy shortcut", or "VS Code"</span>
                     </div>
                 </div>
                 
@@ -1116,47 +1085,14 @@
         </div>
     </div>
 
-    <!-- Apple-style Search Overlay -->
-    <div class="search-overlay" id="searchOverlay">
-        <button class="search-close" id="searchClose">
-            <i data-lucide="x"></i>
-        </button>
-        <div class="search-container">
-            <div class="search-input-container">
-                <input type="text" class="search-input" placeholder="Search shortcuts, applications, or tips..." id="searchInput">
-                <button class="search-submit" id="searchSubmit">
-                    <i data-lucide="search"></i>
-                </button>
-            </div>
-            <div class="search-suggestions" id="searchSuggestions">
-                <div class="search-suggestion">
-                    <i data-lucide="code" class="search-suggestion-icon"></i>
-                    <span>VS Code shortcuts</span>
-                </div>
-                <div class="search-suggestion">
-                    <i data-lucide="image" class="search-suggestion-icon"></i>
-                    <span>Photoshop shortcuts</span>
-                </div>
-                <div class="search-suggestion">
-                    <i data-lucide="globe" class="search-suggestion-icon"></i>
-                    <span>Chrome shortcuts</span>
-                </div>
-                <div class="search-suggestion">
-                    <i data-lucide="file-text" class="search-suggestion-icon"></i>
-                    <span>Word shortcuts</span>
-                </div>
-                <div class="search-suggestion">
-                    <i data-lucide="command" class="search-suggestion-icon"></i>
-                    <span>MacOS shortcuts</span>
-                </div>
-            </div>
-        </div>
+    
     </div>
 
     <!-- Toast Container -->
     <div class="toast-container" id="toast-container"></div>
 
     <!-- Scripts -->
+    
     <script src="js/main.js"></script>
     <script>
         // Initialize Lucide icons
@@ -1172,7 +1108,6 @@
     <script src="js/quiz.js"></script>
     <script src="js/master-integration.js"></script>
     <script src="js/auth-system.js"></script>
-    <script src="js/search-system.js"></script>
     <script src="js/footer-functionality.js"></script>
 </body>
 </html>
